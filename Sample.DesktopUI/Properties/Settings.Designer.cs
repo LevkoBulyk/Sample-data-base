@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Sample_DesktopUI.Properties
+namespace Sample.DesktopUI.Properties
 {
 
 
