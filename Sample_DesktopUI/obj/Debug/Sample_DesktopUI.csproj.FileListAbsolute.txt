@@ -1,0 +1,2 @@
+D:\Мої документи\Аспірантура\C#\Sample\Sample_DesktopUI\bin\Debug\Sample_DesktopUI.exe.config
+D:\Мої документи\C#\Sample\Sample_DesktopUI\bin\Debug\Sample_DesktopUI.exe.config
