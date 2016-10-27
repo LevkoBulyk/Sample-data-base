@@ -16,5 +16,14 @@ namespace Sample.DesktopUI
         {
             InitializeComponent();
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            AddNewDopand AddNewDopandForm = new AddNewDopand();
+            if (AddNewDopandForm.ShowDialog() == DialogResult.OK)
+            {
+                return;
+            }
+        }
     }
 }

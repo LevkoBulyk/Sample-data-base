@@ -6,3 +6,6 @@ D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Desktop
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.DesktopUI.pdb
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.exe
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.pdb
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.AddNewDopand.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.MainForm.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.Forms.AddNewMatrix.resources

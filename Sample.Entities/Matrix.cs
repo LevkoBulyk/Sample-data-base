@@ -6,7 +6,6 @@
         #region Bare SQL Properties
 
         public string Name { get; set; }
-        public int PercentId { get; set; }
         public float EnergyGap { get; set; }
         public float MaxPhononEnergy { get; set; }
         public string Symmetry { get; set; }
@@ -15,15 +14,14 @@
 
         #region Constructors
 
-        public Matrix(int Id, string Name, int PercentId)
+        public Matrix(int Id, string Name)
         {
             this.Id = Id;
             this.Name = Name;
-            this.PercentId = PercentId;
         }
 
         public Matrix(int Id, string Name, int PercentId, float EnergyGap, float MaxPhononEnergy, string Symmetry)
-            : this(Id, Name, PercentId)
+            : this(Id, Name)
         {
             this.EnergyGap = EnergyGap;
             this.MaxPhononEnergy = MaxPhononEnergy;
