@@ -42,7 +42,7 @@
   <ItemGroup>
     <Compile Include="Compound.cs" />
     <Compile Include="Dopant.cs" />
-    <Compile Include="Join.cs" />
+    <Compile Include="PercentToCompound.cs" />
     <Compile Include="Matrix.cs" />
     <Compile Include="Percent.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

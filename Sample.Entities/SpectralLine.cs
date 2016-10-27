@@ -5,6 +5,7 @@
         #region Bare SQL properties
 
         public int SpectrumId { get; set; }
+        public int OriginOfLine { get; set; }
         public float WaveLength { get; set; }
         public float Width { get; set; }
         public ushort RelativeIntensity { get; set; }

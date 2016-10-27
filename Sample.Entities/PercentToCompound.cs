@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Join : Table
+    class PercentToCompound : Table
     {
         #region Bare SQL properties
 
@@ -11,7 +11,7 @@
 
         #region Constructors
 
-        public Join(int PercentId, int CompountId)
+        public PercentToCompound(int PercentId, int CompountId)
         {
             this.CompoundId = CompoundId;
             this.PercentId = PercentId;
