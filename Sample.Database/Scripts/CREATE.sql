@@ -71,7 +71,6 @@ GO
 CREATE TABLE Compound
 (
 	Id INT NOT NULL,
-	User_id INT NOT NULL,
 	Visibility INT NOT NULL,
 	Eg FLOAT,
 	hw FLOAT,
@@ -80,7 +79,6 @@ CREATE TABLE Compound
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_Compound_Id PRIMARY KEY (Id)
-	CONSTRAINT FK_Compound_UsersID FOREIGN KEY(User_id) REFERENCES Users(Id),
 );
 GO
 
