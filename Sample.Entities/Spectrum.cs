@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    public class Spectrum : Table
+    class Spectrum : Table
     {
         #region Helpfull enum
 
@@ -16,6 +16,12 @@
 
         public int CompountId { get; set; }
         public SpectrumTypes SpectrumType { get; set; }
+        public string SourceLink { get; set; }
+        public int UserId { get; set; }
+        public bool Visibility { get; set; }
+        public float Temperature { get; set; }
+        public float Preasure { get; set; }
+        public float Wavelength { get; set; }
 
         #endregion
 
@@ -28,6 +34,10 @@
             this.SpectrumType = SpectrumType;
         }
 
+        public Spectrum()
+        {
+               
+        }
         #endregion
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    public class SpectralLine : Table
+    class SpectralLine : Table
     {
         #region Bare SQL properties
 
@@ -10,8 +10,8 @@
         public float Width { get; set; }
         public ushort RelativeIntensity { get; set; }
         public string Transition { get; set; }
-        public uint DecayTime { get; set; }
         public string Comment { get; set; }
+
 
         #endregion
 

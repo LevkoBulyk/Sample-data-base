@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    public class User : Table
+    class User : Table
     {
         #region Bare SQL properties
 
