@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Percent : Table
+    public class Percent : Table
     {
         #region Base SQL properties
 

@@ -1,4 +1,4 @@
-﻿namespace Sample.DesktopUI.Forms
+﻿namespace Sample.DesktopUI
 {
     partial class AddNewMatrix
     {
@@ -79,7 +79,7 @@
             this.tbxName.Location = new System.Drawing.Point(141, 35);
             this.tbxName.Name = "tbxName";
             this.tbxName.Size = new System.Drawing.Size(138, 27);
-            this.tbxName.TabIndex = 1;
+            this.tbxName.TabIndex = 0;
             // 
             // lblEnergyGap
             // 
@@ -113,7 +113,7 @@
             this.tbxMaxPhononEnergy.Location = new System.Drawing.Point(141, 119);
             this.tbxMaxPhononEnergy.Name = "tbxMaxPhononEnergy";
             this.tbxMaxPhononEnergy.Size = new System.Drawing.Size(138, 27);
-            this.tbxMaxPhononEnergy.TabIndex = 1;
+            this.tbxMaxPhononEnergy.TabIndex = 4;
             // 
             // lblSymmetry
             // 
@@ -129,7 +129,7 @@
             this.tbxSymmetry.Location = new System.Drawing.Point(141, 161);
             this.tbxSymmetry.Name = "tbxSymmetry";
             this.tbxSymmetry.Size = new System.Drawing.Size(138, 27);
-            this.tbxSymmetry.TabIndex = 1;
+            this.tbxSymmetry.TabIndex = 5;
             // 
             // chbName
             // 
@@ -226,8 +226,8 @@
         #endregion
 
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.TextBox tbxEnergyGap;
         private System.Windows.Forms.TextBox tbxName;
+        private System.Windows.Forms.TextBox tbxEnergyGap;
         private System.Windows.Forms.Label lblEnergyGap;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.TextBox tbxMaxPhononEnergy;

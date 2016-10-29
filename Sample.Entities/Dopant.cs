@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Dopant : Table
+    public class Dopant : Table
     {
         #region Bare SQL properties
 

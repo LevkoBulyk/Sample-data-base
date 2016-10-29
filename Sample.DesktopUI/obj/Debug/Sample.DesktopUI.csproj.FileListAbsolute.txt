@@ -8,4 +8,16 @@ D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.Desktop
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.pdb
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.AddNewDopand.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.MainForm.resources
-D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.Forms.AddNewMatrix.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Microsoft.SqlServer.Types.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\de\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\es\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\fr\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\it\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\ja\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\ko\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\pt\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.AddNewMatrix.resources

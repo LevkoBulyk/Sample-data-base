@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class SpectralLine : Table
+    public class SpectralLine : Table
     {
         #region Bare SQL properties
 

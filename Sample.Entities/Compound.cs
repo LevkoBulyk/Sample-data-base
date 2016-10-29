@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Compound : Table
+    public class Compound : Table
     {
         #region Helpfull enum
 

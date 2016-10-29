@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Sample.DesktopUI.Forms
+namespace Sample.DesktopUI
 {
     public partial class AddNewMatrix : Form
     {
@@ -19,12 +19,12 @@ namespace Sample.DesktopUI.Forms
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            Dialogs.ShowSuccessAndClose(this);
+            DialogsManager.ShowSuccessAndClose(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Dialogs.CloseForm(this);
+            DialogsManager.CloseForm(this);
         }
     }
 }

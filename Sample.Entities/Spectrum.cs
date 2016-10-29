@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Spectrum : Table
+    public class Spectrum : Table
     {
         #region Helpfull enum
 

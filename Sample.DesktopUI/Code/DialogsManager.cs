@@ -10,7 +10,7 @@ namespace Sample.DesktopUI
     /// <summary>
     /// Functionality of shoving dialogs and closing windows
     /// </summary>
-    public static class Dialogs
+    public static class DialogsManager
     {
         public static void ShowSuccessAndClose(Form form)
         {

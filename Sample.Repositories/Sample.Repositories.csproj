@@ -40,7 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="SqlDopantRepository.cs" />
+    <Compile Include="IDopantRepository.cs" />
+    <Compile Include="IMatrixRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlBaseRepository.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sample.Entities\Sample.Entities.csproj">
+      <Project>{3A035A91-78C7-4BF2-95A6-9FAD146D4DA1}</Project>
+      <Name>Sample.Entities</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

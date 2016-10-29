@@ -1,0 +1,5 @@
+Saving images into DB in varbinary() column
+
+http://stackoverflow.com/questions/7324190/how-to-store-images-to-a-varbinarymax-column
+
+

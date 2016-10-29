@@ -21,12 +21,12 @@ namespace Sample.DesktopUI
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            Dialogs.ShowSuccessAndClose(this);
+            DialogsManager.ShowSuccessAndClose(this);
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
         {
-            Dialogs.CloseForm(this);
+            DialogsManager.CloseForm(this);
         }
     }
 }
