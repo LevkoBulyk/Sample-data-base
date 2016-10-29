@@ -11,6 +11,10 @@
 
         #region Constructors
 
+        public User()
+        {
+            
+        }
         public User(int Id, string Name, string Departmrnt)
         {
             this.Id = Id;

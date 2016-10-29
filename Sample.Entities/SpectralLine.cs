@@ -17,6 +17,10 @@
 
         #region Constructors
 
+        public SpectralLine()
+        {
+            
+        }
         public SpectralLine(int Id, int SpectrumId, float WaveLength, string Transition)
         {
             this.Id = Id;
@@ -25,16 +29,15 @@
             this.Transition = Transition;
         }
 
-        public SpectralLine(int Id, int SpectrumId, float WaveLength, float Width, ushort RelativeIntensity, string Transition, uint DecayTime)
+        public SpectralLine(int Id, int SpectrumId, float WaveLength, float Width, ushort RelativeIntensity, string Transition)
             : this(Id, SpectrumId, WaveLength, Transition)
         {
             this.Width = Width;
             this.RelativeIntensity = RelativeIntensity;
-            this.DecayTime = DecayTime;
         }
 
-        public SpectralLine(int Id, int SpectrumId, float WaveLength, float Width, ushort RelativeIntensity, string Transition, uint DecayTime, string Comment)
-            : this(Id, SpectrumId, WaveLength, Width, RelativeIntensity, Transition, DecayTime)
+        public SpectralLine(int Id, int SpectrumId, float WaveLength, float Width, ushort RelativeIntensity, string Transition, string Comment)
+            : this(Id, SpectrumId, WaveLength, Width, RelativeIntensity, Transition)
         {
             this.Comment = Comment;
         }

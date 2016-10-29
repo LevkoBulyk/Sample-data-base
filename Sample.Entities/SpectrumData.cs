@@ -9,5 +9,10 @@ namespace Sample.Entities
     class SpectrumData : Table
     {
         public int SpectrumId { get; set; }
+
+        public SpectrumData()
+        {
+            
+        }
     }
 }

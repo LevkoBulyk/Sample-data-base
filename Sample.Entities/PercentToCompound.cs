@@ -11,6 +11,10 @@
 
         #region Constructors
 
+        public PercentToCompound()
+        {
+                
+        }
         public PercentToCompound(int PercentId, int CompountId)
         {
             this.CompoundId = CompoundId;

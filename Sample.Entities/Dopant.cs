@@ -11,6 +11,10 @@
 
         #region Constructors
 
+        public Dopant()
+        {
+                
+        }
         public Dopant(int Id, string Name, string Valance)
         {
             this.Id = Id;

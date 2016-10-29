@@ -22,7 +22,10 @@
         #endregion
 
         #region Constructors
-
+        public Compound()
+        {
+                
+        }
         public Compound(int Id)
         {
             this.Id = Id;

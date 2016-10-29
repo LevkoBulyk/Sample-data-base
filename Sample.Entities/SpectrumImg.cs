@@ -10,5 +10,10 @@ namespace Sample.Entities
     {
         public int SpectrumId { get; set; }
         public string Img { get; set; } // Хз який тип файлу
+
+        public SpectrumImg()
+        {
+            
+        }
     }
 }

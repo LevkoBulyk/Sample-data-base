@@ -15,6 +15,10 @@
 
         #region Constructors
 
+        public Matrix()
+        {
+                
+        }
         public Matrix(int Id, string Name)
         {
             this.Id = Id;

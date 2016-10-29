@@ -13,6 +13,10 @@ namespace Sample.Entities
         public float ExtWavelength { get; set; }
         public float LumWavelength { get; set; }
 
+        public Decay()
+        {
+                
+        }
         public Decay(int spectralLineId, float time, float extWavelength, float lumWavelength)
         {
             SpectralLineId = spectralLineId;
