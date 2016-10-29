@@ -28,6 +28,19 @@ CREATE TABLE Matrix
 );
 GO
 
+CREATE TABLE Dopant
+(
+	Id INT NOT NULL,
+	Name NVARCHAR(100) NOT NULL,
+	Element_id INT NOT NULL,
+	Percents_id INT NOT NULL,
+	Valense NVARCHAR(100) NOT NULL,
+	[Disabled] BIT NOT NULL
+
+	CONSTRAINT PK_Dopant_Id PRIMARY KEY (Id),
+);
+GO
+
 CREATE TABLE Percentege
 (
 	Id INT NOT NULL,
@@ -42,32 +55,18 @@ CREATE TABLE Percentege
 );
 GO
 
-CREATE TABLE Dopant
+CREATE TABLE Users
 (
-	Id INT NOT NULL,
+	Id INT NOT NULL IDENTITY,
 	Name NVARCHAR(100) NOT NULL,
-	Element_id INT NOT NULL,
-	Percents_id INT NOT NULL,
-	Valense NVARCHAR(100) NOT NULL,
+	Password NVARCHAR(100) NOT NULL,
+	Departament NVARCHAR(100),
 	[Disabled] BIT NOT NULL
 
-	CONSTRAINT PK_Dopant_Id PRIMARY KEY (Id),
+	CONSTRAINT PK_Users_Id PRIMARY KEY (Id)
 );
 GO
 
-CREATE TABLE Compaund_To
-(
-	Id INT NOT NULL,
-	Percents_id INT NOT NULL,
-	Compaund_id INT NOT NULL,
-	Valense NVARCHAR(100) NOT NULL,
-	[Disabled] BIT NOT NULL
-
-	CONSTRAINT PK_tblWorker_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_CompaundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentege(Id),
-	CONSTRAINT FK_CompaundTo_CompoundID FOREIGN KEY(Compaund_id) REFERENCES Compound(Id)
-);
-GO
 
 CREATE TABLE Compound
 (
@@ -80,20 +79,22 @@ CREATE TABLE Compound
 	Comment NTEXT,
 	[Disabled] BIT NOT NULL
 
-	CONSTRAINT Compound PRIMARY KEY (Id)
+	CONSTRAINT PK_Compound_Id PRIMARY KEY (Id)
 	CONSTRAINT FK_Compound_UsersID FOREIGN KEY(User_id) REFERENCES Users(Id),
 );
 GO
 
-CREATE TABLE Users
+CREATE TABLE CompaundToPersent
 (
-	Id INT NOT NULL IDENTITY,
-	Name NVARCHAR(100) NOT NULL,
-	Password NVARCHAR(100) NOT NULL,
-	Departament NVARCHAR(100),
+	Id INT NOT NULL,
+	Percents_id INT NOT NULL,
+	Compaund_id INT NOT NULL,
+	Valense NVARCHAR(100) NOT NULL,
 	[Disabled] BIT NOT NULL
 
-	CONSTRAINT Matrix PRIMARY KEY (Id)
+	CONSTRAINT PK_tblWorker_Id PRIMARY KEY (Id),
+	CONSTRAINT FK_CompaundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentege(Id),
+	CONSTRAINT FK_CompaundTo_CompoundID FOREIGN KEY(Compaund_id) REFERENCES Compound(Id)
 );
 GO
 
@@ -109,7 +110,7 @@ CREATE TABLE SpectralLine
 	OriginOfLine INT,
 	[Disabled] BIT NOT NULL
 
-	CONSTRAINT Matrix PRIMARY KEY (Id),
+	CONSTRAINT PK_SpectralLine_Id PRIMARY KEY (Id),
 	CONSTRAINT FK_SpectralLine_CompountID FOREIGN KEY(OriginOfLine) REFERENCES Dopant(Id),
 
 );
@@ -122,7 +123,7 @@ CREATE TABLE Spectrum
 	SpectrumType int NOT NULL,
 	[Disabled] BIT NOT NULL
 
-	CONSTRAINT Matrix PRIMARY KEY (Id),
+	CONSTRAINT PK_Spectrum_Id PRIMARY KEY (Id),
 	CONSTRAINT FK_Spectrum_CompountID FOREIGN KEY(Compound_id) REFERENCES SpectralLine(Id)
 );
 GO
