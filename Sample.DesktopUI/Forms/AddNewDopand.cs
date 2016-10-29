@@ -1,4 +1,5 @@
-﻿using Sample.Repositories;
+﻿using Sample.Entities;
+using Sample.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -30,6 +31,9 @@ namespace Sample.DesktopUI
             }
 
             SqlDopantRepository dopantRepository = new SqlDopantRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
+
+            Dopant dopant = new Dopant(tbxName.Text, tbxValence.Text);
+            dopantRepository.InsertDopant(dopant);
 
             DialogsManager.ShowSuccessAndClose(this);
         }

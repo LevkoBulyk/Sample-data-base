@@ -7,6 +7,7 @@ namespace Sample.Repositories
     {
         IEnumerable<Dopant> GetAllDopants();
         Dopant InsertDopant(Dopant dopant);
-        Dopant SeachDopantByName(string name);
+        Dopant GetDopantById(int id);
+        IEnumerable<Dopant> SeachDopantsByName(string name);
     }
 }

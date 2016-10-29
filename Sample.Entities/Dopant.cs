@@ -5,13 +5,13 @@
         #region Bare SQL properties
 
         public string Name { get; set; }
-        public short Valence { get; set; }
+        public string Valence { get; set; }
 
         #endregion
 
         #region Constructors
 
-        public Dopant(int Id, string Name, short Valance)
+        public Dopant(string Name, string Valence, int Id = -1)
         {
             this.Id = Id;
             this.Name = Name;

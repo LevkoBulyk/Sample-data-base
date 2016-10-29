@@ -107,6 +107,10 @@
     <Folder Include="Resources\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sample.Entities\Sample.Entities.csproj">
+      <Project>{3A035A91-78C7-4BF2-95A6-9FAD146D4DA1}</Project>
+      <Name>Sample.Entities</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Repositories\Sample.Repositories.csproj">
       <Project>{41F0BCCE-9450-40C8-AE26-7401DD949BAB}</Project>
       <Name>Sample.Repositories</Name>

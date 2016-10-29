@@ -16,6 +16,7 @@ namespace Sample.Repositories
 
         private const string _getAllDopantsQuery = "";
         private const string _insertDopantQuery = "INSERT INTO Dopant (Name, Valense, [Disabled]) VALUES(@Name, @Valence, 0);";
+        private const string _getDopantById = "SELECT Id, Name, Valense FROM Dopant WHERE[Disabled] = 0 AND Id = @Id;";
 
         #endregion
 
@@ -62,7 +63,31 @@ namespace Sample.Repositories
             }
         }
 
-        public Dopant SeachDopantByName(string name)
+        public Dopant GetDopantById(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(_getDopantById, connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    SqlDataReader reader = command.ExecuteReader();
+
+                    Dopant dopant = new Dopant();
+
+                    if (reader.Read())
+                    {
+
+                    }
+                }
+            }
+        }
+
+        public IEnumerable<Dopant> SeachDopantsByName(string name)
         {
             throw new NotImplementedException();
         }
