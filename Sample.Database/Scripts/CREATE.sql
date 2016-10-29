@@ -119,9 +119,54 @@ CREATE TABLE Spectrum
 	Id INT NOT NULL IDENTITY,
 	Compound_id int NOT NULL,
 	SpectrumType int NOT NULL,
+	SourceLink NTEXT,
+	User_id INT NOT NULL,
+	Visibility INT,
+	Temperature float,
+	Preasure float,
+	Wavelength float,
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_Spectrum_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_Spectrum_CompountID FOREIGN KEY(Compound_id) REFERENCES SpectralLine(Id)
+	CONSTRAINT FK_Spectrum_CompountID FOREIGN KEY(Compound_id) REFERENCES SpectralLine(Id),
+	CONSTRAINT FK_Spectrum_UsersID FOREIGN KEY(User_id) REFERENCES Users(Id)
+);
+GO
+
+CREATE TABLE Decay
+(
+	Id INT NOT NULL IDENTITY,
+	SpectralLine_id int NOT NULL,
+	Time float NOT NULL,
+	ExtWavelength float NOT NULL,
+	LumWavelength float NOT NULL,
+	[Disabled] BIT NOT NULL
+
+	CONSTRAINT PK_Decay_Id PRIMARY KEY (Id),
+	CONSTRAINT FK_Decay_SpectralLineID FOREIGN KEY(SpectralLine_id) REFERENCES SpectralLine(Id)
+);
+GO
+
+CREATE TABLE SpectrumImg
+(
+	Id INT NOT NULL IDENTITY,
+	Spectrum_id int NOT NULL,
+	Img float NOT NULL,
+	[Disabled] BIT NOT NULL
+
+	CONSTRAINT PK_SpectrumImg_Id PRIMARY KEY (Id),
+	CONSTRAINT FK_SpectrumImg_SpectrumID FOREIGN KEY(Spectrum_id) REFERENCES Spectrum(Id)
+);
+GO
+
+CREATE TABLE SpectrumData
+(
+	Id INT NOT NULL IDENTITY,
+	Spectrum_id int NOT NULL,
+	Img float NOT NULL,
+	[Disabled] BIT NOT NULL
+
+	CONSTRAINT PK_SpectrumData_Id PRIMARY KEY (Id),
+	CONSTRAINT FK_SpectrumData_SpectrumID FOREIGN KEY(Spectrum_id) REFERENCES Spectrum(Id)
 );
 GO
