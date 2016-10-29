@@ -19,8 +19,8 @@ namespace Sample.DesktopUI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            AddNewMatrix AddNewDopandForm = new AddNewMatrix();
-            if (AddNewDopandForm.ShowDialog() == DialogResult.OK)
+            AddNewDopand AddNewForm = new AddNewDopand();
+            if (AddNewForm.ShowDialog() == DialogResult.OK)
             {
                 return;
             }

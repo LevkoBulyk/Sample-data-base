@@ -21,3 +21,7 @@ D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\ru\Microsoft.S
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.AddNewMatrix.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Repositories.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Entities.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Repositories.pdb
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Entities.pdb

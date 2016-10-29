@@ -15,7 +15,7 @@ namespace Sample.Repositories
         #region Queries
 
         private const string _getAllDopantsQuery = "";
-        private const string _insertDopantQuery = "";
+        private const string _insertDopantQuery = "INSERT INTO Dopant (Name, Valense, [Disabled]) VALUES(@Name, @Valence, 0);";
 
         #endregion
 
@@ -54,7 +54,7 @@ namespace Sample.Repositories
                     command.CommandType = CommandType.Text;
 
                     command.Parameters.AddWithValue("@Name", dopant.Name);
-                    command.Parameters.AddWithValue("@Valance", dopant.Valance);
+                    command.Parameters.AddWithValue("@Valence", dopant.Valence);
 
                     command.ExecuteNonQuery();
                     return null;

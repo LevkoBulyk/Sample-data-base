@@ -18,13 +18,15 @@ namespace Sample.DesktopUI
             form.Close();
         }
 
-        public static void CloseForm(Form form)
+        public static void ShowError(string errorText)
+        {
+            MessageBox.Show(errorText, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+        }
+
+        public static bool CloseForm(Form form)
         {
             DialogResult dr = MessageBox.Show("Do you want cancel?", "Canceling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            if (dr == DialogResult.Yes)
-            {
-                form.Close();
-            }
+            return dr == DialogResult.Yes;
         }
     }
 }

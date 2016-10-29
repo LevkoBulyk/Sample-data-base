@@ -31,7 +31,7 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chbValence = new System.Windows.Forms.CheckBox();
             this.chbName = new System.Windows.Forms.CheckBox();
-            this.txbName = new System.Windows.Forms.TextBox();
+            this.tbxName = new System.Windows.Forms.TextBox();
             this.tbxValence = new System.Windows.Forms.TextBox();
             this.lblValence = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
@@ -44,7 +44,7 @@
             // 
             this.groupBox1.Controls.Add(this.chbValence);
             this.groupBox1.Controls.Add(this.chbName);
-            this.groupBox1.Controls.Add(this.txbName);
+            this.groupBox1.Controls.Add(this.tbxName);
             this.groupBox1.Controls.Add(this.tbxValence);
             this.groupBox1.Controls.Add(this.lblValence);
             this.groupBox1.Controls.Add(this.lblName);
@@ -80,13 +80,13 @@
             this.chbName.TabIndex = 5;
             this.chbName.UseVisualStyleBackColor = true;
             // 
-            // txbName
+            // tbxName
             // 
-            this.txbName.Location = new System.Drawing.Point(128, 36);
-            this.txbName.Margin = new System.Windows.Forms.Padding(4);
-            this.txbName.Name = "txbName";
-            this.txbName.Size = new System.Drawing.Size(126, 26);
-            this.txbName.TabIndex = 2;
+            this.tbxName.Location = new System.Drawing.Point(128, 36);
+            this.tbxName.Margin = new System.Windows.Forms.Padding(4);
+            this.tbxName.Name = "tbxName";
+            this.tbxName.Size = new System.Drawing.Size(126, 26);
+            this.tbxName.TabIndex = 2;
             // 
             // tbxValence
             // 
@@ -176,7 +176,7 @@
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.CheckBox chbValence;
         private System.Windows.Forms.CheckBox chbName;
-        private System.Windows.Forms.TextBox txbName;
+        private System.Windows.Forms.TextBox tbxName;
         private System.Windows.Forms.TextBox tbxValence;
         private System.Windows.Forms.Label lblValence;
         private System.Windows.Forms.Label lblName;

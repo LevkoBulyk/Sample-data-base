@@ -5,7 +5,7 @@
         #region Bare SQL properties
 
         public string Name { get; set; }
-        public short Valance { get; set; }
+        public short Valence { get; set; }
 
         #endregion
 
@@ -15,7 +15,7 @@
         {
             this.Id = Id;
             this.Name = Name;
-            this.Valance = Valance;
+            this.Valence = Valence;
         }
 
         #endregion

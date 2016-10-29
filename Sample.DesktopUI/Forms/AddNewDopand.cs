@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Sample.Repositories;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Drawing;
 using System.Linq;
@@ -21,6 +23,14 @@ namespace Sample.DesktopUI
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
+            if (tbxName.Text.Length == 0 || tbxValence.Text.Length == 0)
+            {
+                DialogsManager.ShowError("Not all required fields are filled.");
+                return;
+            }
+
+            SqlDopantRepository dopantRepository = new SqlDopantRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
+
             DialogsManager.ShowSuccessAndClose(this);
         }
 
