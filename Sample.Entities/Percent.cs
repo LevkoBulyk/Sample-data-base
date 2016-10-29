@@ -5,17 +5,19 @@
         #region Base SQL properties
 
         public int Number { get; set; }
-        public int ElementId { get; set; }
+        public int DopantId { get; set; }
+        public int MatrixId { get; set; }
 
         #endregion
 
         #region Conctructors
 
-        public Percent(int Id, int Number, int ElementId)
+        public Percent(int Id, int Number, int DopantId, int MatrixId)
         {
             this.Id = Id;
             this.Number = Number;
-            this.ElementId = ElementId;
+            this.DopantId = DopantId;
+            this.MatrixId = MatrixId;
         }
 
         #endregion
