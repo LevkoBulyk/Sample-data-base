@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class SpectralLine : Table
+    public class SpectralLine : Table
     {
         #region Bare SQL properties
 
@@ -17,29 +17,27 @@
 
         #region Constructors
 
-        public SpectralLine()
+        public SpectralLine() { }
+
+        public SpectralLine(int id, int spectrumId, float waveLength, string transition)
         {
-            
-        }
-        public SpectralLine(int Id, int SpectrumId, float WaveLength, string Transition)
-        {
-            this.Id = Id;
-            this.SpectrumId = SpectrumId;
-            this.WaveLength = WaveLength;
-            this.Transition = Transition;
+            this.Id = id;
+            this.SpectrumId = spectrumId;
+            this.WaveLength = waveLength;
+            this.Transition = transition;
         }
 
-        public SpectralLine(int Id, int SpectrumId, float WaveLength, float Width, ushort RelativeIntensity, string Transition)
-            : this(Id, SpectrumId, WaveLength, Transition)
+        public SpectralLine(int id, int spectrumId, float waveLength, float width, ushort relativeIntensity, string transition)
+            : this(id, spectrumId, waveLength, transition)
         {
-            this.Width = Width;
-            this.RelativeIntensity = RelativeIntensity;
+            this.Width = width;
+            this.RelativeIntensity = relativeIntensity;
         }
 
-        public SpectralLine(int Id, int SpectrumId, float WaveLength, float Width, ushort RelativeIntensity, string Transition, string Comment)
-            : this(Id, SpectrumId, WaveLength, Width, RelativeIntensity, Transition)
+        public SpectralLine(int id, int spectrumId, float waveLength, float width, ushort relativeIntensity, string transition, string comment)
+            : this(id, spectrumId, waveLength, width, relativeIntensity, transition)
         {
-            this.Comment = Comment;
+            this.Comment = comment;
         }
 
         #endregion

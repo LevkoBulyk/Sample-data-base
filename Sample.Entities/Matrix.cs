@@ -15,25 +15,27 @@
 
         #region Constructors
 
-        public Matrix()
+        public Matrix() { }
+
+        public Matrix(int id = -1)
         {
-                
-        }
-        public Matrix(int Id, string Name)
-        {
-            this.Id = Id;
-            this.Name = Name;
+            this.Id = id;
         }
 
-        public Matrix(int Id, string Name, float EnergyGap, float MaxPhononEnergy, string Symmetry)
-            : this(Id, Name)
+        public Matrix(int id, string name)
         {
-            this.EnergyGap = EnergyGap;
-            this.MaxPhononEnergy = MaxPhononEnergy;
-            this.Symmetry = Symmetry;
+            this.Name = name;
         }
 
-        public Matrix(int id,string name, float energyGap, float maxPhononEnergy, string symmetry, string comment)
+        public Matrix(int id, string name, float energyGap, float maxPhononEnergy, string symmetry)
+            : this(id, name)
+        {
+            this.EnergyGap = energyGap;
+            this.MaxPhononEnergy = maxPhononEnergy;
+            this.Symmetry = symmetry;
+        }
+
+        public Matrix(int id, string name, float energyGap, float maxPhononEnergy, string symmetry, string comment)
             : this(id, name)
         {
             EnergyGap = energyGap;

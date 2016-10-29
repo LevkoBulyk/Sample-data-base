@@ -14,9 +14,10 @@ namespace Sample.Repositories
 
         #region Queries
 
-        private const string _getAllDopantsQuery = "";
-        private const string _insertDopantQuery = "INSERT INTO Dopant (Name, Valense, [Disabled]) VALUES(@Name, @Valence, 0);";
-        private const string _getDopantById = "SELECT Id, Name, Valense FROM Dopant WHERE[Disabled] = 0 AND Id = @Id;";
+        private const string _getAllDopantsQuery = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0;";
+        private const string _insertDopantQuery = "INSERT INTO Dopant (Name, Valence, [Disabled]) VALUES(@Name, @Valence, 0); SET @Id = @@IDENTITY;";
+        private const string _getDopantById = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0 AND Id = @Id;";
+        private const string _getDopantsByName = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0 AND Name = @Name;";
 
         #endregion
 
@@ -38,10 +39,23 @@ namespace Sample.Repositories
 
                 using (SqlCommand command = new SqlCommand(_getAllDopantsQuery, connection))
                 {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        var list = new List<Dopant>();
 
+                        while (reader.Read())
+                        {
+                            int id = (int)reader["Id"];
+                            string name = (string)reader["Name"];
+                            string valence = (string)reader["Valence"];
+
+                            list.Add(new Dopant(id, name, valence));
+                        }
+
+                        return list;
+                    }
                 }
             }
-            return null;
         }
 
         public Dopant InsertDopant(Dopant dopant)
@@ -55,10 +69,13 @@ namespace Sample.Repositories
                     command.CommandType = CommandType.Text;
 
                     command.Parameters.AddWithValue("@Name", dopant.Name);
-                    command.Parameters.AddWithValue("@Valence", dopant.Valence);
+                    command.Parameters.AddWithValue("@Valence", dopant.Valance);
+                    SqlParameter Id = command.Parameters.Add("@Id", SqlDbType.Int);
+                    Id.Direction = ParameterDirection.Output;
 
                     command.ExecuteNonQuery();
-                    return null;
+
+                    return GetDopantById((int)command.Parameters["@Id"].Value);
                 }
             }
         }
@@ -79,17 +96,45 @@ namespace Sample.Repositories
 
                     Dopant dopant = new Dopant();
 
+                    Dopant resultDopant = new Dopant();
+
                     if (reader.Read())
                     {
-
+                        resultDopant.Id = (int)reader["Id"];
+                        resultDopant.Name = (string)reader["Name"];
+                        resultDopant.Valance = (string)reader["Valence"];
                     }
+
+                    return resultDopant;
                 }
             }
         }
 
         public IEnumerable<Dopant> SeachDopantsByName(string name)
         {
-            throw new NotImplementedException();
+            using (SqlConnection connection = new SqlConnection(_connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(_getDopantsByName, connection))
+                {
+                    command.Parameters.AddWithValue("@Name", name);
+
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        var list = new List<Dopant>();
+                        while (reader.Read())
+                        {
+                            int id = (int)reader["Id"];
+                            string retName = (string)reader["Name"];
+                            string valence = (string)reader["Valence"];
+
+                            list.Add(new Dopant(id, retName, valence));
+                        }
+                    }
+                }
+            }
+            return null;
         }
 
         #endregion

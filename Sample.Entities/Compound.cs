@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Compound : Table
+    public class Compound : Table
     {
         #region Helpfull enum
 
@@ -22,23 +22,18 @@
         #endregion
 
         #region Constructors
+
         public Compound()
+        { }
+
+        public Compound(int id, float energyGap, float maxPhononEnergy, string symmetry)
         {
-                
-        }
-        public Compound(int Id)
-        {
-            this.Id = Id;
+            this.Id = id;
+            this.EnergyGap = energyGap;
+            this.MaxPhononEnergy = maxPhononEnergy;
+            this.Symmetry = symmetry;
         }
 
-        public Compound(int Id, float EnergyGap, float MaxPhononEnergy, string Symmetry)
-            : this(Id)
-        {
-            this.EnergyGap = EnergyGap;
-            this.MaxPhononEnergy = MaxPhononEnergy;
-            this.Symmetry = Symmetry;
-        }
-
-            #endregion
+        #endregion
     }
 }

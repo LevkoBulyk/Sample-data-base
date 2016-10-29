@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Spectrum : Table
+    public class Spectrum : Table
     {
         #region Helpfull enum
 
@@ -27,15 +27,13 @@
 
         #region Constructors
 
-        public Spectrum()
+        public Spectrum() { }
+
+        public Spectrum(int id, int compountId, SpectrumTypes spectrumType)
         {
-            
-        }
-        public Spectrum(int Id, int CompountId, SpectrumTypes SpectrumType)
-        {
-            this.Id = Id;
-            this.CompountId = CompountId;
-            this.SpectrumType = SpectrumType;
+            this.Id = id;
+            this.CompountId = compountId;
+            this.SpectrumType = spectrumType;
         }
         #endregion
     }

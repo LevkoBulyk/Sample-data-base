@@ -6,13 +6,21 @@ using System.Threading.Tasks;
 
 namespace Sample.Entities
 {
-    class SpectrumData : Table
+    public class SpectrumData : Table
     {
-        public int SpectrumId { get; set; }
+        #region Bare SQL Parameters
 
-        public SpectrumData()
-        {
-            
-        }
+        public int SpectrumId { get; set; }
+        // TODO: Parameters of SpectrumData class
+
+        #endregion
+
+        #region Constructors
+
+        public SpectrumData() { }
+        // TODO: Constructors for SpectrumData class
+
+        #endregion
+
     }
 }

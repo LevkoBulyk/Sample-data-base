@@ -32,8 +32,8 @@ namespace Sample.DesktopUI
 
             SqlDopantRepository dopantRepository = new SqlDopantRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
 
-            Dopant dopant = new Dopant(tbxName.Text, tbxValence.Text);
-            dopantRepository.InsertDopant(dopant);
+            Dopant dopant = new Dopant(0, tbxName.Text, tbxValence.Text);
+            MessageBox.Show(dopantRepository.InsertDopant(dopant).ToString());
 
             DialogsManager.ShowSuccessAndClose(this);
         }

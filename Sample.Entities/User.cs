@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class User : Table
+    public class User : Table
     {
         #region Bare SQL properties
 
@@ -11,15 +11,13 @@
 
         #region Constructors
 
-        public User()
+        public User() { }
+
+        public User(int id, string name, string department)
         {
-            
-        }
-        public User(int Id, string Name, string Departmrnt)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Department = Department;
+            this.Id = id;
+            this.Name = name;
+            this.Department = department;
         }
 
         #endregion

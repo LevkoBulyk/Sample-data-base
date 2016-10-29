@@ -6,14 +6,21 @@ using System.Threading.Tasks;
 
 namespace Sample.Entities
 {
-    class SpectrumImg : Table
+    public class SpectrumImg : Table
     {
-        public int SpectrumId { get; set; }
-        public string Img { get; set; } // Хз який тип файлу
+        #region Bare SQL parameters
 
-        public SpectrumImg()
-        {
-            
-        }
+        public int SpectrumId { get; set; }
+        public string Img { get; set; } //TODO: тип файлу
+
+        #endregion
+
+        #region Constructors
+
+        public SpectrumImg() { }
+        // TODO: Constructors for SpectrumImg class
+
+        #endregion
+
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class Dopant : Table
+    public class Dopant : Table
     {
         #region Bare SQL properties
 
@@ -11,17 +11,27 @@
 
         #region Constructors
 
-        public Dopant()
+        public Dopant() { }
+
+        public Dopant(int id, string name, string valance)
         {
-                
-        }
-        public Dopant(int Id, string Name, string Valance)
-        {
-            this.Id = Id;
-            this.Name = Name;
-            this.Valance = Valance;
+            this.Id = id;
+            this.Name = name;
+            this.Valance = valance;
         }
 
         #endregion
+
+        #region Helping methods
+
+        public override string ToString()
+        {
+            return "Id=" + this.Id.ToString() + 
+                "; Name=" + this.Name +
+                "; Valance=" + this.Valance;
+        }
+
+        #endregion
+
     }
 }

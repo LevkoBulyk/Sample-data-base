@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    class PercentToCompound : Table
+    public class PercentToCompound : Table
     {
         #region Bare SQL properties
 
@@ -11,14 +11,12 @@
 
         #region Constructors
 
-        public PercentToCompound()
+        public PercentToCompound() { }
+
+        public PercentToCompound(int percentId, int compoundId)
         {
-                
-        }
-        public PercentToCompound(int PercentId, int CompountId)
-        {
-            this.CompoundId = CompoundId;
-            this.PercentId = PercentId;
+            this.CompoundId = compoundId;
+            this.PercentId = percentId;
         }
 
         #endregion
