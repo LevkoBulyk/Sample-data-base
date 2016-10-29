@@ -41,13 +41,16 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Compound.cs" />
+    <Compile Include="Decay.cs" />
     <Compile Include="Dopant.cs" />
     <Compile Include="PercentToCompound.cs" />
     <Compile Include="Matrix.cs" />
-    <Compile Include="Percent.cs" />
+    <Compile Include="Percentage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SpectralLine.cs" />
     <Compile Include="Spectrum.cs" />
+    <Compile Include="SpectrumData.cs" />
+    <Compile Include="SpectrumImg.cs" />
     <Compile Include="Table.cs" />
     <Compile Include="User.cs" />
   </ItemGroup>

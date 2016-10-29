@@ -30,10 +30,8 @@ GO
 
 CREATE TABLE Dopant
 (
-	Id INT NOT NULL,
+	Id INT NOT NULL IDENTITY,
 	Name NVARCHAR(100) NOT NULL,
-	Element_id INT NOT NULL,
-	Percents_id INT NOT NULL,
 	Valense NVARCHAR(100) NOT NULL,
 	[Disabled] BIT NOT NULL
 
@@ -41,9 +39,9 @@ CREATE TABLE Dopant
 );
 GO
 
-CREATE TABLE Percentege
+CREATE TABLE Percentage
 (
-	Id INT NOT NULL,
+	Id INT NOT NULL IDENTITY,
 	Number INT NOT NULL,
 	Element_id INT NOT NULL,
 	[Disabled] BIT NOT NULL,
@@ -70,7 +68,7 @@ GO
 
 CREATE TABLE Compound
 (
-	Id INT NOT NULL,
+	Id INT NOT NULL IDENTITY,
 	Visibility INT NOT NULL,
 	Eg FLOAT,
 	hw FLOAT,
@@ -82,35 +80,16 @@ CREATE TABLE Compound
 );
 GO
 
-CREATE TABLE CompaundToPersent
+CREATE TABLE PercentToCompound
 (
-	Id INT NOT NULL,
+	Id INT NOT NULL IDENTITY,
 	Percents_id INT NOT NULL,
 	Compaund_id INT NOT NULL,
-	Valense NVARCHAR(100) NOT NULL,
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_tblWorker_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_CompaundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentege(Id),
+	CONSTRAINT FK_CompaundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentage(Id),
 	CONSTRAINT FK_CompaundTo_CompoundID FOREIGN KEY(Compaund_id) REFERENCES Compound(Id)
-);
-GO
-
-CREATE TABLE SpectralLine
-(
-	Id INT NOT NULL IDENTITY,
-	Spectral_id int NOT NULL,
-	Wavelength float NOT NULL,
-	Width NVARCHAR(100),
-	RelInt float,
-	Transition NVARCHAR(100),
-	Comment NVARCHAR(100),
-	OriginOfLine INT,
-	[Disabled] BIT NOT NULL
-
-	CONSTRAINT PK_SpectralLine_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_SpectralLine_CompountID FOREIGN KEY(OriginOfLine) REFERENCES Dopant(Id),
-
 );
 GO
 
@@ -128,8 +107,26 @@ CREATE TABLE Spectrum
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_Spectrum_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_Spectrum_CompountID FOREIGN KEY(Compound_id) REFERENCES SpectralLine(Id),
+	CONSTRAINT FK_Spectrum_CompountID FOREIGN KEY(Compound_id) REFERENCES Compound(Id),
 	CONSTRAINT FK_Spectrum_UsersID FOREIGN KEY(User_id) REFERENCES Users(Id)
+);
+GO
+
+CREATE TABLE SpectralLine
+(
+	Id INT NOT NULL IDENTITY,
+	Spectrum_id int NOT NULL,
+	Wavelength float NOT NULL,
+	Width float,
+	RelativeIntensity float,
+	Transition NVARCHAR(100),
+	Comment NVARCHAR(100),
+	OriginOfLine INT,
+	[Disabled] BIT NOT NULL
+
+	CONSTRAINT PK_SpectralLine_Id PRIMARY KEY (Id),
+	CONSTRAINT FK_SpectralLine_CompountID FOREIGN KEY(OriginOfLine) REFERENCES Dopant(Id),
+	CONSTRAINT FK_SpectralLine_SpectrumID FOREIGN KEY(Spectrum_id) REFERENCES Spectrum(Id),
 );
 GO
 
@@ -163,7 +160,7 @@ CREATE TABLE SpectrumData
 (
 	Id INT NOT NULL IDENTITY,
 	Spectrum_id int NOT NULL,
-	Img float NOT NULL,
+	Data float NOT NULL,
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_SpectrumData_Id PRIMARY KEY (Id),

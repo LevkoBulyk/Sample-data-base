@@ -1,6 +1,6 @@
 ﻿namespace Sample.Entities
 {
-    public class Percent : Table
+    class Percentage : Table
     {
         #region Base SQL properties
 
@@ -12,7 +12,11 @@
 
         #region Conctructors
 
-        public Percent(int Id, int Number, int DopantId, int MatrixId)
+        public Percentage()
+        {
+            
+        }
+        public Percentage(int Id, int Number, int DopantId, int MatrixId)
         {
             this.Id = Id;
             this.Number = Number;
