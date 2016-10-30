@@ -45,6 +45,7 @@
     <Compile Include="IMatrixRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlBaseRepository.cs" />
+    <Compile Include="SqlMatrixRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sample.Entities\Sample.Entities.csproj">

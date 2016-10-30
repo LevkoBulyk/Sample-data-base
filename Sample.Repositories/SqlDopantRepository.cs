@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Sample.Entities;
 using System.Data.SqlClient;
-using System.Data;
 
 namespace Sample.Repositories
 {
@@ -60,54 +55,31 @@ namespace Sample.Repositories
 
         public Dopant InsertDopant(Dopant dopant)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
-            {
-                connection.Open();
+            Dictionary<string, object> parameters = new Dictionary<string, object>();
 
-                using (SqlCommand command = new SqlCommand(_insertDopantQuery, connection))
-                {
-                    command.CommandType = CommandType.Text;
+            parameters.Add("@Name", dopant.Name);
+            parameters.Add("@Valence", dopant.Valance);
 
-                    command.Parameters.AddWithValue("@Name", dopant.Name);
-                    command.Parameters.AddWithValue("@Valence", dopant.Valance);
-                    SqlParameter Id = command.Parameters.Add("@Id", SqlDbType.Int);
-                    Id.Direction = ParameterDirection.Output;
+            Dopant result = GetDopantById(InsertElement(parameters, _insertDopantQuery));
 
-                    command.ExecuteNonQuery();
-
-                    return GetDopantById((int)command.Parameters["@Id"].Value);
-                }
-            }
+            return result;
         }
 
         public Dopant GetDopantById(int id)
         {
-            using (SqlConnection connection = new SqlConnection(_connectionString))
+            Dopant resultDopant = new Dopant();
+
+            object[] values = GetElementById(id, _getDopantById);
+
+            if (values != null)
             {
-                connection.Open();
+                resultDopant.Id = (int)values[0];
+                resultDopant.Name = (string)values[1];
+                resultDopant.Valance = (string)values[2];
 
-                using (SqlCommand command = new SqlCommand(_getDopantById, connection))
-                {
-                    command.CommandType = CommandType.Text;
-
-                    command.Parameters.AddWithValue("@Id", id);
-
-                    SqlDataReader reader = command.ExecuteReader();
-
-                    Dopant dopant = new Dopant();
-
-                    Dopant resultDopant = new Dopant();
-
-                    if (reader.Read())
-                    {
-                        resultDopant.Id = (int)reader["Id"];
-                        resultDopant.Name = (string)reader["Name"];
-                        resultDopant.Valance = (string)reader["Valence"];
-                    }
-
-                    return resultDopant;
-                }
+                return resultDopant;
             }
+            return null;
         }
 
         public IEnumerable<Dopant> SeachDopantsByName(string name)

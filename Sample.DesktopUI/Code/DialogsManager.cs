@@ -12,21 +12,15 @@ namespace Sample.DesktopUI
     /// </summary>
     public static class DialogsManager
     {
-        public static void ShowSuccessAndClose(Form form)
+        public static void ShowSuccessAndClose(string message, Form form)
         {
-            MessageBox.Show("New dopand was created.", "Success", MessageBoxButtons.OK);
+            MessageBox.Show(message, "Success", MessageBoxButtons.OK);
             form.Close();
         }
 
         public static void ShowError(string errorText)
         {
             MessageBox.Show(errorText, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-        }
-
-        public static bool CloseForm(Form form)
-        {
-            DialogResult dr = MessageBox.Show("Do you want cancel?", "Canceling", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-            return dr == DialogResult.Yes;
         }
     }
 }

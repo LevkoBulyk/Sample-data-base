@@ -6,8 +6,8 @@
         #region Bare SQL Properties
 
         public string Name { get; set; }
-        public float EnergyGap { get; set; }
-        public float MaxPhononEnergy { get; set; }
+        public double EnergyGap { get; set; }
+        public double MaxPhononEnergy { get; set; }
         public string Symmetry { get; set; }
         public string Comment { get; set; }
 
@@ -27,7 +27,7 @@
             this.Name = name;
         }
 
-        public Matrix(int id, string name, float energyGap, float maxPhononEnergy, string symmetry)
+        public Matrix(int id, string name, double energyGap, double maxPhononEnergy, string symmetry)
             : this(id, name)
         {
             this.EnergyGap = energyGap;
@@ -35,13 +35,24 @@
             this.Symmetry = symmetry;
         }
 
-        public Matrix(int id, string name, float energyGap, float maxPhononEnergy, string symmetry, string comment)
-            : this(id, name)
+        public Matrix(int id, string name, double energyGap, double maxPhononEnergy, string symmetry, string comment)
+            : this(id, name, energyGap, maxPhononEnergy, symmetry)
         {
-            EnergyGap = energyGap;
-            MaxPhononEnergy = maxPhononEnergy;
-            Symmetry = symmetry;
-            Comment = comment;
+            this.Comment = comment;
+        }
+
+        #endregion
+
+        #region Helping methods
+
+        public override string ToString()
+        {
+            return "Id=" + this.Id.ToString() +
+                "; Name=" + this.Name +
+                "; Energy gap=" + this.EnergyGap.ToString() +
+                "; Maximum photon energy = " + this.MaxPhononEnergy.ToString() +
+                "; Symmetry = " + this.Symmetry +
+                "; Comment = " + this.Comment;
         }
 
         #endregion

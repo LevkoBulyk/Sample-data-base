@@ -1,6 +1,5 @@
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.DesktopUI.exe.config
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.csprojResolveAssemblyReference.cache
-D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.Properties.Resources.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.csproj.GenerateResource.Cache
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.DesktopUI.exe
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.DesktopUI.pdb

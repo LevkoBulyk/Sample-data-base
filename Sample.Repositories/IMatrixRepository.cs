@@ -7,6 +7,7 @@ namespace Sample.Repositories
     {
         IEnumerable<Matrix> GetAllMatrixes();
         Matrix InsertMatrix(Matrix matrix);
-        Matrix SeachMatrixByName(string name);
+        Matrix GetMatrixById(int id);
+        IEnumerable<Matrix> SearchMatrixesByName(string name);
     }
 }
