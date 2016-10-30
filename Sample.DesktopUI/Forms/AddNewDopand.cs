@@ -36,6 +36,7 @@ namespace Sample.DesktopUI
 
             dopantRepository.InsertDopant(dopant);
 
+            this.DialogResult = DialogResult.OK;
             DialogsManager.ShowSuccessAndClose("New dopant was created.", this);
         }
     }

@@ -23,7 +23,7 @@ namespace Sample.Repositories
 
         #region Methods
 
-        public object[] GetElementById(int id, string getElementByIdQuery)
+        protected object[] GetElementById(int id, string getElementByIdQuery)
         {
             using (SqlConnection connection = new SqlConnection(_connectionString))
             {
@@ -49,7 +49,7 @@ namespace Sample.Repositories
             return null;
         }
 
-        public int InsertElement(Dictionary<string, object> parameters, string insertElementQuery)
+        protected int InsertElement(Dictionary<string, object> parameters, string insertElementQuery)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -74,7 +74,7 @@ namespace Sample.Repositories
             }
         }
 
-        public List<object[]> GetAllElements(string getAllElementsQuery)
+        protected List<object[]> GetAllElements(string getAllElementsQuery)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -85,12 +85,11 @@ namespace Sample.Repositories
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         var list = new List<object[]>();
-                        object[] item = new object[reader.FieldCount];
 
                         while (reader.Read())
                         {
+                            object[] item = new object[reader.FieldCount];
                             reader.GetValues(item);
-
                             list.Add(item);
                         }
 
@@ -100,7 +99,7 @@ namespace Sample.Repositories
             }
         }
 
-        public List<object[]> SearchElementsByParameter(string searchElementByNameQuery, string parameterName, object parameterValue)
+        protected List<object[]> SearchElementsByParameter(string searchElementByNameQuery, string parameterName, object parameterValue)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -113,10 +112,10 @@ namespace Sample.Repositories
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
                         var list = new List<object[]>();
-                        var item = new object[reader.FieldCount];
 
                         while (reader.Read())
                         {
+                            var item = new object[reader.FieldCount];
                             reader.GetValues(item);
                             list.Add(item);
                         }

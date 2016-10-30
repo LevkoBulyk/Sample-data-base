@@ -49,10 +49,9 @@ namespace Sample.DesktopUI
 
             SqlMatrixRepository matrixRepository = new SqlMatrixRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
 
-            MessageBox.Show(matrixRepository.InsertMatrix(matrix).ToString());
+            matrixRepository.InsertMatrix(matrix);
 
-            MessageBox.Show(matrix.ToString());
-
+            this.DialogResult = DialogResult.OK;
             DialogsManager.ShowSuccessAndClose("New matrix was created.", this);
         }
     }

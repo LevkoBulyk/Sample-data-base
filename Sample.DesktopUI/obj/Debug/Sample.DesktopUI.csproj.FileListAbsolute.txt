@@ -50,3 +50,4 @@ C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample
 C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.csproj.GenerateResource.Cache
 C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.exe
 C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.pdb
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.Properties.Resources.resources
