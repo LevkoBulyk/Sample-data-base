@@ -5,7 +5,6 @@ D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Desktop
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.DesktopUI.pdb
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.exe
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.pdb
-D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.AddNewDopand.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.MainForm.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Microsoft.ReportViewer.WinForms.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Microsoft.SqlServer.Types.dll
@@ -19,7 +18,6 @@ D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\pt\Microsoft.S
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\ru\Microsoft.SqlServer.Types.resources.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\zh-Hans\Microsoft.SqlServer.Types.resources.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\zh-Hant\Microsoft.SqlServer.Types.resources.dll
-D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.AddNewMatrix.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Repositories.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Entities.dll
 D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Repositories.pdb
@@ -51,3 +49,5 @@ C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample
 C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.exe
 C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.pdb
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.Properties.Resources.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditDopand.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditMatrix.resources

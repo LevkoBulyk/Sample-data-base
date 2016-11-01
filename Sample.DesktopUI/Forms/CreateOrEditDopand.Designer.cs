@@ -1,6 +1,6 @@
 ﻿namespace Sample.DesktopUI
 {
-    partial class AddNewDopand
+    partial class CreateOrEditDopand
     {
         /// <summary>
         /// Required designer variable.
@@ -36,7 +36,7 @@
             this.lblValence = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
+            this.btnCreateOrEdit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,21 +130,21 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // btnCreate
+            // btnCreateOrEdit
             // 
-            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCreate.Location = new System.Drawing.Point(13, 165);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(85, 36);
-            this.btnCreate.TabIndex = 2;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            this.btnCreateOrEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnCreateOrEdit.Location = new System.Drawing.Point(13, 165);
+            this.btnCreateOrEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateOrEdit.Name = "btnCreateOrEdit";
+            this.btnCreateOrEdit.Size = new System.Drawing.Size(85, 36);
+            this.btnCreateOrEdit.TabIndex = 2;
+            this.btnCreateOrEdit.Text = "Create";
+            this.btnCreateOrEdit.UseVisualStyleBackColor = true;
+            this.btnCreateOrEdit.Click += new System.EventHandler(this.btnCreateOrEdit_Click);
             // 
-            // AddNewDopand
+            // CreateOrEditDopand
             // 
-            this.AcceptButton = this.btnCreate;
+            this.AcceptButton = this.btnCreateOrEdit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
@@ -152,7 +152,7 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(338, 218);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.btnCreateOrEdit);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
@@ -160,10 +160,10 @@
             this.MaximizeBox = false;
             this.MaximumSize = new System.Drawing.Size(356, 263);
             this.MinimumSize = new System.Drawing.Size(356, 263);
-            this.Name = "AddNewDopand";
+            this.Name = "CreateOrEditDopand";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add new dopand";
-            this.Load += new System.EventHandler(this.AddNewDopand_Load);
+            this.Load += new System.EventHandler(this.CreateOrEditDopand_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -180,6 +180,6 @@
         private System.Windows.Forms.Label lblValence;
         private System.Windows.Forms.Label lblName;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnCreateOrEdit;
     }
 }

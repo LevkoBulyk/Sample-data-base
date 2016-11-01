@@ -12,7 +12,8 @@ namespace Sample.Repositories
         private const string _getAllDopantsQuery = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0;";
         private const string _insertDopantQuery = "INSERT INTO Dopant (Name, Valence, [Disabled]) VALUES(@Name, @Valence, 0); SET @Id = @@IDENTITY;";
         private const string _getDopantById = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0 AND Id = @Id;";
-        private const string _getDopantsByName = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0 AND Name = @Name;";
+        private const string _getDopantsByName = "SELECT Id, Name, Valence FROM Dopant WHERE [Disabled] = 0 AND Name LIKE @Name;";
+        private const string _updateDopantWithId = "UPDATE Dopant SET Name = @Name, Valence = @Valence WHERE Id = @Id;";
 
         #endregion
 
@@ -58,7 +59,7 @@ namespace Sample.Repositories
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             parameters.Add("@Name", dopant.Name);
-            parameters.Add("@Valence", dopant.Valance);
+            parameters.Add("@Valence", dopant.Valence);
 
             Dopant result = GetDopantById(InsertElement(parameters, _insertDopantQuery));
 
@@ -75,7 +76,7 @@ namespace Sample.Repositories
             {
                 resultDopant.Id = (int)values[0];
                 resultDopant.Name = (string)values[1];
-                resultDopant.Valance = (string)values[2];
+                resultDopant.Valence = (string)values[2];
 
                 return resultDopant;
             }
@@ -90,7 +91,7 @@ namespace Sample.Repositories
 
                 using (SqlCommand command = new SqlCommand(_getDopantsByName, connection))
                 {
-                    command.Parameters.AddWithValue("@Name", name);
+                    command.Parameters.AddWithValue("@Name", "%" + name + "%");
 
                     using (SqlDataReader reader = command.ExecuteReader())
                     {
@@ -103,8 +104,27 @@ namespace Sample.Repositories
 
                             list.Add(new Dopant(id, retName, valence));
                         }
+                        return list;
                     }
                 }
+            }
+        }
+
+        public Dopant UpdateDopantWithId(int Id, Dopant dopant)
+        {
+            Dopant dopantBeforeUpdating = GetDopantById(Id);
+
+            var newDopant = new Dictionary<string, object>();
+            newDopant.Add("@Name", dopant.Name);
+            newDopant.Add("@Valence", dopant.Valence);
+
+            UpdateElementWithId(Id, newDopant, _updateDopantWithId);
+
+            Dopant dopantAfterUpdating = GetDopantById(Id);
+
+            if (dopantBeforeUpdating != dopantAfterUpdating)
+            {
+                return dopantAfterUpdating;
             }
             return null;
         }

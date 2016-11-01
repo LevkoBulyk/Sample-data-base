@@ -1,6 +1,6 @@
 ﻿namespace Sample.DesktopUI
 {
-    partial class AddNewMatrix
+    partial class CreateOrEditMatrix
     {
         /// <summary>
         /// Required designer variable.
@@ -29,12 +29,15 @@
         private void InitializeComponent()
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbComment = new System.Windows.Forms.CheckBox();
             this.chbSymmetry = new System.Windows.Forms.CheckBox();
             this.chbMaxPhononEnergy = new System.Windows.Forms.CheckBox();
             this.chbEnergyGap = new System.Windows.Forms.CheckBox();
+            this.tbxComment = new System.Windows.Forms.TextBox();
             this.chbName = new System.Windows.Forms.CheckBox();
             this.tbxSymmetry = new System.Windows.Forms.TextBox();
             this.tbxMaxPhononEnergy = new System.Windows.Forms.TextBox();
+            this.lblComment = new System.Windows.Forms.Label();
             this.tbxEnergyGap = new System.Windows.Forms.TextBox();
             this.lblSymmetry = new System.Windows.Forms.Label();
             this.tbxName = new System.Windows.Forms.TextBox();
@@ -42,10 +45,7 @@
             this.lblEnergyGap = new System.Windows.Forms.Label();
             this.lblName = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
-            this.btnCreate = new System.Windows.Forms.Button();
-            this.lblComment = new System.Windows.Forms.Label();
-            this.tbxComment = new System.Windows.Forms.TextBox();
-            this.chbComment = new System.Windows.Forms.CheckBox();
+            this.btnCreateOrEdit = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -72,6 +72,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Matrix data";
+            // 
+            // chbComment
+            // 
+            this.chbComment.AutoSize = true;
+            this.chbComment.Enabled = false;
+            this.chbComment.Location = new System.Drawing.Point(295, 210);
+            this.chbComment.Name = "chbComment";
+            this.chbComment.Size = new System.Drawing.Size(18, 17);
+            this.chbComment.TabIndex = 2;
+            this.chbComment.UseVisualStyleBackColor = true;
             // 
             // chbSymmetry
             // 
@@ -103,6 +113,13 @@
             this.chbEnergyGap.TabIndex = 2;
             this.chbEnergyGap.UseVisualStyleBackColor = true;
             // 
+            // tbxComment
+            // 
+            this.tbxComment.Location = new System.Drawing.Point(141, 205);
+            this.tbxComment.Name = "tbxComment";
+            this.tbxComment.Size = new System.Drawing.Size(138, 27);
+            this.tbxComment.TabIndex = 6;
+            // 
             // chbName
             // 
             this.chbName.AutoSize = true;
@@ -126,6 +143,15 @@
             this.tbxMaxPhononEnergy.Name = "tbxMaxPhononEnergy";
             this.tbxMaxPhononEnergy.Size = new System.Drawing.Size(138, 27);
             this.tbxMaxPhononEnergy.TabIndex = 4;
+            // 
+            // lblComment
+            // 
+            this.lblComment.AutoSize = true;
+            this.lblComment.Location = new System.Drawing.Point(28, 208);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(76, 19);
+            this.lblComment.TabIndex = 0;
+            this.lblComment.Text = "Comment";
             // 
             // tbxEnergyGap
             // 
@@ -189,47 +215,21 @@
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             // 
-            // btnCreate
+            // btnCreateOrEdit
             // 
-            this.btnCreate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.btnCreate.Location = new System.Drawing.Point(19, 274);
-            this.btnCreate.Margin = new System.Windows.Forms.Padding(4);
-            this.btnCreate.Name = "btnCreate";
-            this.btnCreate.Size = new System.Drawing.Size(85, 36);
-            this.btnCreate.TabIndex = 4;
-            this.btnCreate.Text = "Create";
-            this.btnCreate.UseVisualStyleBackColor = true;
-            this.btnCreate.Click += new System.EventHandler(this.btnCreate_Click);
+            this.btnCreateOrEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.btnCreateOrEdit.Location = new System.Drawing.Point(19, 274);
+            this.btnCreateOrEdit.Margin = new System.Windows.Forms.Padding(4);
+            this.btnCreateOrEdit.Name = "btnCreateOrEdit";
+            this.btnCreateOrEdit.Size = new System.Drawing.Size(85, 36);
+            this.btnCreateOrEdit.TabIndex = 4;
+            this.btnCreateOrEdit.Text = "Create";
+            this.btnCreateOrEdit.UseVisualStyleBackColor = true;
+            this.btnCreateOrEdit.Click += new System.EventHandler(this.btnCreate_Click);
             // 
-            // lblComment
+            // CreateOrEditMatrix
             // 
-            this.lblComment.AutoSize = true;
-            this.lblComment.Location = new System.Drawing.Point(28, 208);
-            this.lblComment.Name = "lblComment";
-            this.lblComment.Size = new System.Drawing.Size(76, 19);
-            this.lblComment.TabIndex = 0;
-            this.lblComment.Text = "Comment";
-            // 
-            // tbxComment
-            // 
-            this.tbxComment.Location = new System.Drawing.Point(141, 205);
-            this.tbxComment.Name = "tbxComment";
-            this.tbxComment.Size = new System.Drawing.Size(138, 27);
-            this.tbxComment.TabIndex = 6;
-            // 
-            // chbComment
-            // 
-            this.chbComment.AutoSize = true;
-            this.chbComment.Enabled = false;
-            this.chbComment.Location = new System.Drawing.Point(295, 210);
-            this.chbComment.Name = "chbComment";
-            this.chbComment.Size = new System.Drawing.Size(18, 17);
-            this.chbComment.TabIndex = 2;
-            this.chbComment.UseVisualStyleBackColor = true;
-            // 
-            // AddNewMatrix
-            // 
-            this.AcceptButton = this.btnCreate;
+            this.AcceptButton = this.btnCreateOrEdit;
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSize = true;
@@ -237,15 +237,16 @@
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(359, 323);
             this.Controls.Add(this.btnCancel);
-            this.Controls.Add(this.btnCreate);
+            this.Controls.Add(this.btnCreateOrEdit);
             this.Controls.Add(this.groupBox1);
             this.Font = new System.Drawing.Font("Times New Roman", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
-            this.Name = "AddNewMatrix";
+            this.Name = "CreateOrEditMatrix";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Add new matrix";
+            this.Load += new System.EventHandler(this.CreateOrEditMatrix_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -268,7 +269,7 @@
         private System.Windows.Forms.CheckBox chbMaxPhononEnergy;
         private System.Windows.Forms.CheckBox chbEnergyGap;
         private System.Windows.Forms.Button btnCancel;
-        private System.Windows.Forms.Button btnCreate;
+        private System.Windows.Forms.Button btnCreateOrEdit;
         private System.Windows.Forms.CheckBox chbComment;
         private System.Windows.Forms.TextBox tbxComment;
         private System.Windows.Forms.Label lblComment;

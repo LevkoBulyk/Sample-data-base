@@ -126,6 +126,27 @@ namespace Sample.Repositories
             }
         }
 
+        protected void UpdateElementWithId(int Id, Dictionary<string, object> element, string updateElementWithIdQuery)
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                connection.Open();
+
+                using (SqlCommand command = new SqlCommand(updateElementWithIdQuery, connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    foreach (var key in element.Keys)
+                    {
+                        command.Parameters.AddWithValue(key, element[key]);
+                    }
+                    command.Parameters.AddWithValue("@Id", Id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         #endregion
     }
 }

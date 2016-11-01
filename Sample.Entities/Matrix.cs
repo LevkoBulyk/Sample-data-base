@@ -47,12 +47,31 @@
 
         public override string ToString()
         {
-            return "Id=" + this.Id.ToString() +
-                "; Name=" + this.Name +
-                "; Energy gap=" + this.EnergyGap.ToString() +
-                "; Maximum photon energy = " + this.MaxPhononEnergy.ToString() +
-                "; Symmetry = " + this.Symmetry +
-                "; Comment = " + this.Comment;
+            string result = "Name: " + this.Name;
+
+            if (this.EnergyGap > 0)
+            {
+                result += "; Energy gap=" + this.EnergyGap.ToString();
+            }
+
+            if (this.MaxPhononEnergy > 0)
+            {
+                result += "; Maximum photon energy = " + this.MaxPhononEnergy.ToString();
+            }
+
+            if (this.Symmetry != "")
+            {
+                result += "; Symmetry: " + this.Symmetry;
+            }
+
+            if (this.Comment != "")
+            {
+                result += "; Comment: " + this.Comment;
+            }
+
+            result += ";";
+
+            return result;
         }
 
         #endregion

@@ -10,7 +10,8 @@ namespace Sample.Repositories
         private const string _getAllMatrixesQuery = "SELECT Id, Name, Eg, hw, Symmetry, Comment, Disabled FROM Matrix WHERE[Disabled] = 0;";
         private const string _insertMatrixQuery = "INSERT INTO Matrix (Name, Eg, hw, Symmetry, Comment, [Disabled]) VALUES(@Name, @Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
         private const string _getMatrixById = "SELECT Id, Name, Eg, hw, Symmetry, Comment FROM Matrix WHERE[Disabled] = 0 AND Id = @Id;";
-        private const string _getMatrixesByName = "SELECT Id, Name, Eg, hw, Symmetry, Comment, Disabled FROM Dopant WHERE[Disabled] = 0 AND Name = @Name;";
+        private const string _getMatrixesByName = "SELECT Id, Name, Eg, hw, Symmetry, Comment, Disabled FROM Matrix WHERE [Disabled] = 0 AND Name LIKE @Name;";
+        private const string _updateMatrixWithId = "UPDATE Matrix SET Name = @Name, Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment WHERE Id = @Id;";
 
         #endregion
 
@@ -60,7 +61,7 @@ namespace Sample.Repositories
 
         public IEnumerable<Matrix> SearchMatrixesByName(string name)
         {
-            var list = GetAllElements(_getMatrixesByName);
+            var list = SearchElementsByParameter(_getMatrixesByName, "Name", "%" + name + "%");
             var result = new List<Matrix>();
 
             foreach (var item in list)
@@ -69,6 +70,28 @@ namespace Sample.Repositories
             }
 
             return result;
+        }
+
+        public Matrix UpdateMatrixWithId(int Id, Matrix matrix)
+        {
+            Matrix matrixBeforeUpdating = GetMatrixById(Id);
+
+            var newMatrix = new Dictionary<string, object>();
+            newMatrix.Add("@Name", matrix.Name);
+            newMatrix.Add("@Eg", matrix.EnergyGap);
+            newMatrix.Add("@hw", matrix.MaxPhononEnergy);
+            newMatrix.Add("@Symmetry", matrix.Symmetry);
+            newMatrix.Add("@Comment", matrix.Comment);
+
+            UpdateElementWithId(Id, newMatrix, _updateMatrixWithId);
+
+            Matrix matrixAfterUpdating = GetMatrixById(Id);
+
+            if (matrixBeforeUpdating != matrixAfterUpdating)
+            {
+                return matrixAfterUpdating;
+            }
+            return null;
         }
 
         #endregion

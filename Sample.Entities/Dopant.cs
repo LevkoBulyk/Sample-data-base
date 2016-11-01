@@ -5,7 +5,7 @@
         #region Bare SQL properties
 
         public string Name { get; set; }
-        public string Valance { get; set; }
+        public string Valence { get; set; }
 
         #endregion
 
@@ -17,7 +17,7 @@
         {
             this.Id = id;
             this.Name = name;
-            this.Valance = valance;
+            this.Valence = valance;
         }
 
         #endregion
@@ -26,9 +26,8 @@
 
         public override string ToString()
         {
-            return "Id=" + this.Id.ToString() + 
-                "; Name=" + this.Name +
-                "; Valance=" + this.Valance;
+            return "Name: " + this.Name +
+                "; Valance: " + this.Valence + ";";
         }
 
         #endregion
