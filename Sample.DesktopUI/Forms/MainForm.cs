@@ -1,14 +1,7 @@
 ﻿using Sample.Entities;
 using Sample.Repositories;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
 using System.Configuration;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sample.DesktopUI
@@ -73,6 +66,7 @@ namespace Sample.DesktopUI
                         FillWithMatrixesWithName(name);
                         break;
                     case "Compounds":
+                        // TODO: Fill data grid view with compounds must be realised
                         break;
                     default:
                         DialogsManager.ShowError("Wrong settings where to search and what to display is setted");
@@ -222,7 +216,6 @@ namespace Sample.DesktopUI
 
         private void DataEditButton_Cliked(int currentId)
         {
-            // TODO: Realise DataEditButton_Cliked() method
             switch (this.tbdropdShowSettings.Text)
             {
                 case "Dopants":
@@ -242,6 +235,7 @@ namespace Sample.DesktopUI
                     }
                     break;
                 case "Compuonds":
+                    // TODO: Realise compound editing
                     break;
                 default:
                     DialogsManager.ShowError("Wrong settings where to search and what to display is setted");
@@ -255,10 +249,25 @@ namespace Sample.DesktopUI
             switch (this.tbdropdShowSettings.Text)
             {
                 case "Dopants":
+                    if (DialogsManager.DeletingConfirmation("dopant"))
+                    {
+                        this._dopantRepository.DeleteDopant(currentId);
+                        FillDataGridView(null, null);
+                    }
                     break;
                 case "Matrixes":
+                    if (DialogsManager.DeletingConfirmation("matrix"))
+                    {
+                        this._matrixRepository.DeleteMatrixWithId(currentId);
+                        FillDataGridView(null, null);
+                    }
                     break;
                 case "Compuonds":
+                    if (DialogsManager.DeletingConfirmation("compound"))
+                    {
+                        // TODO: Realise compound deleting
+                        FillDataGridView(null, null);
+                    }
                     break;
                 default:
                     DialogsManager.ShowError("Wrong settings where to search and what to display is setted");

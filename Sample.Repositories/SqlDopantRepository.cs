@@ -129,6 +129,11 @@ namespace Sample.Repositories
             return null;
         }
 
+        public void DeleteDopant(int id)
+        {
+            DeleteElemetnWithId(id, "Dopant");
+        }
+
         #endregion
 
     }

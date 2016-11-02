@@ -72,9 +72,9 @@ namespace Sample.Repositories
             return result;
         }
 
-        public Matrix UpdateMatrixWithId(int Id, Matrix matrix)
+        public Matrix UpdateMatrixWithId(int id, Matrix matrix)
         {
-            Matrix matrixBeforeUpdating = GetMatrixById(Id);
+            Matrix matrixBeforeUpdating = GetMatrixById(id);
 
             var newMatrix = new Dictionary<string, object>();
             newMatrix.Add("@Name", matrix.Name);
@@ -83,15 +83,20 @@ namespace Sample.Repositories
             newMatrix.Add("@Symmetry", matrix.Symmetry);
             newMatrix.Add("@Comment", matrix.Comment);
 
-            UpdateElementWithId(Id, newMatrix, _updateMatrixWithId);
+            UpdateElementWithId(id, newMatrix, _updateMatrixWithId);
 
-            Matrix matrixAfterUpdating = GetMatrixById(Id);
+            Matrix matrixAfterUpdating = GetMatrixById(id);
 
             if (matrixBeforeUpdating != matrixAfterUpdating)
             {
                 return matrixAfterUpdating;
             }
             return null;
+        }
+
+        public void DeleteMatrixWithId(int id)
+        {
+            DeleteElemetnWithId(id, "matrix");
         }
 
         #endregion

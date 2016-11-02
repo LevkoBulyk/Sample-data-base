@@ -22,7 +22,7 @@ namespace Sample.DesktopUI
 
         private void CreateOrEditMatrix_Load(object sender, EventArgs e)
         {
-            if (this._currentMatrix.Id == 0)
+            if (this._currentMatrix == null)
             {
                 this.btnCreateOrEdit.Text = "Create";
             }
@@ -65,7 +65,7 @@ namespace Sample.DesktopUI
             Matrix matrix = new Matrix(0, tbxName.Text, energyGap, maxPhononEnergy, tbxSymmetry.Text, tbxComment.Text);
 
             string message;
-            if (this._currentMatrix.Id == 0)
+            if (this._currentMatrix == null)
             {
                 _matrixRepository.InsertMatrix(matrix);
                 message = "New matrix was created.";

@@ -126,7 +126,7 @@ namespace Sample.Repositories
             }
         }
 
-        protected void UpdateElementWithId(int Id, Dictionary<string, object> element, string updateElementWithIdQuery)
+        protected void UpdateElementWithId(int id, Dictionary<string, object> element, string updateElementWithIdQuery)
         {
             using (SqlConnection connection = new SqlConnection(this._connectionString))
             {
@@ -140,7 +140,26 @@ namespace Sample.Repositories
                     {
                         command.Parameters.AddWithValue(key, element[key]);
                     }
-                    command.Parameters.AddWithValue("@Id", Id);
+                    command.Parameters.AddWithValue("@Id", id);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        protected void DeleteElemetnWithId(int id, string tableName)
+        {
+            using (SqlConnection connection = new SqlConnection(this._connectionString))
+            {
+                connection.Open();
+
+                string deleteQuery = "UPDATE "+tableName+" SET [Disabled] = 1 WHERE Id = @Id;";
+
+                using (SqlCommand command = new SqlCommand(deleteQuery, connection))
+                {
+                    command.CommandType = CommandType.Text;
+
+                    command.Parameters.AddWithValue("@Id", id);
 
                     command.ExecuteNonQuery();
                 }

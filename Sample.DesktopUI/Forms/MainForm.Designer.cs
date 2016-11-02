@@ -167,10 +167,12 @@
             this.lblInfo.BackColor = System.Drawing.SystemColors.Control;
             this.lblInfo.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.lblInfo.FlatStyle = System.Windows.Forms.FlatStyle.System;
+            this.lblInfo.Font = new System.Drawing.Font("Times New Roman", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.lblInfo.Location = new System.Drawing.Point(0, 477);
             this.lblInfo.MaximumSize = new System.Drawing.Size(630, 19);
             this.lblInfo.Name = "lblInfo";
-            this.lblInfo.Size = new System.Drawing.Size(73, 19);
+            this.lblInfo.Padding = new System.Windows.Forms.Padding(3);
+            this.lblInfo.Size = new System.Drawing.Size(90, 19);
             this.lblInfo.TabIndex = 4;
             this.lblInfo.Text = "Selected:";
             this.lblInfo.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;

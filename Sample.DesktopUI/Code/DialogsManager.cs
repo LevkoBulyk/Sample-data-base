@@ -22,5 +22,11 @@ namespace Sample.DesktopUI
         {
             MessageBox.Show(errorText, "Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
+
+        public static bool DeletingConfirmation(string elementName)
+        {
+            DialogResult dr = MessageBox.Show("Do you want delete " + elementName + "?", "Deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            return dr == DialogResult.Yes ? true : false;
+        }
     }
 }

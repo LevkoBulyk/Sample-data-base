@@ -23,7 +23,7 @@ namespace Sample.DesktopUI
 
         private void CreateOrEditDopand_Load(object sender, EventArgs e)
         {
-            if (this._currentDopant.Id == 0)
+            if (this._currentDopant == null)
             {
                 this.btnCreateOrEdit.Text = "Create";
             }
@@ -46,7 +46,7 @@ namespace Sample.DesktopUI
             Dopant dopant = new Dopant(0, tbxName.Text, tbxValence.Text);
 
             string message;
-            if (this._currentDopant.Id == 0)
+            if (this._currentDopant == null)
             {
                 this._dopantRepository.InsertDopant(dopant);
                 message = "New dopant was created.";
