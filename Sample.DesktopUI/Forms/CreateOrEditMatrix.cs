@@ -72,6 +72,7 @@ namespace Sample.DesktopUI
             }
             else
             {
+                _matrixRepository.UpdateMatrixWithId(this._currentMatrix.Id, matrix);
                 message = "Changes were successfully saved.";
             }
 

@@ -72,7 +72,10 @@ namespace Sample.DesktopUI
                     case "Matrixes":
                         FillWithMatrixesWithName(name);
                         break;
+                    case "Compounds":
+                        break;
                     default:
+                        DialogsManager.ShowError("Wrong settings where to search and what to display is setted");
                         break;
                 }
             }
@@ -96,24 +99,33 @@ namespace Sample.DesktopUI
 
         private void dgvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            int rowIndex = this.dgvData.CurrentCell.RowIndex;
+            int rowIndex = e.RowIndex;
+            if (rowIndex < 0)
+            {
+                return;
+            }
+            int columnIndex = e.ColumnIndex;
             int currentId = (int)this.dgvData.Rows[rowIndex].Cells["Id"].Value;
 
-            if (this.tbdropdShowSettings.Text == "Matrixes")
-            {
-                Matrix matrix = _matrixRepository.GetMatrixById(currentId);
+            FillInfoLabelText(currentId);
 
-                this.lblInfo.Text = "Selected: " + matrix.ToString();
-            }
-            else if(this.tbdropdShowSettings.Text == "Dopants")
+            if (columnIndex >= 0 && this.dgvData.Columns[columnIndex] is DataGridViewButtonColumn
+                && rowIndex >= 0)
             {
-                Dopant dopant = _dopantRepository.GetDopantById(currentId);
-
-                this.lblInfo.Text = "Selected: " + dopant.ToString();
-            }
-            else if(this.tbdropdShowSettings.Text == "Compounds")
-            {
-
+                switch (this.dgvData.Columns[columnIndex].Name)
+                {
+                    case "View":
+                        DataViewButton_Cliked(currentId);
+                        break;
+                    case "Edit":
+                        DataEditButton_Cliked(currentId);
+                        break;
+                    case "Delete":
+                        DataDeleteButton_Cliked(currentId);
+                        break;
+                    default:
+                        break;
+                }
             }
         }
 
@@ -167,6 +179,91 @@ namespace Sample.DesktopUI
             column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
 
             this.dgvData.Columns.Add(column);
+        }
+
+        private void FillInfoLabelText(int currentId)
+        {
+            if (this.tbdropdShowSettings.Text == "Matrixes")
+            {
+                Matrix matrix = _matrixRepository.GetMatrixById(currentId);
+
+                this.lblInfo.Text = "Selected: " + matrix.ToString();
+            }
+            else if (this.tbdropdShowSettings.Text == "Dopants")
+            {
+                Dopant dopant = _dopantRepository.GetDopantById(currentId);
+
+                this.lblInfo.Text = "Selected: " + dopant.ToString();
+            }
+            else if (this.tbdropdShowSettings.Text == "Compounds")
+            {
+                Matrix matrix = _matrixRepository.GetMatrixById(currentId);
+
+                this.lblInfo.Text = "Selected: " + matrix.ToString();
+            }
+        }
+
+        private void DataViewButton_Cliked(int currentId)
+        {
+            // TODO: Realise DataViewButton_Cliked() method
+            switch (this.tbdropdShowSettings.Text)
+            {
+                case "Dopants":
+                    break;
+                case "Matrixes":
+                    break;
+                case "Compuonds":
+                    break;
+                default:
+                    DialogsManager.ShowError("Wrong settings where to search and what to display is setted");
+                    break;
+            }
+        }
+
+        private void DataEditButton_Cliked(int currentId)
+        {
+            // TODO: Realise DataEditButton_Cliked() method
+            switch (this.tbdropdShowSettings.Text)
+            {
+                case "Dopants":
+                    CreateOrEditDopand EditDopantForm = new CreateOrEditDopand(currentId);
+
+                    if (EditDopantForm.ShowDialog() == DialogResult.OK)
+                    {
+                        FillDataGridView(null, null);
+                    }
+                    break;
+                case "Matrixes":
+                    CreateOrEditMatrix EditMatrixForm = new CreateOrEditMatrix(currentId);
+
+                    if (EditMatrixForm.ShowDialog() == DialogResult.OK)
+                    {
+                        FillDataGridView(null, null);
+                    }
+                    break;
+                case "Compuonds":
+                    break;
+                default:
+                    DialogsManager.ShowError("Wrong settings where to search and what to display is setted");
+                    break;
+            }
+        }
+
+        private void DataDeleteButton_Cliked(int currentId)
+        {
+            // TODO: Realise DataDeleteButton_Cliked() method
+            switch (this.tbdropdShowSettings.Text)
+            {
+                case "Dopants":
+                    break;
+                case "Matrixes":
+                    break;
+                case "Compuonds":
+                    break;
+                default:
+                    DialogsManager.ShowError("Wrong settings where to search and what to display is setted");
+                    break;
+            }
         }
 
         #endregion
