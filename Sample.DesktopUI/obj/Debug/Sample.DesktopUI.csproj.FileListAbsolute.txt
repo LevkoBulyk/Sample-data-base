@@ -51,3 +51,4 @@ C:\Users\VolBog\Source\Repos\Sample-data-base2\Sample.DesktopUI\obj\Debug\Sample
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.Properties.Resources.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditDopand.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditMatrix.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditCompound.resources

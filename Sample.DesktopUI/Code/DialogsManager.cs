@@ -25,7 +25,7 @@ namespace Sample.DesktopUI
 
         public static bool DeletingConfirmation(string elementName)
         {
-            DialogResult dr = MessageBox.Show("Do you want delete " + elementName + "?", "Deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
+            DialogResult dr = MessageBox.Show("Are you sure you want to delete this " + elementName + "?", "Deleting", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
             return dr == DialogResult.Yes ? true : false;
         }
     }

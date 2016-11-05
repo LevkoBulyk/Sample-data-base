@@ -18,6 +18,7 @@ namespace Sample.DesktopUI
             if (Id != 0)
             {
                 this._currentDopant = this._dopantRepository.GetDopantById(Id);
+                this.Text = "Edit dopand " + this._currentDopant.Name;
             }
         }
 

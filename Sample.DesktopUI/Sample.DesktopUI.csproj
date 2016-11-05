@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\DialogsManager.cs" />
+    <Compile Include="Forms\CreateOrEditCompound.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\CreateOrEditCompound.Designer.cs">
+      <DependentUpon>CreateOrEditCompound.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\CreateOrEditDopand.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -76,6 +82,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Forms\CreateOrEditCompound.resx">
+      <DependentUpon>CreateOrEditCompound.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\CreateOrEditDopand.resx">
       <DependentUpon>CreateOrEditDopand.cs</DependentUpon>
     </EmbeddedResource>

@@ -17,6 +17,7 @@ namespace Sample.DesktopUI
             if (Id != 0)
             {
                 this._currentMatrix = this._matrixRepository.GetMatrixById(Id);
+                this.Text = "Edit matrix " + this._currentMatrix.Name;
             }
         }
 
