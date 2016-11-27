@@ -40,7 +40,7 @@ namespace Sample.DesktopUI
 
         private void btnCreate_Click(object sender, EventArgs e)
         {
-            if (tbxName.Text.Length == 0)
+            if (string.IsNullOrEmpty(tbxName.Text))
             {
                 DialogsManager.ShowError("Field 'Name' must be filled.");
                 return;
@@ -51,13 +51,13 @@ namespace Sample.DesktopUI
             tbxEnergyGap.Text = tbxEnergyGap.Text.Replace('.', ',');
             tbxMaxPhononEnergy.Text = tbxMaxPhononEnergy.Text.Replace('.', ',');
 
-            if (tbxEnergyGap.Text.Length != 0 && !double.TryParse(tbxEnergyGap.Text, out energyGap))
+            if (!string.IsNullOrEmpty(tbxEnergyGap.Text) && !double.TryParse(tbxEnergyGap.Text, out energyGap))
             {
                 DialogsManager.ShowError("Value of energy gap was entered incorrectly");
                 return;
             }
 
-            if (tbxMaxPhononEnergy.Text.Length != 0 && !double.TryParse(tbxMaxPhononEnergy.Text, out maxPhononEnergy))
+            if (!string.IsNullOrEmpty(tbxMaxPhononEnergy.Text) && !double.TryParse(tbxMaxPhononEnergy.Text, out maxPhononEnergy))
             {
                 DialogsManager.ShowError("Value of maximum phonon energy was entered incorrectly");
                 return;

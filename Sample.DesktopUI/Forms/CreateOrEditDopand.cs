@@ -38,7 +38,7 @@ namespace Sample.DesktopUI
 
         private void btnCreateOrEdit_Click(object sender, EventArgs e)
         {
-            if (tbxName.Text.Length == 0 || tbxValence.Text.Length == 0)
+            if (string.IsNullOrEmpty(tbxName.Text) || string.IsNullOrEmpty(tbxValence.Text))
             {
                 DialogsManager.ShowError("Not all required fields are filled.");
                 return;
