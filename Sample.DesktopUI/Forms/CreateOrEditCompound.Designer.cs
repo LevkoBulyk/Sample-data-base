@@ -34,22 +34,18 @@
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpChemicalComponents = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
-            this.btnSaveChemicalComponents = new System.Windows.Forms.Button();
             this.gbDopants = new System.Windows.Forms.GroupBox();
             this.gbMatrixes = new System.Windows.Forms.GroupBox();
-            this.tbxSearchDopants = new System.Windows.Forms.TextBox();
-            this.lblSearchDopants = new System.Windows.Forms.Label();
-            this.dgvDopants = new System.Windows.Forms.DataGridView();
-            this.dgvMatrixes = new System.Windows.Forms.DataGridView();
-            this.tbxSearchMatrix = new System.Windows.Forms.TextBox();
-            this.lblSearchMatrixes = new System.Windows.Forms.Label();
+            this.btnSaveChemicalComponents = new System.Windows.Forms.Button();
+            this.btnAddDopant = new System.Windows.Forms.Button();
+            this.btnAddMatrix = new System.Windows.Forms.Button();
+            this.panelMatrixes = new System.Windows.Forms.Panel();
+            this.panelDopants = new System.Windows.Forms.Panel();
             this.tcMain.SuspendLayout();
             this.tpChemicalComponents.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.gbDopants.SuspendLayout();
             this.gbMatrixes.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDopants)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMatrixes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -118,41 +114,34 @@
             // tableLayoutPanel
             // 
             this.tableLayoutPanel.ColumnCount = 1;
-            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanel.Controls.Add(this.gbDopants, 0, 2);
             this.tableLayoutPanel.Controls.Add(this.gbMatrixes, 0, 0);
-            this.tableLayoutPanel.Controls.Add(this.gbDopants, 0, 1);
-            this.tableLayoutPanel.Controls.Add(this.btnSaveChemicalComponents, 0, 2);
+            this.tableLayoutPanel.Controls.Add(this.btnSaveChemicalComponents, 0, 4);
+            this.tableLayoutPanel.Controls.Add(this.btnAddDopant, 0, 3);
+            this.tableLayoutPanel.Controls.Add(this.btnAddMatrix, 0, 1);
             this.tableLayoutPanel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel.Location = new System.Drawing.Point(4, 4);
             this.tableLayoutPanel.Name = "tableLayoutPanel";
-            this.tableLayoutPanel.RowCount = 3;
+            this.tableLayoutPanel.RowCount = 5;
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 40F));
             this.tableLayoutPanel.Size = new System.Drawing.Size(526, 444);
             this.tableLayoutPanel.TabIndex = 8;
-            // 
-            // btnSaveChemicalComponents
-            // 
-            this.btnSaveChemicalComponents.Location = new System.Drawing.Point(3, 407);
-            this.btnSaveChemicalComponents.Name = "btnSaveChemicalComponents";
-            this.btnSaveChemicalComponents.Size = new System.Drawing.Size(295, 34);
-            this.btnSaveChemicalComponents.TabIndex = 8;
-            this.btnSaveChemicalComponents.Text = "Save changes in chemical components";
-            this.btnSaveChemicalComponents.UseVisualStyleBackColor = true;
             // 
             // gbDopants
             // 
             this.gbDopants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbDopants.Controls.Add(this.tbxSearchDopants);
-            this.gbDopants.Controls.Add(this.lblSearchDopants);
-            this.gbDopants.Controls.Add(this.dgvDopants);
+            this.gbDopants.Controls.Add(this.panelDopants);
             this.gbDopants.Location = new System.Drawing.Point(3, 205);
             this.gbDopants.Name = "gbDopants";
-            this.gbDopants.Size = new System.Drawing.Size(520, 196);
-            this.gbDopants.TabIndex = 7;
+            this.gbDopants.Size = new System.Drawing.Size(520, 156);
+            this.gbDopants.TabIndex = 10;
             this.gbDopants.TabStop = false;
             this.gbDopants.Text = "Dopants";
             // 
@@ -161,84 +150,61 @@
             this.gbMatrixes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.gbMatrixes.Controls.Add(this.tbxSearchMatrix);
-            this.gbMatrixes.Controls.Add(this.lblSearchMatrixes);
-            this.gbMatrixes.Controls.Add(this.dgvMatrixes);
+            this.gbMatrixes.Controls.Add(this.panelMatrixes);
             this.gbMatrixes.Location = new System.Drawing.Point(3, 3);
             this.gbMatrixes.Name = "gbMatrixes";
-            this.gbMatrixes.Size = new System.Drawing.Size(520, 196);
+            this.gbMatrixes.Size = new System.Drawing.Size(520, 156);
             this.gbMatrixes.TabIndex = 7;
             this.gbMatrixes.TabStop = false;
             this.gbMatrixes.Text = "Matrixes";
             // 
-            // tbxSearchDopants
+            // btnSaveChemicalComponents
             // 
-            this.tbxSearchDopants.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxSearchDopants.Location = new System.Drawing.Point(414, 22);
-            this.tbxSearchDopants.Name = "tbxSearchDopants";
-            this.tbxSearchDopants.Size = new System.Drawing.Size(100, 27);
-            this.tbxSearchDopants.TabIndex = 8;
-            this.tbxSearchDopants.TextChanged += new System.EventHandler(this.tbxSearchMatrix_TextChanged);
+            this.btnSaveChemicalComponents.AutoSize = true;
+            this.btnSaveChemicalComponents.Location = new System.Drawing.Point(3, 407);
+            this.btnSaveChemicalComponents.Name = "btnSaveChemicalComponents";
+            this.btnSaveChemicalComponents.Size = new System.Drawing.Size(278, 29);
+            this.btnSaveChemicalComponents.TabIndex = 11;
+            this.btnSaveChemicalComponents.Text = "Save changes in chemical components";
+            this.btnSaveChemicalComponents.UseVisualStyleBackColor = true;
             // 
-            // lblSearchDopants
+            // btnAddDopant
             // 
-            this.lblSearchDopants.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearchDopants.AutoSize = true;
-            this.lblSearchDopants.Location = new System.Drawing.Point(348, 25);
-            this.lblSearchDopants.Name = "lblSearchDopants";
-            this.lblSearchDopants.Size = new System.Drawing.Size(60, 19);
-            this.lblSearchDopants.TabIndex = 7;
-            this.lblSearchDopants.Text = "Search:";
+            this.btnAddDopant.AutoSize = true;
+            this.btnAddDopant.Location = new System.Drawing.Point(3, 367);
+            this.btnAddDopant.Name = "btnAddDopant";
+            this.btnAddDopant.Size = new System.Drawing.Size(257, 29);
+            this.btnAddDopant.TabIndex = 11;
+            this.btnAddDopant.Text = "Add one more dopant to compound";
+            this.btnAddDopant.UseVisualStyleBackColor = true;
             // 
-            // dgvDopants
+            // btnAddMatrix
             // 
-            this.dgvDopants.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvDopants.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvDopants.Location = new System.Drawing.Point(6, 57);
-            this.dgvDopants.Name = "dgvDopants";
-            this.dgvDopants.RowTemplate.Height = 24;
-            this.dgvDopants.Size = new System.Drawing.Size(508, 131);
-            this.dgvDopants.TabIndex = 6;
-            this.dgvDopants.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDopants_CellClick);
+            this.btnAddMatrix.AutoSize = true;
+            this.btnAddMatrix.Location = new System.Drawing.Point(3, 165);
+            this.btnAddMatrix.Name = "btnAddMatrix";
+            this.btnAddMatrix.Size = new System.Drawing.Size(256, 29);
+            this.btnAddMatrix.TabIndex = 11;
+            this.btnAddMatrix.Text = "Add one more matrix to compound";
+            this.btnAddMatrix.UseVisualStyleBackColor = true;
             // 
-            // dgvMatrixes
+            // panelMatrixes
             // 
-            this.dgvMatrixes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvMatrixes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvMatrixes.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgvMatrixes.Location = new System.Drawing.Point(6, 57);
-            this.dgvMatrixes.Name = "dgvMatrixes";
-            this.dgvMatrixes.RowTemplate.Height = 24;
-            this.dgvMatrixes.Size = new System.Drawing.Size(508, 131);
-            this.dgvMatrixes.TabIndex = 6;
-            this.dgvMatrixes.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvMatrixes_CellClick);
+            this.panelMatrixes.AutoScroll = true;
+            this.panelMatrixes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMatrixes.Location = new System.Drawing.Point(3, 23);
+            this.panelMatrixes.Name = "panelMatrixes";
+            this.panelMatrixes.Size = new System.Drawing.Size(514, 130);
+            this.panelMatrixes.TabIndex = 0;
             // 
-            // tbxSearchMatrix
+            // panelDopants
             // 
-            this.tbxSearchMatrix.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.tbxSearchMatrix.Location = new System.Drawing.Point(414, 22);
-            this.tbxSearchMatrix.Name = "tbxSearchMatrix";
-            this.tbxSearchMatrix.Size = new System.Drawing.Size(100, 27);
-            this.tbxSearchMatrix.TabIndex = 8;
-            this.tbxSearchMatrix.TextChanged += new System.EventHandler(this.tbxSearchMatrix_TextChanged);
-            // 
-            // lblSearchMatrixes
-            // 
-            this.lblSearchMatrixes.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lblSearchMatrixes.AutoSize = true;
-            this.lblSearchMatrixes.Location = new System.Drawing.Point(348, 25);
-            this.lblSearchMatrixes.Name = "lblSearchMatrixes";
-            this.lblSearchMatrixes.Size = new System.Drawing.Size(60, 19);
-            this.lblSearchMatrixes.TabIndex = 7;
-            this.lblSearchMatrixes.Text = "Search:";
+            this.panelDopants.AutoScroll = true;
+            this.panelDopants.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDopants.Location = new System.Drawing.Point(3, 23);
+            this.panelDopants.Name = "panelDopants";
+            this.panelDopants.Size = new System.Drawing.Size(514, 130);
+            this.panelDopants.TabIndex = 0;
             // 
             // CreateOrEditCompound
             // 
@@ -253,16 +219,12 @@
             this.MinimumSize = new System.Drawing.Size(560, 586);
             this.Name = "CreateOrEditCompound";
             this.Text = "Add new compound";
-            this.Load += new System.EventHandler(this.CreateOrEditCompound_Load);
             this.tcMain.ResumeLayout(false);
             this.tpChemicalComponents.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
+            this.tableLayoutPanel.PerformLayout();
             this.gbDopants.ResumeLayout(false);
-            this.gbDopants.PerformLayout();
             this.gbMatrixes.ResumeLayout(false);
-            this.gbMatrixes.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvDopants)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvMatrixes)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -274,14 +236,12 @@
         private System.Windows.Forms.TabControl tcMain;
         private System.Windows.Forms.TabPage tpChemicalComponents;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
-        private System.Windows.Forms.Button btnSaveChemicalComponents;
         private System.Windows.Forms.GroupBox gbMatrixes;
-        private System.Windows.Forms.TextBox tbxSearchMatrix;
-        private System.Windows.Forms.Label lblSearchMatrixes;
-        private System.Windows.Forms.DataGridView dgvMatrixes;
         private System.Windows.Forms.GroupBox gbDopants;
-        private System.Windows.Forms.TextBox tbxSearchDopants;
-        private System.Windows.Forms.Label lblSearchDopants;
-        private System.Windows.Forms.DataGridView dgvDopants;
+        private System.Windows.Forms.Button btnSaveChemicalComponents;
+        private System.Windows.Forms.Button btnAddDopant;
+        private System.Windows.Forms.Button btnAddMatrix;
+        private System.Windows.Forms.Panel panelMatrixes;
+        private System.Windows.Forms.Panel panelDopants;
     }
 }
