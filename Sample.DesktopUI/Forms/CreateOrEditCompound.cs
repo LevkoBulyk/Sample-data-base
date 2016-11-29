@@ -15,6 +15,7 @@ namespace Sample.DesktopUI
     public partial class CreateOrEditCompound : Form
     {
         private SqlMatrixRepository _sqlMatrixRepository = new SqlMatrixRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
+        private List<TempClass> _listOfMatrixes = new List<TempClass>();
 
         public CreateOrEditCompound()
         {
@@ -23,40 +24,131 @@ namespace Sample.DesktopUI
 
         #region Event hendlers
 
+        private void CreateOrEditCompound_Load(object sender, EventArgs e)
+        {
+            btnAddMatrix_Click(null, null);
+        }
 
+        private void btnAddMatrix_Click(object sender, EventArgs e)
+        {
+            var count = this._listOfMatrixes.Count;
+            var scrolX = this.panelMatrixes.AutoScrollPosition.X;
+            var scrolY = this.panelMatrixes.AutoScrollPosition.Y;
+
+            const int X0 = 5;
+            const int Y0 = 3;
+            const int L0 = 15;
+            const int panelW = 450;
+            const int panelH = 93;
+
+            var matrixLbl = new Label();
+            matrixLbl.Location = new Point(L0, L0);
+            matrixLbl.AutoSize = true;
+            matrixLbl.Text = "Matrix №" + (count + 1);
+
+            var percentsgeLbl = new Label();
+            percentsgeLbl.Location = new Point(L0, 2 * L0 + matrixLbl.Size.Height);
+            percentsgeLbl.AutoSize = true;
+            percentsgeLbl.Text = "Percentage";
+
+            var matrix = new ComboBox();
+            matrix.Location = new Point(3 * L0 + matrixLbl.Size.Width, L0 - 5);
+            matrix.Name = "matrix" + count;
+
+            var percentage = new NumericUpDown();
+            percentage.Location = new Point(matrix.Location.X, matrix.Location.Y + matrix.Size.Height + L0);
+            percentage.DecimalPlaces = 3;
+            percentage.ValueChanged += Percentage_ValueChanged;
+            percentage.Name = "percentage" + count;
+
+            var delete = new Button();
+            delete.AutoSize = true;
+            delete.Text = "Delete";
+            delete.Location = new Point(percentage.Location.X + percentage.Size.Width + 5 * L0,
+                (percentage.Location.Y + matrix.Location.Y) / 2);
+            delete.Name = count.ToString();
+            delete.Click += Delete_Click;
+
+            var panel = new Panel();
+            panel.Controls.AddRange(new Control[]
+                {
+                    matrixLbl,
+                    percentsgeLbl,
+                    matrix,
+                    percentage,
+                    delete
+                });
+            panel.Location = new Point(X0 + scrolX, Y0 + scrolY + count * (panelH + Y0));
+            panel.Size = new Size(panelW, panelH);
+            panel.Name = "panel" + count;
+
+            this.panelMatrixes.Controls.Add(panel);
+            this._listOfMatrixes.Add(new TempClass());
+        }
+
+        private void Delete_Click(object sender, EventArgs e)
+        {
+            var button = sender as Button;
+            if (button != null)
+            {
+                int number;
+                if (int.TryParse(button.Name, out number))
+                {
+                    this.panelMatrixes.Controls.RemoveAt(this.panelMatrixes.Controls.Count - 1);
+                    this._listOfMatrixes.RemoveAt(number);
+                    FillMatrixesWithData(number);
+                }
+            }
+        }
+
+        private void Percentage_ValueChanged(object sender, EventArgs e)
+        {
+            var percentage = sender as NumericUpDown;
+            if (percentage != null)
+            {
+                int number = -1;
+                int.TryParse(percentage.Name.Substring(10), out number);
+                if (number != -1)
+                {
+                    this._listOfMatrixes[number].Percentage = (double)percentage.Value;
+                }
+            }
+        }
 
         #endregion
 
         #region Helping methods
 
-        private void AddButtonColumn(string buttonsText, DataGridView dgv)
+        private void FillMatrixesWithData(int startIndex = 0)
         {
-            DataGridViewColumn column = new DataGridViewButtonColumn();
+            int i = 0;
+            foreach (var item in this._listOfMatrixes)
+            {
+                if (i > startIndex && item != null)
+                {
+                    Panel panel = this.panelMatrixes.Controls.Find("panel" + i, false)[0] as Panel;
+                    if (panel != null)
+                    {
+                        ComboBox matrix = panel.Controls[2] as ComboBox;
+                        NumericUpDown percentage = panel.Controls[3] as NumericUpDown;
 
-            column.Name = buttonsText;
-            column.HeaderCell.Value = buttonsText;
-            column.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+                        if (matrix != null && item.MatrixId != 0)
+                        {
+                            // TODO: !!!Поміняти автоматичний індекс на Id матриці
+                            matrix.SelectedIndex = item.MatrixId;
+                        }
 
-            dgv.Columns.Add(column);
-        }
-
-        private void FillDGVWithColumns(string name, DataGridView dgv)
-        {
-            var column = new DataGridViewComboBoxColumn();
-            column.Name = name;
-            column.HeaderCell.Value = "Name of " + name;
-            column.Width = 240;
-
-            var percentageColumn = new DataGridViewTextBoxColumn();
-            percentageColumn.Name = "Percentage";
-            percentageColumn.HeaderCell.Value = "Percents";
-            percentageColumn.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-
-            dgv.Columns.Add(column);
-            dgv.Columns.Add(percentageColumn);
-            AddButtonColumn("Delete", dgv);
+                        if (percentage != null)
+                        {
+                            percentage.Value = (decimal)item.Percentage;
+                        }
+                    }
+                }
+                i++;
+            }
         }
 
         #endregion
+
     }
 }

@@ -35,12 +35,12 @@
             this.tpChemicalComponents = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
             this.gbDopants = new System.Windows.Forms.GroupBox();
+            this.panelDopants = new System.Windows.Forms.Panel();
             this.gbMatrixes = new System.Windows.Forms.GroupBox();
+            this.panelMatrixes = new System.Windows.Forms.Panel();
             this.btnSaveChemicalComponents = new System.Windows.Forms.Button();
             this.btnAddDopant = new System.Windows.Forms.Button();
             this.btnAddMatrix = new System.Windows.Forms.Button();
-            this.panelMatrixes = new System.Windows.Forms.Panel();
-            this.panelDopants = new System.Windows.Forms.Panel();
             this.tcMain.SuspendLayout();
             this.tpChemicalComponents.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -145,6 +145,15 @@
             this.gbDopants.TabStop = false;
             this.gbDopants.Text = "Dopants";
             // 
+            // panelDopants
+            // 
+            this.panelDopants.AutoScroll = true;
+            this.panelDopants.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelDopants.Location = new System.Drawing.Point(3, 23);
+            this.panelDopants.Name = "panelDopants";
+            this.panelDopants.Size = new System.Drawing.Size(514, 130);
+            this.panelDopants.TabIndex = 0;
+            // 
             // gbMatrixes
             // 
             this.gbMatrixes.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -157,6 +166,15 @@
             this.gbMatrixes.TabIndex = 7;
             this.gbMatrixes.TabStop = false;
             this.gbMatrixes.Text = "Matrixes";
+            // 
+            // panelMatrixes
+            // 
+            this.panelMatrixes.AutoScroll = true;
+            this.panelMatrixes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMatrixes.Location = new System.Drawing.Point(3, 23);
+            this.panelMatrixes.Name = "panelMatrixes";
+            this.panelMatrixes.Size = new System.Drawing.Size(514, 130);
+            this.panelMatrixes.TabIndex = 0;
             // 
             // btnSaveChemicalComponents
             // 
@@ -187,24 +205,7 @@
             this.btnAddMatrix.TabIndex = 11;
             this.btnAddMatrix.Text = "Add one more matrix to compound";
             this.btnAddMatrix.UseVisualStyleBackColor = true;
-            // 
-            // panelMatrixes
-            // 
-            this.panelMatrixes.AutoScroll = true;
-            this.panelMatrixes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMatrixes.Location = new System.Drawing.Point(3, 23);
-            this.panelMatrixes.Name = "panelMatrixes";
-            this.panelMatrixes.Size = new System.Drawing.Size(514, 130);
-            this.panelMatrixes.TabIndex = 0;
-            // 
-            // panelDopants
-            // 
-            this.panelDopants.AutoScroll = true;
-            this.panelDopants.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelDopants.Location = new System.Drawing.Point(3, 23);
-            this.panelDopants.Name = "panelDopants";
-            this.panelDopants.Size = new System.Drawing.Size(514, 130);
-            this.panelDopants.TabIndex = 0;
+            this.btnAddMatrix.Click += new System.EventHandler(this.btnAddMatrix_Click);
             // 
             // CreateOrEditCompound
             // 
@@ -219,6 +220,7 @@
             this.MinimumSize = new System.Drawing.Size(560, 586);
             this.Name = "CreateOrEditCompound";
             this.Text = "Add new compound";
+            this.Load += new System.EventHandler(this.CreateOrEditCompound_Load);
             this.tcMain.ResumeLayout(false);
             this.tpChemicalComponents.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
