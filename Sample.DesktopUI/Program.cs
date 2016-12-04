@@ -16,7 +16,7 @@ namespace Sample.DesktopUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CreateOrEditCompound());
+            Application.Run(new MainForm());
         }
     }
 }

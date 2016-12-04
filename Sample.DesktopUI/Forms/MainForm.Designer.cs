@@ -33,6 +33,7 @@
             this.tbbtnCreate = new System.Windows.Forms.ToolStripDropDownButton();
             this.tbmiMatrix = new System.Windows.Forms.ToolStripMenuItem();
             this.tbmiDopant = new System.Windows.Forms.ToolStripMenuItem();
+            this.compoundToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tbbtnSearch = new System.Windows.Forms.ToolStripButton();
             this.tbtbxSearch = new System.Windows.Forms.ToolStripTextBox();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -69,7 +70,8 @@
             this.tbbtnCreate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
             this.tbbtnCreate.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tbmiMatrix,
-            this.tbmiDopant});
+            this.tbmiDopant,
+            this.compoundToolStripMenuItem});
             this.tbbtnCreate.Image = ((System.Drawing.Image)(resources.GetObject("tbbtnCreate.Image")));
             this.tbbtnCreate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.tbbtnCreate.Name = "tbbtnCreate";
@@ -83,7 +85,7 @@
             this.tbmiMatrix.Name = "tbmiMatrix";
             this.tbmiMatrix.ShortcutKeyDisplayString = "(Ctrl+M)";
             this.tbmiMatrix.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.M)));
-            this.tbmiMatrix.Size = new System.Drawing.Size(203, 26);
+            this.tbmiMatrix.Size = new System.Drawing.Size(235, 26);
             this.tbmiMatrix.Text = "Matrix";
             this.tbmiMatrix.Click += new System.EventHandler(this.CreateMatrix);
             // 
@@ -92,9 +94,18 @@
             this.tbmiDopant.Name = "tbmiDopant";
             this.tbmiDopant.ShortcutKeyDisplayString = "(Ctrl+D)";
             this.tbmiDopant.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.D)));
-            this.tbmiDopant.Size = new System.Drawing.Size(203, 26);
+            this.tbmiDopant.Size = new System.Drawing.Size(235, 26);
             this.tbmiDopant.Text = "Dopant";
             this.tbmiDopant.Click += new System.EventHandler(this.CreateDopant);
+            // 
+            // compoundToolStripMenuItem
+            // 
+            this.compoundToolStripMenuItem.Name = "compoundToolStripMenuItem";
+            this.compoundToolStripMenuItem.ShortcutKeyDisplayString = "(Ctrl + C)";
+            this.compoundToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.C)));
+            this.compoundToolStripMenuItem.Size = new System.Drawing.Size(235, 26);
+            this.compoundToolStripMenuItem.Text = "Compound";
+            this.compoundToolStripMenuItem.Click += new System.EventHandler(this.CreateCompound);
             // 
             // tbbtnSearch
             // 
@@ -243,5 +254,6 @@
         private System.Windows.Forms.Label lblInfo;
         private System.Windows.Forms.DataGridView dgvData;
         private System.Windows.Forms.Label lblNoData;
+        private System.Windows.Forms.ToolStripMenuItem compoundToolStripMenuItem;
     }
 }

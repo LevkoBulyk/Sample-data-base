@@ -43,6 +43,12 @@ namespace Sample.DesktopUI
             }
         }
 
+        private void CreateCompound(object sender, EventArgs e)
+        {
+            CreateOrEditCompound createNewCompound = new CreateOrEditCompound();
+            createNewCompound.Show();
+        }
+
         private void FillDataGridView(object sender, EventArgs e)
         {
             this.dgvData.Rows.Clear();
