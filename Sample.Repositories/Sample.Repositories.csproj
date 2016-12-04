@@ -43,6 +43,7 @@
     <Compile Include="ISqlCompoundRepository.cs" />
     <Compile Include="ISqlPercentToCompoundRepository.cs" />
     <Compile Include="ISqlPercentageRepository.cs" />
+    <Compile Include="SqlCompoundRepository.cs" />
     <Compile Include="SqlPercentToCompoundRepository.cs" />
     <Compile Include="SqlDopantRepository.cs" />
     <Compile Include="IDopantRepository.cs" />

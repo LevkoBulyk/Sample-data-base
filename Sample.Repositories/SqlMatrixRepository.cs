@@ -7,11 +7,11 @@ namespace Sample.Repositories
     {
         #region Queries
 
-        private const string _getAllMatrixesQuery = "SELECT Id, Name, Eg, hw, Symmetry, Comment, Disabled FROM Matrix WHERE[Disabled] = 0;";
+        private const string _getAllMatrixesQuery = "SELECT Id, Name, Eg, hw, Symmetry, Comment, Disabled FROM Matrix WHERE [Disabled] = 0;";
         private const string _insertMatrixQuery = "INSERT INTO Matrix (Name, Eg, hw, Symmetry, Comment, [Disabled]) VALUES(@Name, @Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
-        private const string _getMatrixById = "SELECT Id, Name, Eg, hw, Symmetry, Comment FROM Matrix WHERE[Disabled] = 0 AND Id = @Id;";
+        private const string _getMatrixById = "SELECT Id, Name, Eg, hw, Symmetry, Comment FROM Matrix WHERE [Disabled] = 0 AND Id = @Id;";
         private const string _getMatrixesByName = "SELECT Id, Name, Eg, hw, Symmetry, Comment, Disabled FROM Matrix WHERE [Disabled] = 0 AND Name LIKE @Name;";
-        private const string _updateMatrixWithId = "UPDATE Matrix SET Name = @Name, Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment WHERE Id = @Id;";
+        private const string _updateMatrixWithId = "UPDATE Matrix SET Name = @Name, Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment, WHERE Id = @Id;";
 
         #endregion
 

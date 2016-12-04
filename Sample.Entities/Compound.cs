@@ -15,9 +15,10 @@
 
         #region Bare SQL properties
 
-        public float EnergyGap { get; set; }
-        public float MaxPhononEnergy { get; set; }
+        public double EnergyGap { get; set; }
+        public double MaxPhononEnergy { get; set; }
         public string Symmetry { get; set; }
+        public string Comment { get; set; }
 
         #endregion
 
@@ -26,12 +27,13 @@
         public Compound()
         { }
 
-        public Compound(int id, float energyGap, float maxPhononEnergy, string symmetry)
+        public Compound(int id, double energyGap, double maxPhononEnergy, string symmetry, string comment)
         {
             this.Id = id;
             this.EnergyGap = energyGap;
             this.MaxPhononEnergy = maxPhononEnergy;
             this.Symmetry = symmetry;
+            this.Comment = comment;
         }
 
         #endregion

@@ -7,7 +7,7 @@ using Sample.Entities;
 
 namespace Sample.Repositories
 {
-    class SqlPercentToCompoundRepository : SqlBaseRepository, ISqlPercentToCompoundRepository
+    public class SqlPercentToCompoundRepository : SqlBaseRepository, ISqlPercentToCompoundRepository
     {
         #region Queries
 
