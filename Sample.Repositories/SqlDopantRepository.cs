@@ -110,17 +110,17 @@ namespace Sample.Repositories
             }
         }
 
-        public Dopant UpdateDopantWithId(int Id, Dopant dopant)
+        public Dopant UpdateDopantWithId(int id, Dopant dopant)
         {
-            Dopant dopantBeforeUpdating = GetDopantById(Id);
+            Dopant dopantBeforeUpdating = GetDopantById(id);
 
             var newDopant = new Dictionary<string, object>();
             newDopant.Add("@Name", dopant.Name);
             newDopant.Add("@Valence", dopant.Valence);
 
-            UpdateElementWithId(Id, newDopant, _updateDopantWithIdQuery);
+            UpdateElementWithId(id, newDopant, _updateDopantWithIdQuery);
 
-            Dopant dopantAfterUpdating = GetDopantById(Id);
+            Dopant dopantAfterUpdating = GetDopantById(id);
 
             if (dopantBeforeUpdating != dopantAfterUpdating)
             {
