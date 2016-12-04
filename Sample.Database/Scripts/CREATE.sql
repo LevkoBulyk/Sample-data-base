@@ -42,7 +42,7 @@ GO
 CREATE TABLE Percentage
 (
 	Id INT NOT NULL IDENTITY,
-	Number INT NOT NULL,
+	Number FLOAT NOT NULL,
 	[Disabled] BIT NOT NULL,
 	Matrix_id INT NOT NULL,
 	Dopant_id INT NOT NULL
