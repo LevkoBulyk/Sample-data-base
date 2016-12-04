@@ -43,7 +43,6 @@ CREATE TABLE Percentage
 (
 	Id INT NOT NULL IDENTITY,
 	Number INT NOT NULL,
-	Element_id INT NOT NULL,
 	[Disabled] BIT NOT NULL,
 	Matrix_id INT NOT NULL,
 	Dopant_id INT NOT NULL
@@ -84,12 +83,12 @@ CREATE TABLE PercentToCompound
 (
 	Id INT NOT NULL IDENTITY,
 	Percents_id INT NOT NULL,
-	Compaund_id INT NOT NULL,
+	Compound_id INT NOT NULL,
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_tblWorker_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_CompaundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentage(Id),
-	CONSTRAINT FK_CompaundTo_CompoundID FOREIGN KEY(Compaund_id) REFERENCES Compound(Id)
+	CONSTRAINT FK_CompoundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentage(Id),
+	CONSTRAINT FK_CompoundTo_CompoundID FOREIGN KEY(Compound_id) REFERENCES Compound(Id)
 );
 GO
 

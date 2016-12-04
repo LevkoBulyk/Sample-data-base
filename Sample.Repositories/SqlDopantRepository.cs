@@ -11,9 +11,9 @@ namespace Sample.Repositories
 
         private const string _getAllDopantsQuery = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0;";
         private const string _insertDopantQuery = "INSERT INTO Dopant (Name, Valence, [Disabled]) VALUES(@Name, @Valence, 0); SET @Id = @@IDENTITY;";
-        private const string _getDopantById = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0 AND Id = @Id;";
-        private const string _getDopantsByName = "SELECT Id, Name, Valence FROM Dopant WHERE [Disabled] = 0 AND Name LIKE @Name;";
-        private const string _updateDopantWithId = "UPDATE Dopant SET Name = @Name, Valence = @Valence WHERE Id = @Id;";
+        private const string _getDopantByIdQuery = "SELECT Id, Name, Valence FROM Dopant WHERE[Disabled] = 0 AND Id = @Id;";
+        private const string _getDopantsByNameQuery = "SELECT Id, Name, Valence FROM Dopant WHERE [Disabled] = 0 AND Name LIKE @Name;";
+        private const string _updateDopantWithIdQuery = "UPDATE Dopant SET Name = @Name, Valence = @Valence WHERE Id = @Id;";
 
         #endregion
 
@@ -70,7 +70,7 @@ namespace Sample.Repositories
         {
             Dopant resultDopant = new Dopant();
 
-            object[] values = GetElementById(id, _getDopantById);
+            object[] values = GetElementById(id, _getDopantByIdQuery);
 
             if (values != null)
             {
@@ -89,7 +89,7 @@ namespace Sample.Repositories
             {
                 connection.Open();
 
-                using (SqlCommand command = new SqlCommand(_getDopantsByName, connection))
+                using (SqlCommand command = new SqlCommand(_getDopantsByNameQuery, connection))
                 {
                     command.Parameters.AddWithValue("@Name", "%" + name + "%");
 
@@ -118,7 +118,7 @@ namespace Sample.Repositories
             newDopant.Add("@Name", dopant.Name);
             newDopant.Add("@Valence", dopant.Valence);
 
-            UpdateElementWithId(Id, newDopant, _updateDopantWithId);
+            UpdateElementWithId(Id, newDopant, _updateDopantWithIdQuery);
 
             Dopant dopantAfterUpdating = GetDopantById(Id);
 

@@ -40,12 +40,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ISqlCompoundToPercentRepository.cs" />
+    <Compile Include="ISqlPercentageRepository.cs" />
+    <Compile Include="SqlPercentToCompoundRepository.cs" />
     <Compile Include="SqlDopantRepository.cs" />
     <Compile Include="IDopantRepository.cs" />
     <Compile Include="IMatrixRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlBaseRepository.cs" />
     <Compile Include="SqlMatrixRepository.cs" />
+    <Compile Include="SqlPercentageRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Sample.Entities\Sample.Entities.csproj">

@@ -5,8 +5,8 @@
         #region Base SQL properties
 
         public int Number { get; set; }
-        public int DopantId { get; set; }
-        public int MatrixId { get; set; }
+        public int? DopantId { get; set; }
+        public int? MatrixId { get; set; }
 
         #endregion
 
