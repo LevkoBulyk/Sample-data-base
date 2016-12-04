@@ -52,7 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\DialogsManager.cs" />
-    <Compile Include="Code\TempClass.cs" />
+    <Compile Include="Code\MatrixItem.cs" />
     <Compile Include="Forms\CreateOrEditCompound.cs">
       <SubType>Form</SubType>
     </Compile>

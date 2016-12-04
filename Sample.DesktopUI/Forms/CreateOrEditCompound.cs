@@ -1,4 +1,5 @@
-﻿using Sample.Repositories;
+﻿using Sample.Entities;
+using Sample.Repositories;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,7 +16,7 @@ namespace Sample.DesktopUI
     public partial class CreateOrEditCompound : Form
     {
         private SqlMatrixRepository _sqlMatrixRepository = new SqlMatrixRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
-        private List<TempClass> _listOfMatrixes = new List<TempClass>();
+        private List<MatrixItem> _listOfMatrixes = new List<MatrixItem>();
 
         public CreateOrEditCompound()
         {
@@ -28,6 +29,8 @@ namespace Sample.DesktopUI
         {
             btnAddMatrix_Click(null, null);
         }
+
+        #region Code of matrix panels
 
         private void btnAddMatrix_Click(object sender, EventArgs e)
         {
@@ -54,6 +57,9 @@ namespace Sample.DesktopUI
             var matrix = new ComboBox();
             matrix.Location = new Point(3 * L0 + matrixLbl.Size.Width, L0 - 5);
             matrix.Name = "matrix" + count;
+            matrix.TextUpdate += Matrix_TextChanged;
+            matrix.SelectedIndexChanged += Matrix_SelectedIndexChange;
+            Matrix_TextChanged(matrix, null);
 
             var percentage = new NumericUpDown();
             percentage.Location = new Point(matrix.Location.X, matrix.Location.Y + matrix.Size.Height + L0);
@@ -83,7 +89,26 @@ namespace Sample.DesktopUI
             panel.Name = "panel" + count;
 
             this.panelMatrixes.Controls.Add(panel);
-            this._listOfMatrixes.Add(new TempClass());
+            this._listOfMatrixes.Add(new MatrixItem());
+        }
+
+        private void Matrix_SelectedIndexChange(object sender, EventArgs e)
+        {
+            ComboBox matrix = sender as ComboBox;
+            if (matrix != null)
+            {
+                int number = -1;
+                int.TryParse(matrix.Name.Substring(6), out number);
+                if (number != -1)
+                {
+                    var selectedItem = matrix.SelectedItem as MatrixItem;
+                    if (selectedItem != null)
+                    {
+                        this._listOfMatrixes[number].MatrixName = selectedItem.MatrixName;
+                        this._listOfMatrixes[number].MatrixId = selectedItem.MatrixId;
+                    }
+                }
+            }
         }
 
         private void Delete_Click(object sender, EventArgs e)
@@ -96,7 +121,7 @@ namespace Sample.DesktopUI
                 {
                     this.panelMatrixes.Controls.RemoveAt(this.panelMatrixes.Controls.Count - 1);
                     this._listOfMatrixes.RemoveAt(number);
-                    FillMatrixesWithData(number);
+                    FillMatrixesWithData(number - 1);
                 }
             }
         }
@@ -115,6 +140,26 @@ namespace Sample.DesktopUI
             }
         }
 
+        private void Matrix_TextChanged(object sender, EventArgs e)
+        {
+            var matrix = sender as ComboBox;
+            if (matrix != null)
+            {
+                string text = matrix.Text;
+                var matrixes = from m in _sqlMatrixRepository.SearchMatrixesByName(matrix.Text)
+                               select new MatrixItem(m.Id, m.Name);
+                matrix.Items.Clear();
+                matrix.Items.AddRange(matrixes.ToArray());
+                matrix.DroppedDown = false;
+                matrix.DroppedDown = true;
+                matrix.Text = text;
+                matrix.SelectionStart = matrix.Text.Length;
+                Cursor.Current = Cursors.Default;
+            }
+        }
+
+        #endregion
+
         #endregion
 
         #region Helping methods
@@ -132,10 +177,10 @@ namespace Sample.DesktopUI
                         ComboBox matrix = panel.Controls[2] as ComboBox;
                         NumericUpDown percentage = panel.Controls[3] as NumericUpDown;
 
-                        if (matrix != null && item.MatrixId != 0)
+                        if (matrix != null)
                         {
-                            // TODO: !!!Поміняти автоматичний індекс на Id матриці
-                            matrix.SelectedIndex = item.MatrixId;
+                            matrix.Text = item.MatrixName;
+                            matrix.SelectedItem = new MatrixItem(item.MatrixId, item.MatrixName);
                         }
 
                         if (percentage != null)
