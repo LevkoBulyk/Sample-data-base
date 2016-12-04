@@ -34,7 +34,7 @@ namespace Sample.Repositories
             if (values != null)
             {
                 resultPercentage.Id = (int)values[0];
-                resultPercentage.Number = (int)values[1];
+                resultPercentage.Number = (double)values[1];
                 resultPercentage.MatrixId = (int)values[2];
                 resultPercentage.DopantId = (int)values[3];
 
