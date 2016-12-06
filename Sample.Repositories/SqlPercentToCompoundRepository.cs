@@ -12,6 +12,7 @@ namespace Sample.Repositories
         #region Queries
 
         private const string _getPercentToCompoundByIdQuery = "SELECT Id, Percents_id, Compound_id FROM PercentToCompound WHERE [Disabled] = 0 AND Id = @Id;";
+        private const string _getAllPercentToCompoundQuery = "SELECT Id, Percents_id, Compound_id FROM PercentToCompound WHERE [Disabled] = 0;";
         private const string _insertPercentToCompoundQuery = "INSERT INTO PercentToCompound (Percents_id, Compound_id, [Disabled]) VALUES(@Percents_id, @Compound_id, 0); SET @Id = @@IDENTITY;";
         private const string _getAllWithCompountIdQuery = "SELECT Id, Percents_id, Compound_id FROM PercentToCompound WHERE [Disabled] = 0 AND Compound_id = @Compound_id;";
 
@@ -44,6 +45,19 @@ namespace Sample.Repositories
             return null;
         }
 
+        public IEnumerable<PercentToCompound> GetAllPercentToCompound()
+        {
+            var list = GetAllElements(_getAllPercentToCompoundQuery);
+            var result = new List<PercentToCompound>();
+
+            foreach (var item in list)
+            {
+                result.Add(GetPercentToCompoundFromObjectArray(item));
+            }
+
+            return result;
+        }
+
         public PercentToCompound InsertPercentToCompound(PercentToCompound percentToCompound)
         {
             Dictionary<string, object> parameters = new Dictionary<string, object>();
@@ -56,7 +70,7 @@ namespace Sample.Repositories
             return result;
         }
 
-        public List<PercentToCompound> GetAllWithCompountId(int id)
+        public IEnumerable<PercentToCompound> GetAllWithCompountId(int id)
         {
             var list = SearchElementsByParameter(_getAllWithCompountIdQuery, "Compound_id", id);
             var result = new List<PercentToCompound>();

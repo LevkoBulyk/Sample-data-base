@@ -8,24 +8,17 @@ using System.Threading.Tasks;
 
 namespace Sample.BusinessEntity
 {
-    public class BusinessCompound : IBusinessCompound
+    public class BusinessCompound
     {
         #region Fields
 
         private string _name;
-        private string _connectionString;
-        private SqlPercentageRepository _sqlPercentageRepository;
-        private SqlPercentToCompoundRepository _sqlPercentToCompoundRepository;
-        private SqlCompoundRepository _sqlCompoundRepository;
 
         #endregion
 
         #region Properties
 
-        public double EnergyGap { get; set; }
-        public double MaxPhononEnergy { get; set; }
-        public string Symmetry { get; set; }
-        public string Comment { get; set; }
+        public Compound Compound { get; set; }
         public Dictionary<Percentage, Matrix> Matrixes { get; set; }
         public Dictionary<Percentage, Dopant> Dopants { get; set; }
         public List<PercentToCompound> PercentageToCompound { get; set; }
@@ -40,50 +33,9 @@ namespace Sample.BusinessEntity
 
         #region Constructors
 
-        public BusinessCompound(string connectionString)
+        public BusinessCompound()
         {
-            this._connectionString = connectionString;
-
-            this._sqlCompoundRepository = new SqlCompoundRepository(this._connectionString);
-            this._sqlPercentageRepository = new SqlPercentageRepository(this._connectionString);
-            this._sqlPercentToCompoundRepository = new SqlPercentToCompoundRepository(this._connectionString);
-
             ResetDefaultName();
-        }
-
-        public BusinessCompound(string connectionString, int i)
-            : this(connectionString)
-        {
-
-        }
-
-        #endregion
-
-        #region Realisation of IBusinessCompound
-
-        public BusinessCompound GetCompoundById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<BusinessCompound> GetAllCompounds()
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<BusinessCompound> SearchCompoundWithNameLike(string name)
-        {
-            throw new NotImplementedException();
-        }
-
-        public BusinessCompound UpdateCompoundWithId(int id, BusinessCompound compound)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void DeleteCompoundWithId(int id)
-        {
-            throw new NotImplementedException();
         }
 
         #endregion

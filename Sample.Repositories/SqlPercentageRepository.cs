@@ -10,6 +10,7 @@ namespace Sample.Repositories
         #region Queries
 
         private const string _getPercentageByIdQuery = "SELECT Id, Number, Matrix_id, Dopant_id FROM Percentage WHERE [Disabled] = 0 AND Id = @Id;";
+        private const string _getAllPercentsQuery = "SELECT Id, Number, Matrix_id, Dopant_id FROM Percentage WHERE [Disabled] = 0;";
         private const string _insertPercentageQuery = "INSERT INTO Percentage (Number, Matrix_id, Dopant_id, [Disabled]) VALUES(@Number, @Matrix_id, @Dopant_id, 0); SET @Id = @@IDENTITY;";
         private const string _updatePercentageQuery = "UPDATE Persentage SET Number = @Number, Matrix_id = @Matrix_id, Dopant_Id = Dopant_id WHERE Id = @Id;";
 
@@ -31,16 +32,26 @@ namespace Sample.Repositories
 
             object[] values = GetElementById(id, _getPercentageByIdQuery);
 
-            if (values != null)
-            {
-                resultPercentage.Id = (int)values[0];
-                resultPercentage.Number = (double)values[1];
-                resultPercentage.MatrixId = (int)values[2];
-                resultPercentage.DopantId = (int)values[3];
+            return GetPercentageFromObjectArray(values);
+        }
 
-                return resultPercentage;
+        public Percentage GetPercentageWithValues(double number, int? matrixId, int? dopantId)
+        {
+            // TODO: GetPercentageWithValues() must be implemented
+            throw new NotImplementedException();
+        }
+
+        public IEnumerable<Percentage> GetAllPercents()
+        {
+            var list = GetAllElements(_getAllPercentsQuery);
+            var result = new List<Percentage>();
+
+            foreach (var item in list)
+            {
+                result.Add(GetPercentageFromObjectArray(item));
             }
-            return null;
+
+            return result;
         }
 
         public Percentage InsertPersentage(Percentage percentage)
@@ -79,6 +90,26 @@ namespace Sample.Repositories
         public void DeletePercentageWithId(int id)
         {
             DeleteElemetnWithId(id, "Percentage");
+        }
+
+        #endregion
+
+        #region Helping methods
+
+        private Percentage GetPercentageFromObjectArray(object[] array)
+        {
+            if (array != null)
+            {
+                var resultPercentage = new Percentage();
+
+                resultPercentage.Id = (int)array[0];
+                resultPercentage.Number = (double)array[1];
+                resultPercentage.MatrixId = (int)array[2];
+                resultPercentage.DopantId = (int)array[3];
+
+                return resultPercentage;
+            }
+            return null;
         }
 
         #endregion
