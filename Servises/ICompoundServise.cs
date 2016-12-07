@@ -1,7 +1,7 @@
 ﻿using Sample.BusinessEntity;
 using System.Collections.Generic;
 
-namespace Sample.BusinessEntity
+namespace Sample.Servises
 {
     interface ICompoundServise
     {

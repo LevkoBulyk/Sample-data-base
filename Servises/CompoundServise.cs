@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Servises
+namespace Sample.Servises
 {
     public class CompoundServise : ICompoundServise
     {
@@ -115,9 +115,9 @@ namespace Servises
                 resultCompound.Compound = compound;
                 var connections = this.PercentToCompoundRepository.GetAllWithCompountId(id);
 
-                if (connections.Count > 0)
+                if (connections.Count() > 0)
                 {
-                    resultCompound.PercentageToCompound = connections;
+                    resultCompound.PercentageToCompound = connections as List<PercentToCompound>;
 
                     foreach (var item in connections)
                     {
