@@ -2,10 +2,25 @@
 {
     public class PercentToCompound : Table
     {
-        #region Bare SQL properties
+        #region Fields
 
-        public int PercentId { get; set; }
-        public int CompoundId { get; set; }
+        private int _percentId;
+        private int _compoundId;
+
+        #endregion
+
+        #region Properties
+
+        public int PercentId;
+        public int CompoundId
+        {
+            get { return this._compoundId; }
+            set
+            {
+                this._compoundId = value;
+                this._wasModified = true;
+            }
+        }
 
         #endregion
 
@@ -15,8 +30,8 @@
 
         public PercentToCompound(int percentId, int compoundId)
         {
-            this.CompoundId = compoundId;
-            this.PercentId = percentId;
+            this._compoundId = compoundId;
+            this._percentId = percentId;
         }
 
         #endregion

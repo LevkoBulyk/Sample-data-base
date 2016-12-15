@@ -13,12 +13,54 @@
 
         #endregion
 
-        #region Bare SQL properties
+        #region Fields
 
-        public double EnergyGap { get; set; }
-        public double MaxPhononEnergy { get; set; }
-        public string Symmetry { get; set; }
-        public string Comment { get; set; }
+        private double _energyGap;
+        private double _maxPhononEnergy;
+        private string _symmetry;
+        private string _comment;
+
+        #endregion
+
+        #region Properties
+
+        public double EnergyGap
+        {
+            get { return this._energyGap; }
+            set
+            {
+                this._energyGap = value;
+                this._wasModified = true;
+            }
+        }
+        public double MaxPhononEnergy
+        {
+            get { return this._maxPhononEnergy; }
+            set
+            {
+                this._maxPhononEnergy = value;
+                this._wasModified = true;
+            }
+        }
+        public string Symmetry
+        {
+            get { return this._symmetry; }
+            set
+            {
+                this._symmetry = value;
+                this._wasModified = true;
+            }
+        }
+        public string Comment
+        {
+            get { return this._comment; }
+            set
+            {
+                this._comment = value;
+                this._wasModified = true;
+            }
+        }
+
 
         #endregion
 
@@ -29,11 +71,11 @@
 
         public Compound(int id, double energyGap, double maxPhononEnergy, string symmetry, string comment)
         {
-            this.Id = id;
-            this.EnergyGap = energyGap;
-            this.MaxPhononEnergy = maxPhononEnergy;
-            this.Symmetry = symmetry;
-            this.Comment = comment;
+            this._id = id;
+            this._energyGap = energyGap;
+            this._maxPhononEnergy = maxPhononEnergy;
+            this._symmetry = symmetry;
+            this._comment = comment;
         }
 
         #endregion
