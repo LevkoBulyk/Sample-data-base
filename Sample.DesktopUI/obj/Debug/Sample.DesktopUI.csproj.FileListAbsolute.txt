@@ -52,3 +52,7 @@ D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.Desktop
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditDopand.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditMatrix.resources
 D:\Мої документи\C#\Sample\Sample.DesktopUI\obj\Debug\Sample.DesktopUI.CreateOrEditCompound.resources
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.BusinessEntity.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Servises.dll
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.BusinessEntity.pdb
+D:\Мої документи\C#\Sample\Sample.DesktopUI\bin\Debug\Sample.Servises.pdb

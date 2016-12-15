@@ -1,5 +1,7 @@
-﻿using Sample.Entities;
+﻿using Sample.BusinessEntity;
+using Sample.Entities;
 using Sample.Repositories;
+using Sample.Servises;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,19 +17,42 @@ namespace Sample.DesktopUI
 {
     public partial class CreateOrEditCompound : Form
     {
-        private SqlMatrixRepository _sqlMatrixRepository = new SqlMatrixRepository(ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString);
+
+        #region Fields
+
+        private string _connectionString = ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString;
+        private SqlMatrixRepository _sqlMatrixRepository;
+        private CompoundServise _compoundServise;
+        private BusinessCompound _currentCompound;
+
         private List<MatrixItem> _listOfMatrixes = new List<MatrixItem>();
+
+
+        #endregion
+
+        #region Constructors
 
         public CreateOrEditCompound()
         {
             InitializeComponent();
+            this._currentCompound = new BusinessCompound();
+            this._sqlMatrixRepository = new SqlMatrixRepository(this._connectionString);
+            this._compoundServise = new CompoundServise(this._connectionString);
+            btnAddMatrix_Click(null, null);
         }
+        public CreateOrEditCompound(BusinessCompound compound)
+            : this()
+        {
+            this._currentCompound = compound;
+        }
+
+        #endregion
 
         #region Event hendlers
 
         private void CreateOrEditCompound_Load(object sender, EventArgs e)
         {
-            btnAddMatrix_Click(null, null);
+
         }
 
         #region Code of matrix panels
@@ -90,6 +115,11 @@ namespace Sample.DesktopUI
 
             this.panelMatrixes.Controls.Add(panel);
             this._listOfMatrixes.Add(new MatrixItem());
+
+            this._currentCompound.Matrixes.Add(new Percentage(), new Matrix());
+            percentage.DataBindings.Add("Value", this._currentCompound.Matrixes.Keys.Last(), "Number");
+            matrix.DataBindings.Add("SelectedItem", this._currentCompound.Matrixes.Values.Last(), "");
+
         }
 
         private void Matrix_SelectedIndexChange(object sender, EventArgs e)
@@ -104,8 +134,7 @@ namespace Sample.DesktopUI
                     var selectedItem = matrix.SelectedItem as MatrixItem;
                     if (selectedItem != null)
                     {
-                        this._listOfMatrixes[number].MatrixName = selectedItem.MatrixName;
-                        this._listOfMatrixes[number].MatrixId = selectedItem.MatrixId;
+                        this._listOfMatrixes[number].Matrix = selectedItem.Matrix;
                     }
                 }
             }
@@ -147,7 +176,7 @@ namespace Sample.DesktopUI
             {
                 string text = matrix.Text;
                 var matrixes = from m in _sqlMatrixRepository.SearchMatrixesByName(matrix.Text)
-                               select new MatrixItem(m.Id, m.Name);
+                               select new MatrixItem(m);
                 matrix.Items.Clear();
                 matrix.Items.AddRange(matrixes.ToArray());
                 matrix.DroppedDown = false;
@@ -179,8 +208,8 @@ namespace Sample.DesktopUI
 
                         if (matrix != null)
                         {
-                            matrix.Text = item.MatrixName;
-                            matrix.SelectedItem = new MatrixItem(item.MatrixId, item.MatrixName);
+                            matrix.Text = item.Matrix.Name;
+                            matrix.SelectedItem = new MatrixItem(item.Matrix);
                         }
 
                         if (percentage != null)

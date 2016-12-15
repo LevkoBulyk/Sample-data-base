@@ -10,7 +10,7 @@
 
         #endregion
 
-        #region Conctructors
+       #region Conctructors
 
         public Percentage() { }
 

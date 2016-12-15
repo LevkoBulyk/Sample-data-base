@@ -107,6 +107,10 @@
     <WCFMetadata Include="Service References\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Sample.BusinessEntity\Sample.BusinessEntity.csproj">
+      <Project>{283B7BCA-F196-4A29-9545-3BBFA57354A9}</Project>
+      <Name>Sample.BusinessEntity</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Sample.Entities\Sample.Entities.csproj">
       <Project>{3A035A91-78C7-4BF2-95A6-9FAD146D4DA1}</Project>
       <Name>Sample.Entities</Name>
@@ -114,6 +118,10 @@
     <ProjectReference Include="..\Sample.Repositories\Sample.Repositories.csproj">
       <Project>{41F0BCCE-9450-40C8-AE26-7401DD949BAB}</Project>
       <Name>Sample.Repositories</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Servises\Sample.Servises.csproj">
+      <Project>{8B5AF8F4-5EAB-42CD-8A2E-4A97994125C8}</Project>
+      <Name>Sample.Servises</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

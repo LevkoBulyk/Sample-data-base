@@ -35,6 +35,9 @@ namespace Sample.BusinessEntity
 
         public BusinessCompound()
         {
+            this.Matrixes = new Dictionary<Percentage, Matrix>();
+            this.Dopants = new Dictionary<Percentage, Dopant>();
+            this.PercentageToCompound = new List<PercentToCompound>();
             ResetDefaultName();
         }
 

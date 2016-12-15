@@ -1,23 +1,25 @@
-﻿namespace Sample.DesktopUI
+﻿using Sample.Entities;
+
+namespace Sample.DesktopUI
 {
     public class MatrixItem
     {
         public double Percentage { get; set; }
-        public string MatrixName { get; set; }
-        public int MatrixId { get; set; }
+        public Matrix Matrix { get; set; }
 
         public MatrixItem()
-        { }
-
-        public MatrixItem(int id, string matrixName)
         {
-            this.MatrixId = id;
-            this.MatrixName = matrixName;
+            this.Matrix = new Matrix();
+        }
+
+        public MatrixItem(Matrix matrix)
+        {
+            this.Matrix = matrix;
         }
 
         public override string ToString()
         {
-            return this.MatrixName;
+            return this.Matrix.Name;
         }
     }
 }
