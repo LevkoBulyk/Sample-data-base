@@ -3,7 +3,7 @@ using Sample.Entities;
 
 namespace Sample.Repositories
 {
-    interface IDopantRepository
+    public interface IDopantRepository
     {
         IEnumerable<Dopant> GetAllDopants();
         Dopant InsertDopant(Dopant dopant);

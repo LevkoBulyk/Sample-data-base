@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sample.Repositories
 {
-    interface IMatrixRepository
+    public interface IMatrixRepository
     {
         IEnumerable<Matrix> GetAllMatrixes();
         Matrix InsertMatrix(Matrix matrix);

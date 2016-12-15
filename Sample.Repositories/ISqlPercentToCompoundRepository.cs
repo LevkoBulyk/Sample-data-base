@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sample.Repositories
 {
-    interface ISqlPercentToCompoundRepository
+    public interface ISqlPercentToCompoundRepository
     {
         PercentToCompound GetPercentToCompoundById(int id);
         IEnumerable<PercentToCompound> GetAllPercentToCompound();

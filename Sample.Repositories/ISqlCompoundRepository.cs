@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Sample.Repositories
 {
-    interface ISqlCompoundRepository
+    public interface ISqlCompoundRepository
     {
         Compound GetCompoundById(int id);
         List<Compound> GetAllCompounds();

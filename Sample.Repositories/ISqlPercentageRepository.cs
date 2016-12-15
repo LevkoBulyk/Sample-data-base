@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sample.Repositories
 {
-    interface ISqlPercentageRepository
+    public interface ISqlPercentageRepository
     {
         Percentage GetPersentageById(int id);
         Percentage GetPercentageWithValues(double number, int? matrixId, int? dopantId);

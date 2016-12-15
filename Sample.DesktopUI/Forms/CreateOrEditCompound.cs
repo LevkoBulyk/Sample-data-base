@@ -25,7 +25,7 @@ namespace Sample.DesktopUI
         private CompoundServise _compoundServise;
         private BusinessCompound _currentCompound;
 
-        private List<MatrixItem> _listOfMatrixes = new List<MatrixItem>();
+        //private List<MatrixItem> _listOfMatrixes = new List<MatrixItem>();
 
 
         #endregion
@@ -59,10 +59,10 @@ namespace Sample.DesktopUI
 
         private void btnAddMatrix_Click(object sender, EventArgs e)
         {
-            var count = this._listOfMatrixes.Count;
+            //var count = this._listOfMatrixes.Count;
             var scrolX = this.panelMatrixes.AutoScrollPosition.X;
             var scrolY = this.panelMatrixes.AutoScrollPosition.Y;
-
+            /*
             const int X0 = 5;
             const int Y0 = 3;
             const int L0 = 15;
@@ -112,16 +112,46 @@ namespace Sample.DesktopUI
             panel.Location = new Point(X0 + scrolX, Y0 + scrolY + count * (panelH + Y0));
             panel.Size = new Size(panelW, panelH);
             panel.Name = "panel" + count;
+            */
+
+            var panel = new MatrixPanel();
+
+            panel.ValueChanged += MatrixPanelValueChanged;
+            panel.DeleteClicked += MatrixPanelDeleteClicked;
 
             this.panelMatrixes.Controls.Add(panel);
-            this._listOfMatrixes.Add(new MatrixItem());
+            //this._listOfMatrixes.Add(new MatrixItem());
 
             this._currentCompound.Matrixes.Add(new Percentage(), new Matrix());
-            percentage.DataBindings.Add("Value", this._currentCompound.Matrixes.Keys.Last(), "Number");
-            matrix.DataBindings.Add("SelectedItem", this._currentCompound.Matrixes.Values.Last(), "");
+            //panel._percentageNumeric.DataBindings.Add("Value", this._currentCompound.Matrixes.Keys.Last(), "Number");
+            //panel._matrixComboBox.DataBindings.Add("SelectedItem", this._currentCompound.Matrixes.Values.Last(), "");
 
         }
 
+        private void MatrixPanelValueChanged(object sender, MatrixPanelEventArgs e)
+        {
+            var percentage = e.Percentage;
+            var previousValueOfPercentage = e.PreviousValueOfPercentare;
+            var matrix = e.Matrix;
+
+            if (previousValueOfPercentage == null)
+            {
+                this._currentCompound.Matrixes[percentage] = matrix;
+            }
+            else
+            {
+                this._currentCompound.Matrixes.Remove(previousValueOfPercentage);
+                this._currentCompound.Matrixes.Add(percentage, matrix);
+            }
+        }
+
+        private void MatrixPanelDeleteClicked(object sender, EventArgs e)
+        {
+            Button btnDelete = sender as Button;
+            this.panelMatrixes.Controls.Remove(btnDelete.Parent);
+        }
+
+        /*
         private void Matrix_SelectedIndexChange(object sender, EventArgs e)
         {
             ComboBox matrix = sender as ComboBox;
@@ -138,8 +168,10 @@ namespace Sample.DesktopUI
                     }
                 }
             }
+
         }
 
+ 
         private void Delete_Click(object sender, EventArgs e)
         {
             var button = sender as Button;
@@ -150,10 +182,11 @@ namespace Sample.DesktopUI
                 {
                     this.panelMatrixes.Controls.RemoveAt(this.panelMatrixes.Controls.Count - 1);
                     this._listOfMatrixes.RemoveAt(number);
-                    FillMatrixesWithData(number - 1);
+                    //FillMatrixesWithData(number - 1);
                 }
             }
         }
+
 
         private void Percentage_ValueChanged(object sender, EventArgs e)
         {
@@ -168,60 +201,60 @@ namespace Sample.DesktopUI
                 }
             }
         }
-
+   
         private void Matrix_TextChanged(object sender, EventArgs e)
-        {
-            var matrix = sender as ComboBox;
-            if (matrix != null)
-            {
-                string text = matrix.Text;
-                var matrixes = from m in _sqlMatrixRepository.SearchMatrixesByName(matrix.Text)
-                               select new MatrixItem(m);
-                matrix.Items.Clear();
-                matrix.Items.AddRange(matrixes.ToArray());
-                matrix.DroppedDown = false;
-                matrix.DroppedDown = true;
-                matrix.Text = text;
-                matrix.SelectionStart = matrix.Text.Length;
-                Cursor.Current = Cursors.Default;
-            }
-        }
+         {
+             var matrix = sender as ComboBox;
+             if (matrix != null)
+             {
+                 string text = matrix.Text;
+                 var matrixes = from m in _sqlMatrixRepository.SearchMatrixesByName(matrix.Text)
+                                select new MatrixItem(m);
+                 matrix.Items.Clear();
+                 matrix.Items.AddRange(matrixes.ToArray());
+                 matrix.DroppedDown = false;
+                 matrix.DroppedDown = true;
+                 matrix.Text = text;
+                 matrix.SelectionStart = matrix.Text.Length;
+                 Cursor.Current = Cursors.Default;
+             }
+         }*/
 
         #endregion
 
         #endregion
 
         #region Helping methods
-
-        private void FillMatrixesWithData(int startIndex = 0)
-        {
-            int i = 0;
-            foreach (var item in this._listOfMatrixes)
-            {
-                if (i > startIndex && item != null)
+        /*
+                private void FillMatrixesWithData(int startIndex = 0)
                 {
-                    Panel panel = this.panelMatrixes.Controls.Find("panel" + i, false)[0] as Panel;
-                    if (panel != null)
+                    int i = 0;
+                    foreach (var item in this._listOfMatrixes)
                     {
-                        ComboBox matrix = panel.Controls[2] as ComboBox;
-                        NumericUpDown percentage = panel.Controls[3] as NumericUpDown;
-
-                        if (matrix != null)
+                        if (i > startIndex && item != null)
                         {
-                            matrix.Text = item.Matrix.Name;
-                            matrix.SelectedItem = new MatrixItem(item.Matrix);
-                        }
+                            Panel panel = this.panelMatrixes.Controls.Find("panel" + i, false)[0] as Panel;
+                            if (panel != null)
+                            {
+                                ComboBox matrix = panel.Controls[2] as ComboBox;
+                                NumericUpDown percentage = panel.Controls[3] as NumericUpDown;
 
-                        if (percentage != null)
-                        {
-                            percentage.Value = (decimal)item.Percentage;
+                                if (matrix != null)
+                                {
+                                    matrix.Text = item.Matrix.Name;
+                                    matrix.SelectedItem = new MatrixItem(item.Matrix);
+                                }
+
+                                if (percentage != null)
+                                {
+                                    percentage.Value = (decimal)item.Percentage;
+                                }
+                            }
                         }
+                        i++;
                     }
                 }
-                i++;
-            }
-        }
-
+                */
         #endregion
 
     }
