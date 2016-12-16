@@ -33,8 +33,6 @@ namespace Sample.DesktopUI
 
         #endregion
 
-        private int _currentNumber = 1;
-
         private IMatrixRepository _sqlMatrixRepository = new SqlMatrixRepository(ConfigurationManager.ConnectionStrings["SampleDataBase"].ConnectionString);
 
         #endregion
@@ -61,21 +59,16 @@ namespace Sample.DesktopUI
             get { return this._selectedPercentage; }
             set { this._selectedPercentage = value; }
         }
-        public int Number
-        {
-            get { return this._currentNumber; }
-            set { this._currentNumber = value; }
-        }
 
         #endregion
 
         #region Constructors
 
-        public MatrixPanel()
+        public MatrixPanel(int currentNumber, int scrolX, int scrolY)
             : base()
         {
-            //const int X0 = 5;
-            //const int Y0 = 3;
+            const int X0 = 5;
+            const int Y0 = 3;
             const int L0 = 15;
             const int panelW = 450;
             const int panelH = 93;
@@ -83,7 +76,7 @@ namespace Sample.DesktopUI
             this._matrixLabel = new Label();
             this._matrixLabel.Location = new Point(L0, L0);
             this._matrixLabel.AutoSize = true;
-            this._matrixLabel.Text = "Matrix №" + this._currentNumber;
+            this._matrixLabel.Text = "Matrix №" + currentNumber;
 
             this._percentageLabel = new Label();
             this._percentageLabel.Location = new Point(L0, 2 * L0 + this._matrixLabel.Size.Height);
@@ -120,10 +113,8 @@ namespace Sample.DesktopUI
                 });
 
             this.Size = new Size(panelW, panelH);
-            this.Name = "panel" + this._currentNumber;
-            /*
-            panel.Location = new Point(X0 + scrolX, Y0 + scrolY + count * (panelH + Y0));
-            */
+            this.Name = "panel" + currentNumber;
+
 
             this.Percentage = new Percentage();
             this.Matrix = new Matrix();

@@ -1,4 +1,6 @@
-﻿namespace Sample.Entities
+﻿using System;
+
+namespace Sample.Entities
 {
     public class Percentage : Table
     {
@@ -7,6 +9,7 @@
 
         private double _number;
         private int? _dopantId;
+        private int? _matrixId;
 
         #endregion
 
@@ -30,7 +33,6 @@
                 this._wasModified = true;
             }
         }
-        private int? _matrixId;
         public int? MatrixId
         {
             get { return this._matrixId; }
@@ -47,7 +49,7 @@
 
         public Percentage() { }
 
-        public Percentage(int Id, int number, int dopantId, int matrixId)
+        public Percentage(int Id, int number, int? dopantId, int? matrixId)
         {
             this._id = Id;
             this._number = number;
@@ -56,5 +58,15 @@
         }
 
         #endregion
+
+        #region Helping methods
+
+        public override int GetHashCode()
+        {
+            return this._id;
+        }
+
+        #endregion
+
     }
 }
