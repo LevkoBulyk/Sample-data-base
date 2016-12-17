@@ -28,7 +28,7 @@ namespace Sample.DesktopUI
 
         #endregion
 
-        private int _lastId = -1;
+        //private int _lastId = -1;
 
         #endregion
 
@@ -59,32 +59,27 @@ namespace Sample.DesktopUI
 
         private void btnAddMatrix_Click(object sender, EventArgs e)
         {
-            this._currentCompound.Matrixes.Add(new Percentage(this._lastId--, 0, null, null), new Matrix());
+            this._currentCompound.Matrixes.Add(new Percentage(), new Matrix());
             FillMatrixesWithData();
         }
 
         private void MatrixPanelValueChanged(object sender, MatrixPanelEventArgs e)
         {
             var percentage = e.Percentage;
-            var previousValueOfPercentage = e.PreviousValueOfPercentare;
+            var percentageLink = e.Link;
             var matrix = e.Matrix;
 
-            var n = this._currentCompound.Matrixes.Count;
+            if (percentageLink == null) return;
 
-            if (previousValueOfPercentage == null)
-            {
-                this._currentCompound.Matrixes[percentage] = matrix;
-            }
-            else
-            {
-                this._currentCompound.Matrixes.Remove(previousValueOfPercentage);
-                this._currentCompound.Matrixes.Add(percentage, matrix);
-            }
+            this._currentCompound.Matrixes.Remove(percentageLink);
+            this._currentCompound.Matrixes.Add(percentage, matrix);
+
+            (sender as MatrixPanel).LinkToPercentage = percentage;
         }
 
         private void MatrixPanelDeleteClicked(object sender, EventArgs e)
         {
-            this._currentCompound.Matrixes.Remove((sender as MatrixPanel).Percentage);
+            this._currentCompound.Matrixes.Remove((sender as MatrixPanel).LinkToPercentage);
             FillMatrixesWithData();
         }
 
@@ -114,8 +109,9 @@ namespace Sample.DesktopUI
             panel.ValueChanged += MatrixPanelValueChanged;
             panel.DeleteClicked += MatrixPanelDeleteClicked;
 
-            panel.Percentage = percentage;
-            panel.Matrix = matrix;
+            panel.SelectedMatrix = matrix;
+            panel.SelectedPercentage = percentage;
+            panel.LinkToPercentage = percentage;
 
             this.panelMatrixes.Controls.Add(panel);
         }

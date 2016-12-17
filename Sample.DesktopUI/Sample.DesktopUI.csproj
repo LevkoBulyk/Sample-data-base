@@ -52,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Code\DialogsManager.cs" />
-    <Compile Include="Code\MatrixItem.cs" />
     <Compile Include="Code\MatrixPanel.cs">
       <SubType>Component</SubType>
     </Compile>

@@ -47,7 +47,7 @@ namespace Sample.DesktopUI
         public delegate void ValueChangedEventHandler(object sender, MatrixPanelEventArgs args);
         public event ValueChangedEventHandler ValueChanged;
 
-        public delegate void DeleteClickedEventHandler(object sender, EventArgs args);
+        public delegate void DeleteClickedEventHandler(object sender, MatrixPanelEventArgs args);
         public event DeleteClickedEventHandler DeleteClicked;
 
         #endregion
@@ -154,11 +154,11 @@ namespace Sample.DesktopUI
         public MatrixPanel(int currentNumber, int scrolX, int scrolY)
             : base()
         {
-            InitialiseComponents(currentNumber, scrolX, scrolY);
-
             this._connectionString = ConfigurationManager.ConnectionStrings["SampleDataBase"].ConnectionString;
             this._sqlMatrixRepository = new SqlMatrixRepository(this._connectionString);
             this._sqlPercentageRepository = new SqlPercentageRepository(this._connectionString);
+
+            InitialiseComponents(currentNumber, scrolX, scrolY);
         }
 
         #endregion
@@ -169,7 +169,12 @@ namespace Sample.DesktopUI
 
         private void OnDeleteClicked(object sender, EventArgs e)
         {
-            DeleteClicked?.Invoke(this, EventArgs.Empty);
+            DeleteClicked?.Invoke(this, new MatrixPanelEventArgs()
+            {
+                Matrix = this.SelectedMatrix,
+                Percentage = this.SelectedPercentage,
+                Link = this._linkToPercentage
+            });
         }
 
         private void Percentage_ValueChanged(object sender, EventArgs e)
@@ -185,7 +190,7 @@ namespace Sample.DesktopUI
         {
             this.SelectedMatrix = new Matrix()
             {
-                Id = (this._matrixComboBox.SelectedItem as MatrixItem1).Id
+                Id = (this._matrixComboBox.SelectedItem as MatrixItem).Id
             };
             OnValueChanged();
         }
@@ -194,11 +199,16 @@ namespace Sample.DesktopUI
         {
             var matrix = this._matrixComboBox;
             string text = matrix.Text;
-            var matrixes = _sqlMatrixRepository.SearchMatrixesByName(matrix.Text).ToArray();
+
+            var matrixes = from m in _sqlMatrixRepository.SearchMatrixesByName(matrix.Text)
+                           select new MatrixItem(m.Id, m.Name);
+
             matrix.Items.Clear();
-            matrix.Items.AddRange(matrixes);
+            matrix.Items.AddRange(matrixes.ToArray());
+
             matrix.DroppedDown = false;
             matrix.DroppedDown = true;
+
             matrix.Text = text;
             matrix.SelectionStart = matrix.Text.Length;
             Cursor.Current = Cursors.Default;
@@ -290,13 +300,13 @@ namespace Sample.DesktopUI
         public Percentage Link { get; set; }
     }
 
-    public class MatrixItem1
+    public class MatrixItem
     {
         public int Id { get; set; }
         public string Name { get; set; }
 
-        public MatrixItem1() { }
-        public MatrixItem1(int id, string name)
+        public MatrixItem() { }
+        public MatrixItem(int id, string name)
         {
             this.Id = id;
             this.Name = name;
