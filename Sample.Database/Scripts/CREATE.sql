@@ -44,8 +44,8 @@ CREATE TABLE Percentage
 	Id INT NOT NULL IDENTITY,
 	Number FLOAT NOT NULL,
 	[Disabled] BIT NOT NULL,
-	Matrix_id INT NOT NULL,
-	Dopant_id INT NOT NULL
+	Matrix_id INT NULL,
+	Dopant_id INT NULL
 	CONSTRAINT  PK_Percentege_Id PRIMARY KEY (Id),
 	CONSTRAINT FK_Percentege_MatrixID FOREIGN KEY(Matrix_id) REFERENCES Matrix(Id),
 	CONSTRAINT FK_Percentege_DopantID FOREIGN KEY(Dopant_id) REFERENCES Dopant(Id)

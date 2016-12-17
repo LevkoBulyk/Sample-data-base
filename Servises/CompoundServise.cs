@@ -15,7 +15,7 @@ namespace Sample.Servises
         #region Fields
 
         private string _connectionString;
-        private Compound _compound;
+        //private Compound _compound;
         private SqlPercentageRepository _sqlPercentageRepository;
         private SqlCompoundRepository _sqlCompoundRepository;
         private SqlPercentToCompoundRepository _sqlPercentToCompoundRepository;
@@ -273,7 +273,7 @@ namespace Sample.Servises
 
                 if (!PercentageToCompoundIsInList(percent, compound))
                 {
-                    this._sqlPercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(percent.Id, inserted.Id));
+                    this.PercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(percent.Id, inserted.Id));
                 }
             }
 
@@ -290,7 +290,7 @@ namespace Sample.Servises
 
                 if (!PercentageToCompoundIsInList(percent, compound))
                 {
-                    this._sqlPercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(percent.Id, inserted.Id));
+                    this.PercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(percent.Id, inserted.Id));
                 }
             }
         }

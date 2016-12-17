@@ -24,12 +24,6 @@ namespace Sample.DesktopUI
         private CompoundServise _compoundServise;
         private BusinessCompound _currentCompound;
 
-        #region Helping fields
-
-        #endregion
-
-        //private int _lastId = -1;
-
         #endregion
 
         #region Constructors
@@ -40,6 +34,7 @@ namespace Sample.DesktopUI
             this._currentCompound = new BusinessCompound();
             this._compoundServise = new CompoundServise(this._connectionString);
         }
+
         public CreateOrEditCompound(BusinessCompound compound)
             : this()
         {
@@ -55,6 +50,11 @@ namespace Sample.DesktopUI
             btnAddMatrix_Click(null, null);
         }
 
+        private void btnSaveChemicalComponents_Click(object sender, EventArgs e)
+        {
+            this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound);
+        }
+
         #region Code of matrix panels
 
         private void btnAddMatrix_Click(object sender, EventArgs e)
@@ -65,11 +65,11 @@ namespace Sample.DesktopUI
 
         private void MatrixPanelValueChanged(object sender, MatrixPanelEventArgs e)
         {
-            var percentage = e.Percentage;
             var percentageLink = e.Link;
-            var matrix = e.Matrix;
-
             if (percentageLink == null) return;
+
+            var matrix = e.Matrix;
+            var percentage = e.Percentage;
 
             this._currentCompound.Matrixes.Remove(percentageLink);
             this._currentCompound.Matrixes.Add(percentage, matrix);
@@ -83,11 +83,7 @@ namespace Sample.DesktopUI
             FillMatrixesWithData();
         }
 
-        #endregion
-
-        #endregion
-
-        #region Helping methods
+        #region Helping method
 
         private void FillMatrixesWithData()
         {
@@ -95,26 +91,29 @@ namespace Sample.DesktopUI
 
             foreach (var percentage in this._currentCompound.Matrixes.Keys)
             {
-                AddMatrixToMatrixesPanelWith(percentage, this._currentCompound.Matrixes[percentage]);
+                var matrix = this._currentCompound.Matrixes[percentage];
+
+                var scrolX = this.panelMatrixes.AutoScrollPosition.X;
+                var scrolY = this.panelMatrixes.AutoScrollPosition.Y;
+
+                var panel = new MatrixPanel(this.panelMatrixes.Controls.Count, scrolX, scrolY);
+
+                panel.ValueChanged += MatrixPanelValueChanged;
+                panel.DeleteClicked += MatrixPanelDeleteClicked;
+
+                panel.SelectedMatrix = matrix;
+                panel.SelectedPercentage = percentage;
+                panel.LinkToPercentage = percentage;
+
+                this.panelMatrixes.Controls.Add(panel);
             }
         }
 
-        private void AddMatrixToMatrixesPanelWith(Percentage percentage, Matrix matrix)
-        {
-            var scrolX = this.panelMatrixes.AutoScrollPosition.X;
-            var scrolY = this.panelMatrixes.AutoScrollPosition.Y;
 
-            var panel = new MatrixPanel(this.panelMatrixes.Controls.Count, scrolX, scrolY);
 
-            panel.ValueChanged += MatrixPanelValueChanged;
-            panel.DeleteClicked += MatrixPanelDeleteClicked;
+        #endregion
 
-            panel.SelectedMatrix = matrix;
-            panel.SelectedPercentage = percentage;
-            panel.LinkToPercentage = percentage;
-
-            this.panelMatrixes.Controls.Add(panel);
-        }
+        #endregion
 
         #endregion
 

@@ -185,6 +185,7 @@
             this.btnSaveChemicalComponents.TabIndex = 11;
             this.btnSaveChemicalComponents.Text = "Save changes in chemical components";
             this.btnSaveChemicalComponents.UseVisualStyleBackColor = true;
+            this.btnSaveChemicalComponents.Click += new System.EventHandler(this.btnSaveChemicalComponents_Click);
             // 
             // btnAddDopant
             // 

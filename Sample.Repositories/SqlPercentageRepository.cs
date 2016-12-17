@@ -92,8 +92,16 @@ namespace Sample.Repositories
             Dictionary<string, object> parameters = new Dictionary<string, object>();
 
             parameters.Add("@Number", percentage.Number);
-            parameters.Add("@Matrix_id", percentage.MatrixId);
-            parameters.Add("@Dopant_id", percentage.DopantId);
+
+            if (percentage.MatrixId == null)
+                parameters.Add("@Matrix_id", DBNull.Value);
+            else
+                parameters.Add("@Matrix_id", percentage.MatrixId);
+
+            if (percentage.DopantId == null)
+                parameters.Add("@Dopant_id", DBNull.Value);
+            else
+                parameters.Add("@Dopant_id", percentage.DopantId);
 
             Percentage result = GetPersentageById(InsertElement(parameters, _insertPercentageQuery));
 
@@ -104,12 +112,20 @@ namespace Sample.Repositories
         {
             Percentage percentageBeforeUpdating = GetPersentageById(id);
 
-            var elements = new Dictionary<string, object>();
-            elements.Add("@Number", percentage.Number);
-            elements.Add("@Matrix_id", percentage.MatrixId);
-            elements.Add("@Dopant_Id", percentage.DopantId);
+            var parameters = new Dictionary<string, object>();
+            parameters.Add("@Number", percentage.Number);
 
-            UpdateElementWithId(id, elements, _updatePercentageQuery);
+            if (percentage.MatrixId == null)
+                parameters.Add("@Matrix_id", DBNull.Value);
+            else
+                parameters.Add("@Matrix_id", percentage.MatrixId);
+
+            if (percentage.DopantId == null)
+                parameters.Add("@Dopant_id", DBNull.Value);
+            else
+                parameters.Add("@Dopant_id", percentage.DopantId);
+
+            UpdateElementWithId(id, parameters, _updatePercentageQuery);
 
             Percentage result = GetPersentageById(id);
             if (result != percentageBeforeUpdating)
@@ -137,8 +153,16 @@ namespace Sample.Repositories
 
                 resultPercentage.Id = (int)array[0];
                 resultPercentage.Number = (double)array[1];
-                resultPercentage.MatrixId = (int)array[2];
-                resultPercentage.DopantId = (int)array[3];
+
+                if (array[2] is int)
+                    resultPercentage.MatrixId = (int)array[2];
+                else
+                    resultPercentage.MatrixId = null;
+
+                if (array[3] is int)
+                    resultPercentage.DopantId = (int)array[3];
+                else
+                    resultPercentage.DopantId = null;
 
                 return resultPercentage;
             }
