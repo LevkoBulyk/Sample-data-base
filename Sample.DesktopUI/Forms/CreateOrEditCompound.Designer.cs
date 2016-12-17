@@ -37,10 +37,10 @@
             this.gbDopants = new System.Windows.Forms.GroupBox();
             this.panelDopants = new System.Windows.Forms.Panel();
             this.gbMatrixes = new System.Windows.Forms.GroupBox();
+            this.panelMatrixes = new System.Windows.Forms.Panel();
             this.btnSaveChemicalComponents = new System.Windows.Forms.Button();
             this.btnAddDopant = new System.Windows.Forms.Button();
             this.btnAddMatrix = new System.Windows.Forms.Button();
-            this.panelMatrixes = new System.Windows.Forms.TableLayoutPanel();
             this.tcMain.SuspendLayout();
             this.tpChemicalComponents.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -167,6 +167,15 @@
             this.gbMatrixes.TabStop = false;
             this.gbMatrixes.Text = "Matrixes";
             // 
+            // panelMatrixes
+            // 
+            this.panelMatrixes.AutoScroll = true;
+            this.panelMatrixes.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelMatrixes.Location = new System.Drawing.Point(3, 23);
+            this.panelMatrixes.Name = "panelMatrixes";
+            this.panelMatrixes.Size = new System.Drawing.Size(514, 130);
+            this.panelMatrixes.TabIndex = 1;
+            // 
             // btnSaveChemicalComponents
             // 
             this.btnSaveChemicalComponents.AutoSize = true;
@@ -197,19 +206,6 @@
             this.btnAddMatrix.Text = "Add one more matrix to compound";
             this.btnAddMatrix.UseVisualStyleBackColor = true;
             this.btnAddMatrix.Click += new System.EventHandler(this.btnAddMatrix_Click);
-            // 
-            // panelMatrixes
-            // 
-            this.panelMatrixes.AutoScroll = true;
-            this.panelMatrixes.ColumnCount = 1;
-            this.panelMatrixes.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelMatrixes.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelMatrixes.Location = new System.Drawing.Point(3, 23);
-            this.panelMatrixes.Name = "panelMatrixes";
-            this.panelMatrixes.RowCount = 1;
-            this.panelMatrixes.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.panelMatrixes.Size = new System.Drawing.Size(514, 130);
-            this.panelMatrixes.TabIndex = 0;
             // 
             // CreateOrEditCompound
             // 
@@ -248,6 +244,6 @@
         private System.Windows.Forms.Button btnAddDopant;
         private System.Windows.Forms.Button btnAddMatrix;
         private System.Windows.Forms.Panel panelDopants;
-        private System.Windows.Forms.TableLayoutPanel panelMatrixes;
+        private System.Windows.Forms.Panel panelMatrixes;
     }
 }

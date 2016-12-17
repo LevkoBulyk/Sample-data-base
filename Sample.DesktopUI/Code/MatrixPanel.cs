@@ -52,12 +52,36 @@ namespace Sample.DesktopUI
         public Matrix Matrix
         {
             get { return this._selectedMatrix; }
-            set { this._selectedMatrix = value; }
+            set
+            {
+                this._selectedMatrix = new Matrix()
+                {
+                    Id = value.Id,
+                    Name = value.Name,
+                    EnergyGap = value.EnergyGap,
+                    MaxPhononEnergy = value.MaxPhononEnergy,
+                    Symmetry = value.Symmetry,
+                    Comment = value.Comment,
+                    WasModified = true
+                };
+                this._matrixComboBox.Text = value.Name;
+            }
         }
         public Percentage Percentage
         {
             get { return this._selectedPercentage; }
-            set { this._selectedPercentage = value; }
+            set
+            {
+                this._selectedPercentage = new Percentage()
+                {
+                    Id = value.Id,
+                    Number = value.Number,
+                    DopantId = value.DopantId,
+                    MatrixId = value.MatrixId,
+                    WasModified = true
+                };
+                this._percentageNumeric.Value = (decimal)value.Number;
+            }
         }
 
         #endregion
@@ -76,7 +100,7 @@ namespace Sample.DesktopUI
             this._matrixLabel = new Label();
             this._matrixLabel.Location = new Point(L0, L0);
             this._matrixLabel.AutoSize = true;
-            this._matrixLabel.Text = "Matrix №" + currentNumber;
+            this._matrixLabel.Text = "Matrix №" + (currentNumber + 1);
 
             this._percentageLabel = new Label();
             this._percentageLabel.Location = new Point(L0, 2 * L0 + this._matrixLabel.Size.Height);
@@ -114,7 +138,7 @@ namespace Sample.DesktopUI
 
             this.Size = new Size(panelW, panelH);
             this.Name = "panel" + currentNumber;
-
+            this.Location = new Point(X0, Y0 + this.Height * currentNumber);
 
             this.Percentage = new Percentage();
             this.Matrix = new Matrix();
@@ -123,6 +147,12 @@ namespace Sample.DesktopUI
         #endregion
 
         #region Methods
+
+        public void RefreshData()
+        {
+            this._matrixComboBox.Text = this.Matrix.Name;
+            this._percentageNumeric.Value = (decimal)this.Percentage.Number;
+        }
 
         private void OnDeleteClicked(object sender, EventArgs e)
         {
@@ -133,7 +163,11 @@ namespace Sample.DesktopUI
         {
             var previousValueOfPercentage = this.Percentage;
 
-            this.Percentage.Id = -1;
+            if (this.Percentage.Id >= 0)
+            {
+                this.Percentage.Id = -1;
+            }
+
             this.Percentage.Number = (double)this._percentageNumeric.Value;
 
             OnValueChanged(previousValueOfPercentage);

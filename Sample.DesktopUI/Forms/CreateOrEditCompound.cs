@@ -26,10 +26,9 @@ namespace Sample.DesktopUI
 
         #region Helping fields
 
-        private int _idCounter = -1;
-        private int _rowCounter = 0;
-
         #endregion
+
+        private int _lastId = -1;
 
         #endregion
 
@@ -40,7 +39,6 @@ namespace Sample.DesktopUI
             InitializeComponent();
             this._currentCompound = new BusinessCompound();
             this._compoundServise = new CompoundServise(this._connectionString);
-            btnAddMatrix_Click(null, null);
         }
         public CreateOrEditCompound(BusinessCompound compound)
             : this()
@@ -54,28 +52,15 @@ namespace Sample.DesktopUI
 
         private void CreateOrEditCompound_Load(object sender, EventArgs e)
         {
-
+            btnAddMatrix_Click(null, null);
         }
 
         #region Code of matrix panels
 
         private void btnAddMatrix_Click(object sender, EventArgs e)
         {
-            var scrolX = this.panelMatrixes.AutoScrollPosition.X;
-            var scrolY = this.panelMatrixes.AutoScrollPosition.Y;
-
-            var panel = new MatrixPanel(this._currentCompound.Matrixes.Count - 1, scrolX, scrolY);
-
-            panel.ValueChanged += MatrixPanelValueChanged;
-            panel.DeleteClicked += MatrixPanelDeleteClicked;
-
-            var perc = new Percentage(_idCounter--, 0, null, null);
-
-            panel.Percentage = perc;
-
-            this.panelMatrixes.Controls.Add(panel, 0, this._rowCounter++);
-
-            this._currentCompound.Matrixes.Add(perc, new Matrix());
+            this._currentCompound.Matrixes.Add(new Percentage(this._lastId--, 0, null, null), new Matrix());
+            FillMatrixesWithData();
         }
 
         private void MatrixPanelValueChanged(object sender, MatrixPanelEventArgs e)
@@ -99,14 +84,8 @@ namespace Sample.DesktopUI
 
         private void MatrixPanelDeleteClicked(object sender, EventArgs e)
         {
-            var panel = sender as MatrixPanel;
-
-            this._currentCompound.Matrixes.Remove(panel.Percentage);
-            this.panelMatrixes.Controls.Remove(panel);
-            var i = this._currentCompound.Matrixes.Count;
-            this._rowCounter--;
-
-            //FillMatrixesWithData();
+            this._currentCompound.Matrixes.Remove((sender as MatrixPanel).Percentage);
+            FillMatrixesWithData();
         }
 
         #endregion
@@ -117,20 +96,28 @@ namespace Sample.DesktopUI
 
         private void FillMatrixesWithData()
         {
-            int i = 0;
-            foreach (var control in this.panelMatrixes.Controls)
+            this.panelMatrixes.Controls.Clear();
+
+            foreach (var percentage in this._currentCompound.Matrixes.Keys)
             {
-                var key = this._currentCompound.Matrixes.Keys.ToArray()[i] as Percentage;
-
-                var panel = control as MatrixPanel;
-
-                if (panel != null)
-                {
-                    panel.Percentage = key;
-                    panel.Matrix = this._currentCompound.Matrixes[key];
-                }
-                i++;
+                AddMatrixToMatrixesPanelWith(percentage, this._currentCompound.Matrixes[percentage]);
             }
+        }
+
+        private void AddMatrixToMatrixesPanelWith(Percentage percentage, Matrix matrix)
+        {
+            var scrolX = this.panelMatrixes.AutoScrollPosition.X;
+            var scrolY = this.panelMatrixes.AutoScrollPosition.Y;
+
+            var panel = new MatrixPanel(this.panelMatrixes.Controls.Count, scrolX, scrolY);
+
+            panel.ValueChanged += MatrixPanelValueChanged;
+            panel.DeleteClicked += MatrixPanelDeleteClicked;
+
+            panel.Percentage = percentage;
+            panel.Matrix = matrix;
+
+            this.panelMatrixes.Controls.Add(panel);
         }
 
         #endregion
