@@ -1,12 +1,9 @@
 ﻿using Sample.Entities;
 using Sample.Repositories;
 using System;
-using System.Collections.Generic;
 using System.Configuration;
 using System.Drawing;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Sample.DesktopUI
@@ -26,14 +23,22 @@ namespace Sample.DesktopUI
 
         #endregion
 
-        #region Value
+        #region Current value
 
-        private Matrix _selectedMatrix;
-        private Percentage _selectedPercentage;
+        private int _selectedMatrixId = -1;
+        private int _selectedPercentageId = -1;
+        private double _selectedPercentageNumber = 0;
+        private Percentage _linkToPercentage;
 
         #endregion
 
-        private IMatrixRepository _sqlMatrixRepository = new SqlMatrixRepository(ConfigurationManager.ConnectionStrings["SampleDataBase"].ConnectionString);
+        #region Repositoies
+
+        private string _connectionString;
+        private IMatrixRepository _sqlMatrixRepository;
+        private ISqlPercentageRepository _sqlPercentageRepository;
+
+        #endregion
 
         #endregion
 
@@ -49,39 +54,97 @@ namespace Sample.DesktopUI
 
         #region Properties
 
-        public Matrix Matrix
+        public Matrix SelectedMatrix
         {
-            get { return this._selectedMatrix; }
+            get
+            {
+                return this._sqlMatrixRepository.GetMatrixById(this._selectedMatrixId);
+            }
+
             set
             {
-                this._selectedMatrix = new Matrix()
+                var matrix = this._sqlMatrixRepository.GetMatrixById(value.Id);
+
+                if (matrix != null)
                 {
-                    Id = value.Id,
-                    Name = value.Name,
-                    EnergyGap = value.EnergyGap,
-                    MaxPhononEnergy = value.MaxPhononEnergy,
-                    Symmetry = value.Symmetry,
-                    Comment = value.Comment,
-                    WasModified = true
-                };
-                this._matrixComboBox.Text = value.Name;
+                    this._selectedMatrixId = value.Id;
+                    this._matrixComboBox.Text = matrix.Name;
+
+                    this.SelectedPercentage = new Percentage()
+                    {
+                        Number = this._selectedPercentageNumber,
+                        MatrixId = this._selectedMatrixId
+                    };
+                }
+                else
+                {
+                    this._selectedMatrixId = -1;
+                    this._matrixComboBox.Text = value.Name;
+
+                    this._selectedPercentageId = -1;
+                }
             }
         }
-        public Percentage Percentage
+
+        public Percentage SelectedPercentage
         {
-            get { return this._selectedPercentage; }
+            get
+            {
+                var result = this._sqlPercentageRepository.GetPersentageById(this._selectedPercentageId);
+
+                if (result == null)
+                {
+                    result = new Percentage(
+                        -1,
+                        this._selectedPercentageNumber > 0 ? this._selectedPercentageNumber : 0,
+                        null,
+                        this._selectedMatrixId >= 0 ? this._selectedMatrixId : (int?)null
+                        );
+                }
+
+                return result;
+            }
+
             set
             {
-                this._selectedPercentage = new Percentage()
+                var percentageById = this._sqlPercentageRepository.GetPersentageById(value.Id);
+
+                if (percentageById != null &&
+                    value.MatrixId == percentageById.MatrixId &&
+                    value.Number == percentageById.Number)
                 {
-                    Id = value.Id,
-                    Number = value.Number,
-                    DopantId = value.DopantId,
-                    MatrixId = value.MatrixId,
-                    WasModified = true
-                };
-                this._percentageNumeric.Value = (decimal)value.Number;
+                    this._selectedPercentageId = value.Id;
+                    this._selectedPercentageNumber = value.Number;
+                }
+                else
+                {
+                    var percentageByParams = this._sqlPercentageRepository.GetPercentageWithValues
+                        (value.Number,
+                        value.MatrixId,
+                        value.DopantId);
+
+                    if (percentageById != null &&
+                        value.MatrixId == percentageByParams.MatrixId &&
+                        value.Number == percentageByParams.Number)
+                    {
+                        this._selectedPercentageId = percentageById.Id;
+                        this._selectedPercentageNumber = percentageById.Number;
+                    }
+                    else
+                    {
+                        this._selectedPercentageId = -1;
+                        this._selectedPercentageNumber = value.Number;
+                    }
+                }
+
+                this._percentageNumeric.Value = (decimal)this._selectedPercentageNumber;
             }
+        }
+
+        public Percentage LinkToPercentage
+        {
+            get { return _linkToPercentage; }
+            set { this._linkToPercentage = value; }
         }
 
         #endregion
@@ -90,6 +153,78 @@ namespace Sample.DesktopUI
 
         public MatrixPanel(int currentNumber, int scrolX, int scrolY)
             : base()
+        {
+            InitialiseComponents(currentNumber, scrolX, scrolY);
+
+            this._connectionString = ConfigurationManager.ConnectionStrings["SampleDataBase"].ConnectionString;
+            this._sqlMatrixRepository = new SqlMatrixRepository(this._connectionString);
+            this._sqlPercentageRepository = new SqlPercentageRepository(this._connectionString);
+        }
+
+        #endregion
+
+        #region Methods
+
+        #region Event handlers
+
+        private void OnDeleteClicked(object sender, EventArgs e)
+        {
+            DeleteClicked?.Invoke(this, EventArgs.Empty);
+        }
+
+        private void Percentage_ValueChanged(object sender, EventArgs e)
+        {
+            this.SelectedPercentage = new Percentage(this._selectedPercentageId,
+                (double)this._percentageNumeric.Value,
+                null,
+                this._selectedMatrixId);
+            OnValueChanged();
+        }
+
+        private void Matrix_SelectedIndexChange(object sender, EventArgs e)
+        {
+            this.SelectedMatrix = new Matrix()
+            {
+                Id = (this._matrixComboBox.SelectedItem as MatrixItem1).Id
+            };
+            OnValueChanged();
+        }
+
+        private void Matrix_TextChanged(object sender, EventArgs e)
+        {
+            var matrix = this._matrixComboBox;
+            string text = matrix.Text;
+            var matrixes = _sqlMatrixRepository.SearchMatrixesByName(matrix.Text).ToArray();
+            matrix.Items.Clear();
+            matrix.Items.AddRange(matrixes);
+            matrix.DroppedDown = false;
+            matrix.DroppedDown = true;
+            matrix.Text = text;
+            matrix.SelectionStart = matrix.Text.Length;
+            Cursor.Current = Cursors.Default;
+
+            this._selectedMatrixId = -1;
+        }
+
+        #endregion
+
+        #region Event raisers
+
+        protected virtual void OnValueChanged()
+        {
+            ValueChanged?.Invoke(this, new MatrixPanelEventArgs()
+            {
+                Matrix = this.SelectedMatrix,
+                Percentage = this.SelectedPercentage,
+                Link = this._linkToPercentage
+            });
+        }
+
+        #endregion
+
+        #region Helping methods
+
+        private void InitialiseComponents(int currentNumber, int scrolX, int scrolY)
         {
             const int X0 = 5;
             const int Y0 = 3;
@@ -112,6 +247,7 @@ namespace Sample.DesktopUI
             this._matrixComboBox.Name = "matrix";
             this._matrixComboBox.TextUpdate += Matrix_TextChanged;
             this._matrixComboBox.SelectedIndexChanged += Matrix_SelectedIndexChange;
+
             Matrix_TextChanged(this._matrixComboBox, EventArgs.Empty);
 
             this._percentageNumeric = new NumericUpDown();
@@ -139,78 +275,9 @@ namespace Sample.DesktopUI
             this.Size = new Size(panelW, panelH);
             this.Name = "panel" + currentNumber;
             this.Location = new Point(X0, Y0 + this.Height * currentNumber);
-
-            this.Percentage = new Percentage();
-            this.Matrix = new Matrix();
         }
 
         #endregion
-
-        #region Methods
-
-        public void RefreshData()
-        {
-            this._matrixComboBox.Text = this.Matrix.Name;
-            this._percentageNumeric.Value = (decimal)this.Percentage.Number;
-        }
-
-        private void OnDeleteClicked(object sender, EventArgs e)
-        {
-            DeleteClicked?.Invoke(this, EventArgs.Empty);
-        }
-
-        private void Percentage_ValueChanged(object sender, EventArgs e)
-        {
-            var previousValueOfPercentage = this.Percentage;
-
-            if (this.Percentage.Id >= 0)
-            {
-                this.Percentage.Id = -1;
-            }
-
-            this.Percentage.Number = (double)this._percentageNumeric.Value;
-
-            OnValueChanged(previousValueOfPercentage);
-        }
-
-        private void Matrix_SelectedIndexChange(object sender, EventArgs e)
-        {
-            ComboBox matrix = this._matrixComboBox;
-            var selectedItem = matrix.SelectedItem as Matrix;
-            if (selectedItem != null)
-            {
-                this._selectedMatrix = selectedItem;
-                OnValueChanged(null);
-            }
-        }
-
-        private void Matrix_TextChanged(object sender, EventArgs e)
-        {
-            var matrix = this._matrixComboBox;
-            string text = matrix.Text;
-            var matrixes = _sqlMatrixRepository.SearchMatrixesByName(matrix.Text).ToArray();
-            matrix.Items.Clear();
-            matrix.Items.AddRange(matrixes);
-            matrix.DroppedDown = false;
-            matrix.DroppedDown = true;
-            matrix.Text = text;
-            matrix.SelectionStart = matrix.Text.Length;
-            Cursor.Current = Cursors.Default;
-        }
-
-        #endregion
-
-        #region Event raisers
-
-        protected virtual void OnValueChanged(Percentage previousValueOfPercentage)
-        {
-            ValueChanged?.Invoke(this, new MatrixPanelEventArgs()
-            {
-                Matrix = this.Matrix,
-                Percentage = this.Percentage,
-                PreviousValueOfPercentare = previousValueOfPercentage
-            });
-        }
 
         #endregion
 
@@ -220,6 +287,25 @@ namespace Sample.DesktopUI
     {
         public Matrix Matrix { get; set; }
         public Percentage Percentage { get; set; }
-        public Percentage PreviousValueOfPercentare { get; set; }
+        public Percentage Link { get; set; }
     }
+
+    public class MatrixItem1
+    {
+        public int Id { get; set; }
+        public string Name { get; set; }
+
+        public MatrixItem1() { }
+        public MatrixItem1(int id, string name)
+        {
+            this.Id = id;
+            this.Name = name;
+        }
+
+        public override string ToString()
+        {
+            return this.Name;
+        }
+    }
+
 }

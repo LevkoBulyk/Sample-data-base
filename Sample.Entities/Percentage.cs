@@ -49,7 +49,7 @@ namespace Sample.Entities
 
         public Percentage() { }
 
-        public Percentage(int Id, int number, int? dopantId, int? matrixId)
+        public Percentage(int Id, double number, int? dopantId, int? matrixId)
         {
             this._id = Id;
             this._number = number;
