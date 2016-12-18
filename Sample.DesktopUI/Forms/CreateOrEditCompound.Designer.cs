@@ -31,6 +31,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSaveAll = new System.Windows.Forms.Button();
             this.tpCompound = new System.Windows.Forms.TabPage();
+            this.lblName = new System.Windows.Forms.Label();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpChemicalComponents = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -41,13 +42,22 @@
             this.btnSaveChemicalComponents = new System.Windows.Forms.Button();
             this.btnAddDopant = new System.Windows.Forms.Button();
             this.btnAddMatrix = new System.Windows.Forms.Button();
-            this.lblName = new System.Windows.Forms.Label();
+            this.lblEnergyGap = new System.Windows.Forms.Label();
+            this.lblMaxPhononEnergy = new System.Windows.Forms.Label();
+            this.lblSymmetry = new System.Windows.Forms.Label();
+            this.lblComment = new System.Windows.Forms.Label();
+            this.nudEnergyGap = new System.Windows.Forms.NumericUpDown();
+            this.nudMaxPhononEnergy = new System.Windows.Forms.NumericUpDown();
+            this.tbxSymmetry = new System.Windows.Forms.TextBox();
+            this.rtbxComment = new System.Windows.Forms.RichTextBox();
             this.tpCompound.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.tpChemicalComponents.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
             this.gbDopants.SuspendLayout();
             this.gbMatrixes.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudEnergyGap)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxPhononEnergy)).BeginInit();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -78,6 +88,14 @@
             // tpCompound
             // 
             this.tpCompound.AutoScroll = true;
+            this.tpCompound.Controls.Add(this.rtbxComment);
+            this.tpCompound.Controls.Add(this.tbxSymmetry);
+            this.tpCompound.Controls.Add(this.nudMaxPhononEnergy);
+            this.tpCompound.Controls.Add(this.nudEnergyGap);
+            this.tpCompound.Controls.Add(this.lblComment);
+            this.tpCompound.Controls.Add(this.lblSymmetry);
+            this.tpCompound.Controls.Add(this.lblMaxPhononEnergy);
+            this.tpCompound.Controls.Add(this.lblEnergyGap);
             this.tpCompound.Controls.Add(this.lblName);
             this.tpCompound.Location = new System.Drawing.Point(4, 28);
             this.tpCompound.Margin = new System.Windows.Forms.Padding(4);
@@ -87,6 +105,16 @@
             this.tpCompound.TabIndex = 1;
             this.tpCompound.Text = "Compound";
             this.tpCompound.UseVisualStyleBackColor = true;
+            // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Font = new System.Drawing.Font("Times New Roman", 10F);
+            this.lblName.Location = new System.Drawing.Point(175, 25);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(54, 19);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Name:";
             // 
             // tcMain
             // 
@@ -212,14 +240,72 @@
             this.btnAddMatrix.UseVisualStyleBackColor = true;
             this.btnAddMatrix.Click += new System.EventHandler(this.btnAddMatrix_Click);
             // 
-            // lblName
+            // lblEnergyGap
             // 
-            this.lblName.AutoSize = true;
-            this.lblName.Location = new System.Drawing.Point(45, 27);
-            this.lblName.Name = "lblName";
-            this.lblName.Size = new System.Drawing.Size(54, 19);
-            this.lblName.TabIndex = 0;
-            this.lblName.Text = "Name:";
+            this.lblEnergyGap.AutoSize = true;
+            this.lblEnergyGap.Location = new System.Drawing.Point(82, 75);
+            this.lblEnergyGap.Name = "lblEnergyGap";
+            this.lblEnergyGap.Size = new System.Drawing.Size(89, 19);
+            this.lblEnergyGap.TabIndex = 1;
+            this.lblEnergyGap.Text = "Energy gap:";
+            // 
+            // lblMaxPhononEnergy
+            // 
+            this.lblMaxPhononEnergy.AutoSize = true;
+            this.lblMaxPhononEnergy.Location = new System.Drawing.Point(52, 116);
+            this.lblMaxPhononEnergy.Name = "lblMaxPhononEnergy";
+            this.lblMaxPhononEnergy.Size = new System.Drawing.Size(148, 19);
+            this.lblMaxPhononEnergy.TabIndex = 1;
+            this.lblMaxPhononEnergy.Text = "Max phonon energy:";
+            // 
+            // lblSymmetry
+            // 
+            this.lblSymmetry.AutoSize = true;
+            this.lblSymmetry.Location = new System.Drawing.Point(84, 157);
+            this.lblSymmetry.Name = "lblSymmetry";
+            this.lblSymmetry.Size = new System.Drawing.Size(84, 19);
+            this.lblSymmetry.TabIndex = 1;
+            this.lblSymmetry.Text = "Symmetry:";
+            // 
+            // lblComment
+            // 
+            this.lblComment.AutoSize = true;
+            this.lblComment.Location = new System.Drawing.Point(86, 198);
+            this.lblComment.Name = "lblComment";
+            this.lblComment.Size = new System.Drawing.Size(81, 19);
+            this.lblComment.TabIndex = 1;
+            this.lblComment.Text = "Comment:";
+            // 
+            // nudEnergyGap
+            // 
+            this.nudEnergyGap.DecimalPlaces = 3;
+            this.nudEnergyGap.Location = new System.Drawing.Point(265, 73);
+            this.nudEnergyGap.Name = "nudEnergyGap";
+            this.nudEnergyGap.Size = new System.Drawing.Size(207, 27);
+            this.nudEnergyGap.TabIndex = 2;
+            // 
+            // nudMaxPhononEnergy
+            // 
+            this.nudMaxPhononEnergy.DecimalPlaces = 2;
+            this.nudMaxPhononEnergy.Location = new System.Drawing.Point(265, 114);
+            this.nudMaxPhononEnergy.Name = "nudMaxPhononEnergy";
+            this.nudMaxPhononEnergy.Size = new System.Drawing.Size(207, 27);
+            this.nudMaxPhononEnergy.TabIndex = 3;
+            // 
+            // tbxSymmetry
+            // 
+            this.tbxSymmetry.Location = new System.Drawing.Point(265, 154);
+            this.tbxSymmetry.Name = "tbxSymmetry";
+            this.tbxSymmetry.Size = new System.Drawing.Size(207, 27);
+            this.tbxSymmetry.TabIndex = 4;
+            // 
+            // rtbxComment
+            // 
+            this.rtbxComment.Location = new System.Drawing.Point(265, 198);
+            this.rtbxComment.Name = "rtbxComment";
+            this.rtbxComment.Size = new System.Drawing.Size(207, 124);
+            this.rtbxComment.TabIndex = 5;
+            this.rtbxComment.Text = "";
             // 
             // CreateOrEditCompound
             // 
@@ -243,6 +329,8 @@
             this.tableLayoutPanel.PerformLayout();
             this.gbDopants.ResumeLayout(false);
             this.gbMatrixes.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.nudEnergyGap)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudMaxPhononEnergy)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -262,5 +350,13 @@
         private System.Windows.Forms.Panel panelDopants;
         private System.Windows.Forms.Panel panelMatrixes;
         private System.Windows.Forms.Label lblName;
+        private System.Windows.Forms.Label lblComment;
+        private System.Windows.Forms.Label lblSymmetry;
+        private System.Windows.Forms.Label lblMaxPhononEnergy;
+        private System.Windows.Forms.Label lblEnergyGap;
+        private System.Windows.Forms.NumericUpDown nudMaxPhononEnergy;
+        private System.Windows.Forms.NumericUpDown nudEnergyGap;
+        private System.Windows.Forms.TextBox tbxSymmetry;
+        private System.Windows.Forms.RichTextBox rtbxComment;
     }
 }

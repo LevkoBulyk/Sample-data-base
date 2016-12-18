@@ -19,7 +19,7 @@ namespace Sample.Repositories
         //private const string _insertCompoundQuery = "INSERT INTO Compound (Visibility, Eg, hw, Symmetry, Comment, [Disabled]) VALUES (@Visibility, @Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
         private const string _insertCompoundQuery = "INSERT INTO Compound (Eg, hw, Symmetry, Comment, [Disabled]) VALUES (@Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
         //private const string _updateCompoundQuery = "UPDATE Compound SET Visibility = @Visibility, Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment, WHERE Id = @Id;";
-        private const string _updateCompoundQuery = "UPDATE Compound SET Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment, WHERE Id = @Id;";
+        private const string _updateCompoundQuery = "UPDATE Compound SET Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment WHERE Id = @Id;";
 
         #endregion
 

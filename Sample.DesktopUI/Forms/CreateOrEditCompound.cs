@@ -48,17 +48,18 @@ namespace Sample.DesktopUI
         private void CreateOrEditCompound_Load(object sender, EventArgs e)
         {
             btnAddMatrix_Click(null, null);
-            this._currentCompound.CompoundWasModified += SetName;
+
+            this.nudEnergyGap.DataBindings.Add("Value", this._currentCompound.Compound, "EnergyGap");
+            this.nudMaxPhononEnergy.DataBindings.Add("Value", this._currentCompound.Compound, "MaxPhononEnergy");
+            this.tbxSymmetry.DataBindings.Add("Text", this._currentCompound.Compound, "Symmetry");
+            this.rtbxComment.DataBindings.Add("Text", this._currentCompound.Compound, "Comment");
         }
 
         private void btnSaveChemicalComponents_Click(object sender, EventArgs e)
         {
-            this._currentCompound.Compound = new Compound()
-            {
-                Comment = "MyCompound"
-            };
-            //this._currentCompound = this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound);
-            this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound);
+            this._currentCompound.Compound.Id = (this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound)).Compound.Id;
+            RefreshCurrentCompound();
+            FillMatrixesWithData();
         }
 
         #region Code of matrix panels
@@ -115,8 +116,6 @@ namespace Sample.DesktopUI
             }
         }
 
-
-
         #endregion
 
         #endregion
@@ -127,8 +126,30 @@ namespace Sample.DesktopUI
 
         private void SetName(BusinessCompound sender, EventArgs e)
         {
+            sender.ResetDefaultName();
             this.Text = sender.Name;
             this.lblName.Text = string.Format("Mame: {0}", sender.Name);
+        }
+
+        private void RefreshCurrentCompound()
+        {
+            if (this._currentCompound.Compound.Id <= 0) return;
+
+            var compound = this._compoundServise.GetCompoundWithId(this._currentCompound.Compound.Id);
+
+            if (compound != null)
+            {
+                this._currentCompound.Compound.Id = compound.Compound.Id;
+                this._currentCompound.Compound.Comment = compound.Compound.Comment;
+                this._currentCompound.Compound.EnergyGap = compound.Compound.EnergyGap;
+                this._currentCompound.Compound.MaxPhononEnergy = compound.Compound.MaxPhononEnergy;
+                this._currentCompound.Compound.Symmetry = compound.Compound.Symmetry;
+                this._currentCompound.Matrixes = compound.Matrixes;
+                this._currentCompound.Dopants = compound.Dopants;
+                this._currentCompound.PercentageToCompound = compound.PercentageToCompound;
+            }
+
+            SetName(this._currentCompound, new EventArgs());
         }
 
         #endregion
