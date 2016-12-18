@@ -135,7 +135,6 @@ namespace Sample.Servises
                                 resultCompound.Dopants.Add(percentage, dopant);
                             }
                         }
-                        resultCompound.PercentageToCompound.Add(item);
                     }
                 }
                 return resultCompound;
@@ -203,7 +202,7 @@ namespace Sample.Servises
 
             SaveChangesInCompound(compound, inserted);
 
-            return GetCompoundWithId(inserted.Id);
+            return GetCompoundWithId(compound.Compound.Id);
         }
 
         public void DeleteCompoundWithId(int id)

@@ -123,7 +123,7 @@ namespace Sample.DesktopUI
                         value.MatrixId,
                         value.DopantId);
 
-                    if (percentageById != null &&
+                    if (percentageByParams != null &&
                         value.MatrixId == percentageByParams.MatrixId &&
                         value.Number == percentageByParams.Number)
                     {

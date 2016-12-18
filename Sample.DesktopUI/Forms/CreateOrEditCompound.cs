@@ -48,6 +48,7 @@ namespace Sample.DesktopUI
         private void CreateOrEditCompound_Load(object sender, EventArgs e)
         {
             btnAddMatrix_Click(null, null);
+            this._currentCompound.CompoundWasModified += SetName;
         }
 
         private void btnSaveChemicalComponents_Click(object sender, EventArgs e)
@@ -56,6 +57,7 @@ namespace Sample.DesktopUI
             {
                 Comment = "MyCompound"
             };
+            //this._currentCompound = this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound);
             this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound);
         }
 
@@ -118,6 +120,16 @@ namespace Sample.DesktopUI
         #endregion
 
         #endregion
+
+        #endregion
+
+        #region Helping methods
+
+        private void SetName(BusinessCompound sender, EventArgs e)
+        {
+            this.Text = sender.Name;
+            this.lblName.Text = string.Format("Mame: {0}", sender.Name);
+        }
 
         #endregion
 

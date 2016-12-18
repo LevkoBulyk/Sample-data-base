@@ -30,7 +30,7 @@
         {
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnSaveAll = new System.Windows.Forms.Button();
-            this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.tpCompound = new System.Windows.Forms.TabPage();
             this.tcMain = new System.Windows.Forms.TabControl();
             this.tpChemicalComponents = new System.Windows.Forms.TabPage();
             this.tableLayoutPanel = new System.Windows.Forms.TableLayoutPanel();
@@ -41,6 +41,8 @@
             this.btnSaveChemicalComponents = new System.Windows.Forms.Button();
             this.btnAddDopant = new System.Windows.Forms.Button();
             this.btnAddMatrix = new System.Windows.Forms.Button();
+            this.lblName = new System.Windows.Forms.Label();
+            this.tpCompound.SuspendLayout();
             this.tcMain.SuspendLayout();
             this.tpChemicalComponents.SuspendLayout();
             this.tableLayoutPanel.SuspendLayout();
@@ -73,24 +75,26 @@
             this.btnSaveAll.Text = "Save all";
             this.btnSaveAll.UseVisualStyleBackColor = true;
             // 
-            // tabPage2
+            // tpCompound
             // 
-            this.tabPage2.Location = new System.Drawing.Point(4, 28);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(4);
-            this.tabPage2.Size = new System.Drawing.Size(534, 452);
-            this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "tabPage2";
-            this.tabPage2.UseVisualStyleBackColor = true;
+            this.tpCompound.AutoScroll = true;
+            this.tpCompound.Controls.Add(this.lblName);
+            this.tpCompound.Location = new System.Drawing.Point(4, 28);
+            this.tpCompound.Margin = new System.Windows.Forms.Padding(4);
+            this.tpCompound.Name = "tpCompound";
+            this.tpCompound.Padding = new System.Windows.Forms.Padding(4);
+            this.tpCompound.Size = new System.Drawing.Size(534, 452);
+            this.tpCompound.TabIndex = 1;
+            this.tpCompound.Text = "Compound";
+            this.tpCompound.UseVisualStyleBackColor = true;
             // 
             // tcMain
             // 
             this.tcMain.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.tcMain.Controls.Add(this.tpCompound);
             this.tcMain.Controls.Add(this.tpChemicalComponents);
-            this.tcMain.Controls.Add(this.tabPage2);
             this.tcMain.Location = new System.Drawing.Point(0, 0);
             this.tcMain.Margin = new System.Windows.Forms.Padding(4);
             this.tcMain.Name = "tcMain";
@@ -208,6 +212,15 @@
             this.btnAddMatrix.UseVisualStyleBackColor = true;
             this.btnAddMatrix.Click += new System.EventHandler(this.btnAddMatrix_Click);
             // 
+            // lblName
+            // 
+            this.lblName.AutoSize = true;
+            this.lblName.Location = new System.Drawing.Point(45, 27);
+            this.lblName.Name = "lblName";
+            this.lblName.Size = new System.Drawing.Size(54, 19);
+            this.lblName.TabIndex = 0;
+            this.lblName.Text = "Name:";
+            // 
             // CreateOrEditCompound
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 19F);
@@ -222,6 +235,8 @@
             this.Name = "CreateOrEditCompound";
             this.Text = "Add new compound";
             this.Load += new System.EventHandler(this.CreateOrEditCompound_Load);
+            this.tpCompound.ResumeLayout(false);
+            this.tpCompound.PerformLayout();
             this.tcMain.ResumeLayout(false);
             this.tpChemicalComponents.ResumeLayout(false);
             this.tableLayoutPanel.ResumeLayout(false);
@@ -235,7 +250,7 @@
         #endregion
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnSaveAll;
-        private System.Windows.Forms.TabPage tabPage2;
+        private System.Windows.Forms.TabPage tpCompound;
         private System.Windows.Forms.TabControl tcMain;
         private System.Windows.Forms.TabPage tpChemicalComponents;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel;
@@ -246,5 +261,6 @@
         private System.Windows.Forms.Button btnAddMatrix;
         private System.Windows.Forms.Panel panelDopants;
         private System.Windows.Forms.Panel panelMatrixes;
+        private System.Windows.Forms.Label lblName;
     }
 }

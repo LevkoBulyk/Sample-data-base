@@ -12,22 +12,69 @@ namespace Sample.BusinessEntity
     {
         #region Fields
 
+        private Compound _compound;
+        private Dictionary<Percentage, Matrix> _matrixes;
+        private Dictionary<Percentage, Dopant> _dopants;
+        private List<PercentToCompound> _percentageToCompound;
         private string _name;
 
         #endregion
 
         #region Properties
 
-        public Compound Compound { get; set; }
-        public Dictionary<Percentage, Matrix> Matrixes { get; set; }
-        public Dictionary<Percentage, Dopant> Dopants { get; set; }
-        public List<PercentToCompound> PercentageToCompound { get; set; }
+        public Compound Compound
+        {
+            get { return this._compound; }
+            set
+            {
+                this._compound = value;
+                OnCompundWasModified();
+            }
+        }
+        public Dictionary<Percentage, Matrix> Matrixes
+        {
+            get { return this._matrixes; }
+            set
+            {
+                this._matrixes = value;
+                OnCompundWasModified();
+            }
+        }
+        public Dictionary<Percentage, Dopant> Dopants
+        {
+            get { return this._dopants; }
+            set
+            {
+                this._dopants = value;
+                OnCompundWasModified();
+            }
+        }
+        public List<PercentToCompound> PercentageToCompound
+        {
+            get { return this._percentageToCompound; }
+            set
+            {
+                this._percentageToCompound = value;
+                OnCompundWasModified();
+            }
+        }
 
         public string Name
         {
-            get { return _name; }
-            set { _name = value; }
+            get { return this._name; }
+            set
+            {
+                this._name = value;
+                OnCompundWasModified();
+            }
         }
+
+        #endregion
+
+        #region Delegates andEvents
+
+        public delegate void CompoundWasModifiedEventHandler(BusinessCompound sender, EventArgs args);
+        public event CompoundWasModifiedEventHandler CompoundWasModified;
 
         #endregion
 
@@ -35,16 +82,21 @@ namespace Sample.BusinessEntity
 
         public BusinessCompound()
         {
-            this.Matrixes = new Dictionary<Percentage, Matrix>();
-            this.Dopants = new Dictionary<Percentage, Dopant>();
-            this.PercentageToCompound = new List<PercentToCompound>();
-            this.Compound = new Compound();
+            this._matrixes = new Dictionary<Percentage, Matrix>();
+            this._dopants = new Dictionary<Percentage, Dopant>();
+            this._percentageToCompound = new List<PercentToCompound>();
+            this._compound = new Compound();
             ResetDefaultName();
         }
 
         #endregion
 
         #region Helping methods
+
+        protected virtual void OnCompundWasModified()
+        {
+            CompoundWasModified?.Invoke(this, EventArgs.Empty);
+        }
 
         public void ResetDefaultName()
         {
