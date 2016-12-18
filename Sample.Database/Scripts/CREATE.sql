@@ -68,7 +68,7 @@ GO
 CREATE TABLE Compound
 (
 	Id INT NOT NULL IDENTITY,
-	Visibility INT NOT NULL,
+	Visibility INT,
 	Eg FLOAT,
 	hw FLOAT,
 	Symmetry NVARCHAR(100),
@@ -87,8 +87,8 @@ CREATE TABLE PercentToCompound
 	[Disabled] BIT NOT NULL
 
 	CONSTRAINT PK_tblWorker_Id PRIMARY KEY (Id),
-	CONSTRAINT FK_CompoundTo_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentage(Id),
-	CONSTRAINT FK_CompoundTo_CompoundID FOREIGN KEY(Compound_id) REFERENCES Compound(Id)
+	CONSTRAINT FK_PercentToCompound_PercentegeID FOREIGN KEY(Percents_id) REFERENCES Percentage(Id),
+	CONSTRAINT FK_PercentToCompound_CompoundID FOREIGN KEY(Compound_id) REFERENCES Compound(Id)
 );
 GO
 

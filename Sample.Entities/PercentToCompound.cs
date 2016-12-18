@@ -11,7 +11,16 @@
 
         #region Properties
 
-        public int PercentId;
+        public int PercentId
+        {
+            get { return this._percentId; }
+            set
+            {
+                this._percentId = value;
+                this._wasModified = true;
+            }
+        }
+
         public int CompoundId
         {
             get { return this._compoundId; }

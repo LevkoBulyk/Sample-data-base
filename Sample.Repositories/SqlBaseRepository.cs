@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using Sample.Entities;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
@@ -61,7 +63,7 @@ namespace Sample.Repositories
 
                     foreach (string key in parameters.Keys)
                     {
-                        command.Parameters.AddWithValue(key, parameters[key]);
+                        command.Parameters.AddWithValue(key, parameters[key] != null ? parameters[key] : DBNull.Value);
                     }
 
                     SqlParameter Id = command.Parameters.Add("@Id", SqlDbType.Int);
@@ -153,7 +155,7 @@ namespace Sample.Repositories
             {
                 connection.Open();
 
-                string deleteQuery = "UPDATE "+tableName+" SET [Disabled] = 1 WHERE Id = @Id;";
+                string deleteQuery = "UPDATE " + tableName + " SET [Disabled] = 1 WHERE Id = @Id;";
 
                 using (SqlCommand command = new SqlCommand(deleteQuery, connection))
                 {

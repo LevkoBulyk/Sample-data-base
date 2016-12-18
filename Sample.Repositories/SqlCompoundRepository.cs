@@ -12,10 +12,14 @@ namespace Sample.Repositories
 
         #region Queries
 
-        private const string _getCompoundByIdQuery = "SELECT Id, Visibility, Eg, hw, Symmetry, Comment FROM Compound WHERE Id = @Id AND [Disabled] = 0;";
-        private const string _getAllCompoundsQuery = "SELECT Id, Visibility, Eg, hw, Symmetry, Comment FROM Compound WHERE [Disabled] = 0;";
-        private const string _insertCompoundQuery = "INSERT INTO Compound (Visibility, Eg, hw, Symmetry, Comment, [Disabled]) VALUES (@Visibility, @Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
-        private const string _updateCompoundQuery = "UPDATE Compound SET Visibility = @Visibility, Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment, WHERE Id = @Id;";
+        //private const string _getCompoundByIdQuery = "SELECT Id, Visibility, Eg, hw, Symmetry, Comment FROM Compound WHERE Id = @Id AND [Disabled] = 0;";
+        private const string _getCompoundByIdQuery = "SELECT Id, Eg, hw, Symmetry, Comment FROM Compound WHERE Id = @Id AND [Disabled] = 0;";
+        //private const string _getAllCompoundsQuery = "SELECT Id, Visibility, Eg, hw, Symmetry, Comment FROM Compound WHERE [Disabled] = 0;";
+        private const string _getAllCompoundsQuery = "SELECT Id, Eg, hw, Symmetry, Comment FROM Compound WHERE [Disabled] = 0;";
+        //private const string _insertCompoundQuery = "INSERT INTO Compound (Visibility, Eg, hw, Symmetry, Comment, [Disabled]) VALUES (@Visibility, @Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
+        private const string _insertCompoundQuery = "INSERT INTO Compound (Eg, hw, Symmetry, Comment, [Disabled]) VALUES (@Eg, @hw, @Symmetry, @Comment, 0); SET @Id = @@IDENTITY;";
+        //private const string _updateCompoundQuery = "UPDATE Compound SET Visibility = @Visibility, Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment, WHERE Id = @Id;";
+        private const string _updateCompoundQuery = "UPDATE Compound SET Eg = @Eg, hw = @hw, Symmetry = @Symmetry, Comment = @Comment, WHERE Id = @Id;";
 
         #endregion
 
@@ -31,7 +35,7 @@ namespace Sample.Repositories
 
         public Compound GetCompoundById(int id)
         {
-            var values = GetElementById(id, "Compound");
+            var values = GetElementById(id, _getCompoundByIdQuery);
             return GetCompoundFromObjectArray(values);
         }
 
@@ -100,10 +104,13 @@ namespace Sample.Repositories
             {
                 // Id, Visibility, Eg, hw, Symmetry, Comment
                 result.Id = (int)array[0];
-                result.EnergyGap = (double)array[2];
-                result.MaxPhononEnergy = (double)array[3];
-                result.Symmetry = (string)array[4];
-                result.Comment = (string)array[5];
+                result.EnergyGap = (double)array[1];
+                result.MaxPhononEnergy = (double)array[2];
+                if (array[3] as string == null)
+                    result.Symmetry = null;
+                else
+                    result.Symmetry = (string)array[3];
+                result.Comment = (string)array[4];
 
                 return result;
             }

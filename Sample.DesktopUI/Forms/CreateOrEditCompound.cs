@@ -52,6 +52,10 @@ namespace Sample.DesktopUI
 
         private void btnSaveChemicalComponents_Click(object sender, EventArgs e)
         {
+            this._currentCompound.Compound = new Compound()
+            {
+                Comment = "MyCompound"
+            };
             this._compoundServise.UpdateCompoundWithId(this._currentCompound.Compound.Id, this._currentCompound);
         }
 

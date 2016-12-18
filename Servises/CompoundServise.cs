@@ -192,7 +192,11 @@ namespace Sample.Servises
         public BusinessCompound UpdateCompoundWithId(int id, BusinessCompound compound)
         {
             var inserted = compound.Compound;
-            if (inserted.WasModified)
+            if (this.CompoundRepository.GetCompoundById(inserted.Id) == null)
+            {
+                compound.Compound = this.CompoundRepository.InsertCompound(inserted);
+            }
+            else if (inserted.WasModified)
             {
                 this._sqlCompoundRepository.UpdateCompound(inserted.Id, inserted);
             }
@@ -234,64 +238,77 @@ namespace Sample.Servises
 
         #region Helping methods
 
-        private bool PercentageToCompoundIsInList(Percentage percent, BusinessCompound compound)
-        {
-            foreach (var item in compound.PercentageToCompound)
-            {
-                if (item.PercentId == percent.Id)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private void SavePercentage(Percentage percent)
-        {
-            if (this.PercentageRepository.GetPercentageWithValues(percent.Number, percent.MatrixId, percent.DopantId) == null)
-            {
-                this.PercentageRepository.InsertPersentage(percent);
-            }
-            else if (percent.WasModified)
-            {
-                this.PercentageRepository.UpdatePercentage(percent.Id, percent);
-            }
-        }
-
         private void SaveChangesInCompound(BusinessCompound compound, Compound inserted)
         {
-            foreach (var percent in compound.Matrixes.Keys)
+            Matrix matrix;
+            Dopant dopant;
+            Percentage percentage;
+
+            for (int i = 0; i < compound.Matrixes.Keys.Count; i++)
             {
-                var currentMatrix = compound.Matrixes[percent];
-                if (currentMatrix.WasModified)
+                percentage = compound.Matrixes.Keys.OrderBy(p => p.Number).ToArray()[i];
+                matrix = compound.Matrixes[percentage];
+
+                compound.Matrixes.Remove(percentage);
+
+                if (this.MatrixRepository.GetMatrixById(matrix.Id) != null)
                 {
-                    currentMatrix = this.MatrixRepository.UpdateMatrixWithId(currentMatrix.Id, currentMatrix);
-                    percent.MatrixId = currentMatrix.Id;
+                    percentage.MatrixId = matrix.Id;
+                }
+                else
+                {
+                    throw new Exception(string.Format("There is no matrix {0} in database!", matrix.Id));
                 }
 
-                SavePercentage(percent);
-
-                if (!PercentageToCompoundIsInList(percent, compound))
+                if (this.PercentageRepository.GetPercentageWithValues
+                    (percentage.Number, percentage.MatrixId, percentage.DopantId) ==
+                    null)
                 {
-                    this.PercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(percent.Id, inserted.Id));
+                    percentage = this.PercentageRepository.InsertPersentage(percentage);
                 }
+
+                compound.Matrixes.Add(percentage, matrix);
             }
 
-            foreach (var percent in compound.Dopants.Keys)
+            for (int i = 0; i < compound.Dopants.Keys.Count; i++)
             {
-                var currentDopant = compound.Dopants[percent];
-                if (currentDopant.WasModified)
+                percentage = compound.Dopants.Keys.OrderBy(p => p.Number).ToArray()[i];
+                dopant = compound.Dopants[percentage];
+
+                compound.Dopants.Remove(percentage);
+
+                if (this.DopantRepository.GetDopantById(dopant.Id) != null)
                 {
-                    currentDopant = this.DopantRepository.UpdateDopantWithId(currentDopant.Id, currentDopant);
-                    percent.DopantId = currentDopant.Id;
+                    percentage.DopantId = dopant.Id;
+                }
+                else
+                {
+                    throw new Exception(string.Format("There is no dopant {0} in database!", dopant.Id));
                 }
 
-                SavePercentage(percent);
-
-                if (!PercentageToCompoundIsInList(percent, compound))
+                if (this.PercentageRepository.GetPercentageWithValues
+                    (percentage.Number, percentage.MatrixId, percentage.DopantId) ==
+                    null)
                 {
-                    this.PercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(percent.Id, inserted.Id));
+                    percentage = this.PercentageRepository.InsertPersentage(percentage);
                 }
+
+                compound.Dopants.Add(percentage, dopant);
+            }
+
+            foreach (var item in compound.PercentageToCompound)
+            {
+                this.PercentToCompoundRepository.DeletePercentToCompoundWithId(item.Id);
+            }
+
+            var percentages = new List<Percentage>();
+            int id = compound.Compound.Id;
+            percentages.AddRange(compound.Matrixes.Keys);
+            percentages.AddRange(compound.Dopants.Keys);
+
+            foreach (var item in percentages)
+            {
+                this.PercentToCompoundRepository.InsertPercentToCompound(new PercentToCompound(item.Id, id));
             }
         }
 
