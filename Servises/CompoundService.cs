@@ -9,36 +9,18 @@ using System.Threading.Tasks;
 
 namespace Sample.Servises
 {
-    public class CompoundServise : ICompoundServise
+    public class CompoundService : ICompoundService
     {
 
         #region Fields
 
         private string _connectionString;
-        //private Compound _compound;
-        private SqlPercentageRepository _sqlPercentageRepository;
         private SqlCompoundRepository _sqlCompoundRepository;
-        private SqlPercentToCompoundRepository _sqlPercentToCompoundRepository;
-        private SqlDopantRepository _sqlDopantRepository;
-        private SqlMatrixRepository _sqlMatrixRepository;
 
         #endregion
 
         #region Properties
 
-        public SqlPercentageRepository PercentageRepository
-        {
-            get
-            {
-                if (this._sqlPercentageRepository == null)
-                {
-                    this._sqlPercentageRepository = new SqlPercentageRepository(this._connectionString);
-                }
-                return this._sqlPercentageRepository;
-            }
-
-            set { _sqlPercentageRepository = value; }
-        }
         public SqlCompoundRepository CompoundRepository
         {
             get
@@ -52,51 +34,12 @@ namespace Sample.Servises
 
             set { this._sqlCompoundRepository = value; }
         }
-        public SqlPercentToCompoundRepository PercentToCompoundRepository
-        {
-            get
-            {
-                if (this._sqlPercentToCompoundRepository == null)
-                {
-                    this._sqlPercentToCompoundRepository = new SqlPercentToCompoundRepository(this._connectionString);
-                }
-                return this._sqlPercentToCompoundRepository;
-            }
-
-            set { this._sqlPercentToCompoundRepository = value; }
-        }
-        public SqlDopantRepository DopantRepository
-        {
-            get
-            {
-                if (this._sqlDopantRepository == null)
-                {
-                    this._sqlDopantRepository = new SqlDopantRepository(this._connectionString);
-                }
-                return this._sqlDopantRepository;
-            }
-
-            set { this._sqlDopantRepository = value; }
-        }
-        public SqlMatrixRepository MatrixRepository
-        {
-            get
-            {
-                if (this._sqlMatrixRepository == null)
-                {
-                    this._sqlMatrixRepository = new SqlMatrixRepository(this._connectionString);
-                }
-                return this._sqlMatrixRepository;
-            }
-
-            set { this._sqlMatrixRepository = value; }
-        }
 
         #endregion
 
         #region Constructors
 
-        public CompoundServise(string connectionString)
+        public CompoundService(string connectionString)
         {
             this._connectionString = connectionString;
         }

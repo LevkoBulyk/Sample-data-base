@@ -1,12 +1,20 @@
 ﻿namespace Sample.Entities
 {
+    public enum Tasks
+    {
+        DoNothink,
+        Update,
+        Insert,
+        Delete
+    }
+
     public abstract class Table
     {
 
         #region Fields
 
         protected int _id;
-        protected bool _wasModified = false;
+        protected Tasks _wasModified = Tasks.DoNothink;
 
         #endregion
 
@@ -30,4 +38,5 @@
 
         #endregion
     }
+
 }

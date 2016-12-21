@@ -106,11 +106,14 @@ namespace Sample.Repositories
                 result.Id = (int)array[0];
                 result.EnergyGap = (double)array[1];
                 result.MaxPhononEnergy = (double)array[2];
-                if (array[3] as string == null)
+                if (array[3] == DBNull.Value)
                     result.Symmetry = null;
                 else
                     result.Symmetry = (string)array[3];
-                result.Comment = (string)array[4];
+                if (array[4] == DBNull.Value)
+                    result.Comment = null;
+                else
+                    result.Comment = (string)array[4];
 
                 return result;
             }

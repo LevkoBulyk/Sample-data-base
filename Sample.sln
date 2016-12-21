@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Repositories", "Samp
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.BusinessEntity", "Sample.BusinessEntity\Sample.BusinessEntity.csproj", "{283B7BCA-F196-4A29-9545-3BBFA57354A9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Servises", "Servises\Sample.Servises.csproj", "{8B5AF8F4-5EAB-42CD-8A2E-4A97994125C8}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sample.Services", "Servises\Sample.Services.csproj", "{8B5AF8F4-5EAB-42CD-8A2E-4A97994125C8}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

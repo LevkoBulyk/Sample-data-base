@@ -13,9 +13,8 @@ namespace Sample.BusinessEntity
         #region Fields
 
         private Compound _compound;
-        private Dictionary<Percentage, Matrix> _matrixes;
-        private Dictionary<Percentage, Dopant> _dopants;
-        private List<PercentToCompound> _percentageToCompound;
+        private List<BusinessMatrix> _matrixes;
+        private List<BusinessMatrix> _dopants;
         private string _name;
 
         #endregion
@@ -31,30 +30,20 @@ namespace Sample.BusinessEntity
                 OnCompundWasModified();
             }
         }
-        public Dictionary<Percentage, Matrix> Matrixes
+        public List<BusinessMatrix> Dopants
+        {
+            get { return this._dopants; }
+            set
+            {
+                this._dopants = value; OnCompundWasModified();
+            }
+        }
+        public List<BusinessMatrix> Matrixes
         {
             get { return this._matrixes; }
             set
             {
                 this._matrixes = value;
-                OnCompundWasModified();
-            }
-        }
-        public Dictionary<Percentage, Dopant> Dopants
-        {
-            get { return this._dopants; }
-            set
-            {
-                this._dopants = value;
-                OnCompundWasModified();
-            }
-        }
-        public List<PercentToCompound> PercentageToCompound
-        {
-            get { return this._percentageToCompound; }
-            set
-            {
-                this._percentageToCompound = value;
                 OnCompundWasModified();
             }
         }
@@ -82,9 +71,7 @@ namespace Sample.BusinessEntity
 
         public BusinessCompound()
         {
-            this._matrixes = new Dictionary<Percentage, Matrix>();
-            this._dopants = new Dictionary<Percentage, Dopant>();
-            this._percentageToCompound = new List<PercentToCompound>();
+            this._matrixes = new List<BusinessMatrix>();
             this._compound = new Compound();
             ResetDefaultName();
         }
@@ -100,7 +87,7 @@ namespace Sample.BusinessEntity
 
         public void ResetDefaultName()
         {
-            if (this.Matrixes.Count == 0 && this.Dopants.Count == 0)
+            if (this._matrixes.Count == 0 && this._dopants.Count == 0)
             {
                 this._name = "NoName";
             }
@@ -109,23 +96,23 @@ namespace Sample.BusinessEntity
                 StringBuilder name = new StringBuilder();
                 if (this.Matrixes.Count > 0)
                 {
-                    foreach (var key in this.Matrixes.Keys)
+                    foreach (var item in this._matrixes)
                     {
-                        name.Append(this.Matrixes[key].Name);
+                        name.Append(item.Matrix.Name);
                         name.Append('(');
-                        name.Append(key.Number);
+                        name.Append(item.Percentage.Number);
                         name.Append("%)");
                     }
                 }
 
-                if (this.Dopants.Count > 0)
+                if (this._dopants.Count > 0)
                 {
                     name.Append(':');
-                    foreach (var key in this.Dopants.Keys)
+                    foreach (var item in this._dopants)
                     {
-                        name.Append(this.Dopants[key].Name);
+                        name.Append(item.Matrix.Name);
                         name.Append('(');
-                        name.Append(key.Number);
+                        name.Append(item.Percentage.Number);
                         name.Append("%),");
                     }
                     name.Remove(name.Length - 1, 1);

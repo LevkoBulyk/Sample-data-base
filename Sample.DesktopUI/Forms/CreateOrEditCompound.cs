@@ -21,7 +21,7 @@ namespace Sample.DesktopUI
         #region Fields
 
         private string _connectionString = ConfigurationManager.ConnectionStrings["SampleDatabase"].ConnectionString;
-        private CompoundServise _compoundServise;
+        private CompoundService _compoundServise;
         private BusinessCompound _currentCompound;
 
         #endregion
@@ -32,7 +32,7 @@ namespace Sample.DesktopUI
         {
             InitializeComponent();
             this._currentCompound = new BusinessCompound();
-            this._compoundServise = new CompoundServise(this._connectionString);
+            this._compoundServise = new CompoundService(this._connectionString);
         }
 
         public CreateOrEditCompound(BusinessCompound compound)

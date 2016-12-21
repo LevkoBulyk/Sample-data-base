@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Sample.Servises
 {
-    interface ICompoundServise
+    interface ICompoundService
     {
         BusinessCompound GetCompoundWithId(int id);
         IEnumerable<BusinessCompound> GetAllCompounds();

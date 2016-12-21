@@ -121,9 +121,9 @@
       <Project>{41F0BCCE-9450-40C8-AE26-7401DD949BAB}</Project>
       <Name>Sample.Repositories</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Servises\Sample.Servises.csproj">
+    <ProjectReference Include="..\Servises\Sample.Services.csproj">
       <Project>{8B5AF8F4-5EAB-42CD-8A2E-4A97994125C8}</Project>
-      <Name>Sample.Servises</Name>
+      <Name>Sample.Services</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
